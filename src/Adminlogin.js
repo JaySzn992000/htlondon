@@ -51,7 +51,7 @@ try {
 
 // http://localhost:3001/fetchAdmin
 
-const response = await fetch("https://naturalbuti.onrender.com/fetchAdmin", {
+const response = await fetch("https://omega-zg6z.onrender.com/fetchAdmin", {
 method: "POST",
 headers: { "Content-Type": "application/json" },
 body: JSON.stringify({
