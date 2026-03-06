@@ -25,8 +25,8 @@ const pool = require("./config");
 
 app.use(cors({
   origin: [
-    'http://localhost:3000',
-    'https://bloomwinsome.vercel.app'
+    'https://bloomwinsome.vercel.app',
+    'http://localhost:3000'
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
