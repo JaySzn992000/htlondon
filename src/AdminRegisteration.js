@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; 
 import './AdminRegisteration.css';
@@ -81,6 +81,7 @@ console.log("Error:", error);
 alert("Something went wrong. Please try again.");
 }
 };
+
 
 return (
 

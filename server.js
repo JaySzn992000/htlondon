@@ -1541,6 +1541,7 @@ error: err.message,
 // });
 
 
+
 app.post('/registerAdmin', async (req, res) => {
   const { adminuser, adminpass } = req.body;
     console.log("Received admin register:", adminuser, adminpass); // 👈 Debug log
@@ -1565,6 +1566,7 @@ app.post('/registerAdmin', async (req, res) => {
   }
   
 });
+
 
 
 // app.post("/addcartaddress", (req, res) => {
