@@ -356,20 +356,41 @@ res.status(500).json({ error: "Database query failed" });
 // });
 
 
-app.get("/fetchProductslistChilli", async (req, res) => {
-const exactMatchQuery = `
+app.get("/fetchProductslistLotus", async (req, res) => {
+
+const query = `
 SELECT *
 FROM _imgproduct
-WHERE LOWER(img) = LOWER($1)
+WHERE img ILIKE '%lotus%'
 `;
 
 try {
-const result = await pool.query(exactMatchQuery, ['KasturiHaldi']);
+const result = await pool.query(query);
 res.json(result.rows);
 } catch (err) {
 console.error("Error fetching data:", err.message);
 res.status(500).json({ error: "Database query failed" });
 }
+
+});
+
+
+app.get("/fetchProductslistFacewash", async (req, res) => {
+
+const query = `
+SELECT *
+FROM _imgproduct
+WHERE img ILIKE '%face wash%'
+`;
+
+try {
+const result = await pool.query(query);
+res.json(result.rows);
+} catch (err) {
+console.error("Error fetching data:", err.message);
+res.status(500).json({ error: "Database query failed" });
+}
+
 });
 
 

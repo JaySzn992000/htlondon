@@ -73,11 +73,18 @@ const naviProductPage = () => {
 navi("/collections");
 };
 
+
 const naviStoreBrand = useNavigate();
 
 const naviToStoreBrand = () => {
 naviStoreBrand("/collections");
 };
+
+
+const naviProductFashWash = () => {
+naviStoreBrand("/fash-wash")
+}
+
 
 const profileNavi = useNavigate();
 
@@ -503,7 +510,7 @@ SKINCARE
 <div className="listing_Products">
 
 <ul>
-<li onClick={naviProductPage}>
+<li onClick={naviProductFashWash}>
 <a href="">Fash Wash</a>
 </li>
 <li onClick={naviGateTshirt}>
