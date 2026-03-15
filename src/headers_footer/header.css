@@ -1,6 +1,8 @@
 .normal_header {
-background-color: #231F20;
+background-color: #f8f8f8;
+border-top: 1px solid #e5e5e5;
 padding-top: 17px;
+box-shadow: 0 -2px 6px rgba(232, 230, 230, 0.08);
 }
 
 .normal_header .div_header {
@@ -10,37 +12,23 @@ align-items: flex-start;
 text-align: start;
 gap: 6.5vw;                
 padding: 4rem 2rem;
-padding-bottom: 127px;     
+padding-bottom: 197px;
 width: 100%;
 }
 
-.normal_header .exclusive_flx {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(113px, max-content));
-justify-content: center;   
-column-gap: 7rem;        
-row-gap: 1.5rem;
-padding: 3rem 2rem;
-border-bottom: 0.5px solid #fff;
-}
-
-.normal_header .exclusive_flx img {
-width: 113px;
-object-fit: contain;
-}
-
 .normal_header h4 {
-font-size: 1rem;
-color: #fff;
+font-size: 1.4rem;
+color: #231f20;
 margin-bottom: 0.5rem;
+font-family: 'Times New Roman', Times, serif;
 }
 
 .normal_header h3 {
-color: #fff;
+color: #231f20;
 }
 
 .normal_header p {
-color: #fff;
+color: #231f20;
 margin-top: 0.7rem;
 line-height: 1.7;
 }
@@ -48,7 +36,6 @@ line-height: 1.7;
 .normal_header .nMheader_dvLogo {
 width: 197px;
 margin-top: 1rem;
-filter: invert(1);
 margin-left: -.5em;
 margin-bottom: 1.3em;
 }
@@ -59,79 +46,32 @@ line-height: 2.7rem;
 
 .normal_header ul li {
 font-size: 1rem;
-color: #DCDCDC;
+color: #231f20;
 cursor: pointer;
 transition: color 0.3s ease;
 }
 
-.normal_header ul li:hover {
-color: #fff;
-}
-
-.normal_header .exclusive_flx label {
-font-weight: normal;
-margin-top: 1.7em;
-color: #fff;
-}
-
 .div_header button {
-background-color: #fff;
-border: 2px solid transparent;
-padding: .8em 2.8em;
+background-color: #231f20;
+border: 1px solid #231f20;
+padding: .9em 3em;
 font-size: .9rem;
 margin-top: 1.7em;
 cursor: pointer;
 position: relative;
 overflow: hidden;
 border-radius: 2px;
-transition: color 0.3s ease, border 0.3s ease;
-}
-
-.div_header button::before {
-content: "";
-position: absolute;
-top: 0;
-left: -100%;
-width: 100%;
-height: 100%;
-background: #231F20;
-transition: left 0.4s ease;
-z-index: 0; 
+transition: color 0.3s ease, border-color 0.3s ease;
 }
 
 .div_header button span {
-position: relative;
-z-index: 1; 
-color: #000; 
-transition: color 0.3s ease;
+color: #fff;
 }
-
-.div_header button:hover::before {
-left: 0; 
-}
-
-.div_header button:hover span {
-color: #fff; 
-}
-
-.div_header button:hover {
-border: 0.5px solid #fff; 
-}
-
 
 
 
 @media (max-width: 925px) {
 
-.normal_header .exclusive_flx {
-grid-template-columns: repeat(2, 1fr); 
-column-gap: 2.7em;
-}
-
-.normal_header .exclusive_flx img {
-width: 81px;
-object-fit: contain;
-}
 
 .normal_header .div_header {
 flex-direction: column;
@@ -163,10 +103,6 @@ font-size: 1rem;
 
 @media (min-width: 925px) and (max-width: 1519px) {
 
-.normal_header .exclusive_flx img {
-width: 107px;
-object-fit: contain;
-}
 
 .normal_header .div_header {
 gap: 2vw; 
@@ -183,7 +119,7 @@ width: 160px;
 }
 
 .normal_header h4 {
-font-size: .9rem;
+font-size: 1.4rem;
 }
 
 }

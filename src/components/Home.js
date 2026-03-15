@@ -102,8 +102,8 @@ return (
 <Iconicselection></Iconicselection>
 <AboutHm></AboutHm>
 <Commitments></Commitments>
+<img className="uptoff" src="https://cdn.shopify.com/s/files/1/0420/7073/7058/files/shop_your_size2_1.jpg?v=1773041954"></img>
 <ShopCategory></ShopCategory>
-<FavFavroute></FavFavroute>
 <Featured></Featured>
 
 <div className="subscribe_k">

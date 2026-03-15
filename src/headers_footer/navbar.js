@@ -1,10 +1,10 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Search from "../Images_ToolsSymbols/search_icon.png";
 import LogoNitiArya from "../Logo/LogoNitiArya.png";
 import Heart from "../Images_ToolsSymbols/Heart.jpg";
 import User from "../Images_ToolsSymbols/user.jpg";
 import Cart from "../Images_ToolsSymbols/Cart.jpg";
-import Search from "../Images_ToolsSymbols/search_icon.png";
 import Bars from "../Images_ToolsSymbols/Bars.png";
 import eyeliner from "../Slider/eyeliner.png"
 import compact from "../Slider/compact.png"
@@ -15,13 +15,11 @@ import "./navbar.css";
 
 const Navbar = () => {
 
-
 const [loggedInUser, setLoggedInUser] = useState(null);
 const navigate = useNavigate();
 const location = useLocation();
 
 const isDarkNavbarPage = location.pathname !== "/";
-
 
 const [openMenu, setOpenMenu] = useState({
 store: false,
@@ -73,18 +71,15 @@ const naviProductPage = () => {
 navi("/collections");
 };
 
-
 const naviStoreBrand = useNavigate();
 
 const naviToStoreBrand = () => {
 naviStoreBrand("/collections");
 };
 
-
 const naviProductFashWash = () => {
-naviStoreBrand("/fash-wash")
+naviStoreBrand("/t-shirts")
 }
-
 
 const profileNavi = useNavigate();
 
@@ -116,27 +111,49 @@ naviheartNavi("/WishList");
 
 const naviTshirt = useNavigate();
 const naviGateTshirt = () => {
-naviTshirt("/lotus");
+naviTshirt("/t-shirts");
 };
+
+const naviTops = useNavigate();
+const naviToTops = () => {
+naviTops("/tops");
+};
+
+
 
 const naviShirt = useNavigate();
 const naviGateShirt = () => {
-naviShirt("/o3plus");
+naviShirt("/jeans");
 };
 
 const naviJeans = useNavigate();
 const naviGateJeans = () => {
-naviJeans("/lorealparis");
+naviJeans("/trousers");
+};
+
+const naviWomenJeans = useNavigate();
+const naviToWomenJeans = () => {
+naviWomenJeans("/women-jeans");
+};
+
+const navWomenTshirts = useNavigate();
+const naviToWomenTshirts = () => {
+navWomenTshirts("/women-t-shirts");
 };
 
 const naviPants = useNavigate();
 const naviGatePants = () => {
-naviPants("/biotique");
+naviPants("/shorts");
+};
+
+const naviWomenAccessories = useNavigate();
+const naviToWomenAccessories = () => {
+naviWomenAccessories("/women-accessories");
 };
 
 const naviSweaters = useNavigate();
 const naviGateSweaters = () => {
-naviSweaters("/aroma");
+naviSweaters("/accessories");
 };
 
 const naviSugar = useNavigate();
@@ -147,13 +164,13 @@ naviSugar("/streax");
 const NavigatetoBathBody = useNavigate()
 
 const naviToBathBody = () => {
-NavigatetoBathBody('/bath-body')
+NavigatetoBathBody('/men')
 }
 
-const NavigatetoHairCare = useNavigate()
+const NaviToShoes = useNavigate()
 
-const naviToHairCare = () => {
-NavigatetoHairCare('/haircare')
+const naviToShoes = () => {
+NaviToShoes('/shoes')
 }
 
 const NavigatetoSkinCare = useNavigate()
@@ -259,11 +276,13 @@ return (
 
 <div>
 
-<nav className={`Product_navbar ${scrolled ? "scrolled" : ""} ${isDarkNavbarPage ? "forceDark" : ""}`}>
+<nav className={`Product_navbar ${scrolled ? "scrolled" : ""}`}>
 
-<div className="fa_barsLogo_Container">
+{/* 1ND NAV */}
 
-<img 
+<ul className="nav_ul">
+
+<img
 onClick={clickOpen}
 src={Bars}
 className="fa fa-bars fa_bars_nav"
@@ -277,7 +296,117 @@ loading="lazy"
 alt=""
 ></img>
 
-{/* 1ND NAV */}
+{/* 2ND HOVER */}
+
+<div className="div_ul">
+
+<li className="hover_products">
+<a onClick={naviToBathBody}  href="">MEN</a>
+
+<div className="listing_Products">
+
+<ul>
+<li onClick={naviProductFashWash}>
+<a href="">T-Shirts</a>
+</li>
+<li onClick={naviGateTshirt}>
+<a href="">Shirts</a>
+</li>
+<li onClick={naviGateShirt}>
+<a href="">Jeans</a>
+</li>
+<li onClick={naviGateJeans}>
+<a href="">Trousers</a>
+</li>
+<li onClick={naviGatePants}>
+<a href="">Shorts</a>
+</li>
+<li onClick={naviGateSweaters}>
+<a href="">Accessories</a>
+</li>
+</ul>
+
+<ul>
+<li onClick={naviProductPage}>
+<img src={compact}></img>
+</li>
+</ul>
+
+<ul>
+<li onClick={naviProductPage}>
+<img src={eyeliner}></img>
+</li>
+</ul>
+
+</div>
+
+</li>
+
+</div>
+
+{/* 3RD HOVER */}
+
+<div className="div_ul">
+
+<li className="hover_products">
+<a onClick={naviToSkinCare}  href="">WOMEN</a>
+<div className="listing_Products">
+<ul>
+
+<li onClick={naviToTops}>
+<a href="">Tops</a>
+</li>
+
+<li onClick={naviToWomenJeans}>
+<a href="">Women Jeans</a>
+</li>
+<li onClick={naviToWomenTshirts}>
+<a href="">Women T-shirts</a>
+</li>
+<li onClick={naviToWomenAccessories}>
+<a href="">Women Accessories</a>
+</li>
+</ul>
+
+<ul>
+<li onClick={naviProductPage}>
+<img src={facilnav}></img>
+</li>
+</ul>
+
+<ul>
+<li onClick={naviProductPage}>
+<img src={lipstick}></img>
+</li>
+</ul>
+
+</div>
+
+</li>
+</div>
+
+{/* 4TH HOVER */}
+
+<div className="div_ul">
+
+<li className="hover_products">
+<a onClick={naviToShoes}  href="">SHOES</a>
+</li>
+</div>
+
+{/* 1ST HOVER */}
+
+<div className="div_ul">
+
+<li className="hover_products">
+<a onClick={naviToStoreBrand}  href="">COLLECTIONS</a>
+</li>
+
+</div>
+
+</ul>
+
+<div className="fa_barsLogo_Container">
 
 <div className="flex_nav_ProfileSection">
 
@@ -306,18 +435,23 @@ src={User}
 
 </ul>
 
+<div className="cart_bag">
+
 <img
 src={Cart}
 onClick={navigateEcart}
 className="fa fa-shopping-cart navProfile_img"
 ></img>
-
 {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
+
+<h5>Bag</h5>
+</div>
 
 <ul>
 <li className="navProfile_">
 </li>
 </ul>
+
 
 <input
 type="text"
@@ -328,15 +462,13 @@ className={`search_products ${
 afterSearch_prodct ? "afterSearch_prodct" : ""
 }`}
 placeholder="Search Our Product"
->
-</input>
+/>
 
 <img
 src={Search}
-onClick={searchProducts} className="fa fa-search"
-></img>
-
-<i ></i>
+onClick={searchProducts}
+className="fa fa-search"
+/>
 
 <div>
 
@@ -361,7 +493,6 @@ loading="lazy" />
 <li onClick={seeAllProducts}>
 <a href="">COLLECTIONS</a>
 </li>
-<img id="iconArrow" src="https://cdn-icons-png.flaticon.com/128/2985/2985179.png"></img>
 </div>
 
 <div className="flex_icon_ storeBrand">
@@ -411,7 +542,7 @@ SKINCARE
 {loggedInUser && (
 <div className="flex_icon_">
 <li onClick={orderhistory}>
-<a href="">Order History</a>
+<a href="">ORDER HISTORY</a>
 </li>
 </div>
 )}
@@ -445,153 +576,6 @@ SKINCARE
 
 {/* 3nd NAV */}
 
-<ul className="nav_ul">
-
-{/* 1ST HOVER */}
-
-<div className="div_ul">
-
-<li className="hover_products">
-<a onClick={naviToStoreBrand}  href="">COLLECTIONS</a>
-
-<div className="listing_Products">
-<ul>
-
-<li onClick={naviGateTshirt}>
-<a href="">Lotus Herbals</a>
-</li>
-
-<li onClick={naviGateShirt}>
-<a href="">O3 Plus</a>
-</li>
-<li onClick={naviGateJeans}>
-<a href="">Loreal Paris</a>
-</li>
-<li onClick={naviGatePants}>
-<a href="">Biotique</a>
-</li>
-<li onClick={naviGateSweaters}>
-<a href="">Aroma</a>
-</li>
-<li onClick={naviGateSugar}>
-<a href="">Streax</a>
-</li>
-</ul>
-
-<ul>
-<li onClick={naviProductPage}>
-<img src={facilnav}></img>
-<br></br>
-<a href="">Moisturizer</a>
-</li>
-</ul>
-
-<ul>
-<li onClick={naviProductPage}>
-<img src={lipstick}></img>
-<br></br>
-<a href="">Face Serum</a>
-</li>
-</ul>
-
-</div>
-
-</li>
-
-</div>
-
-{/* 2ND HOVER */}
-
-<div className="div_ul">
-
-<li className="hover_products">
-<a onClick={naviToBathBody}  href="">BATH & BODY</a>
-
-<div className="listing_Products">
-
-<ul>
-<li onClick={naviProductFashWash}>
-<a href="">Fash Wash</a>
-</li>
-<li onClick={naviGateTshirt}>
-<a href="">Fash Cream</a>
-</li>
-<li onClick={naviGateShirt}>
-<a href="">Sunscreen</a>
-</li>
-<li onClick={naviGateJeans}>
-<a href="">Shampoo</a>
-</li>
-<li onClick={naviGatePants}>
-<a href="">Hair Serum</a>
-</li>
-<li onClick={naviGateSweaters}>
-<a href="">Hair Color</a>
-</li>
-</ul>
-
-{/*  */}
-
-<ul>
-<li onClick={naviProductPage}>
-<img src={compact}></img>
-<br></br>
-<a href="">Facial Kit</a>
-</li>
-</ul>
-
-<ul>
-<li onClick={naviProductPage}>
-<img src={eyeliner}></img>
-<br></br>
-<a href="">Eyeliner</a>
-</li>
-</ul>
-
-</div>
-
-</li>
-
-</div>
-
-{/* 3RD HOVER */}
-
-<div className="div_ul">
-
-<li className="hover_products">
-<a onClick={naviToSkinCare}  href="">SKIN CARE</a>
-</li>
-</div>
-
-{/* 4TH HOVER */}
-
-<div className="div_ul">
-
-<li className="hover_products">
-<a onClick={naviToHairCare}  href="">HAIR CARE</a>
-</li>
-</div>
-
-{/*  */}
-
-<ul className="div_ul">
-<li onClick={naviToMakeup}>
-<a href="">MAKEUP</a>
-</li>
-</ul>
-
-{/*  */}
-
-<ul className="div_ul">
-<li onClick={naviToPerfume}>
-<a href="">PERFUME</a>
-</li>
-</ul>
-
-{/*  */}
-
-</ul>
-
 </nav>
 
 </div>
@@ -600,4 +584,4 @@ SKINCARE
 
 };
 
-export default Navbar;
+export default Navbar; 

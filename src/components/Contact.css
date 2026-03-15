@@ -1,215 +1,121 @@
 
-iframe {
-border: none;
+.form_contact{
+display:grid;
+grid-template-columns: 1fr 1fr;
+width:85vw;
+margin:4em auto;
+background:#fff;
+border-radius:14px;
+overflow:hidden;
 }
 
-.form_contact {
-display: flex;
-justify-content: center;
-padding: 2.7em;
-gap: 4.7em;
-margin: 4.1em auto 0;
+.form_div{
+padding:3em 3.5em;
+display:flex;
+flex-direction:column;
+}
+
+.form_contact h1{
+font-size:2rem;
+margin-bottom:.3em;
+color:#111;
 text-align: start;
 }
 
+.form_div p{
+color:#777;
+font-size:.9rem;
+margin-bottom:2em;
+}
+
 .form_contact input,
-.form_contact textarea {
-width: 357px;
-padding: 0.5em;
-padding-left: 21px;
-margin-top: 0.7em;
-outline: none;
-border-radius: 27px;
-font-size: .9rem;
-border: 1px solid #A9A3A3;
+.form_contact textarea{
+width:85%;
+border:none;
+border-bottom:1px solid #ddd;
+padding:12px 0;
+margin-top:20px;
+font-size:.95rem;
+outline:none;
+transition:.3s;
 }
 
 .form_contact input:focus,
-.form_contact textarea:focus {
-border-color: #10204f;
-box-shadow: 0 0 0 2px #10204F;
+.form_contact textarea:focus{
+border-bottom:1px solid #000;
 }
 
-.form_contact textarea {
-padding: 1em;
-min-height: 140px;
-resize: vertical;
+.form_contact textarea{
+min-height:120px;
+resize:none;
 }
 
-.form_contact button {
-width: 100%;
-padding: 1.2em;
-border-radius: 27px;
-border: none;
-outline: none;
-cursor: pointer;
-font-size: 0.9rem;
-margin: 2.3em 0em 0.7em 0em;
-background-color: #231F20;
-color: #fff;
-transition: background 0.3s ease, transform 0.3s ease;
+.form_contact button{
+margin-top:30px;
+padding:17px;
+border:none;
+background:#0f172a;
+color: #fff;;
+border-radius:8px;
+font-size:.95rem;
+cursor:pointer;
+transition:.3s;
 }
 
-.form_contact button:hover {
-background-color: #231F20;
-color: #fff;
-transform: translateY(-5px);
+.form_contact button:hover{
+background:#020617;
+transform:translateY(-2px);
 }
 
-.form_contact h1:first-child {
-color:#10204f;
-font-size: 1.9rem;
-line-height: 1.5em;
-margin-bottom: 0.7em;
+.form_contact div:first-child{
+position:relative;
 }
 
-.form_contact img {
-width: 477px;  
-height: auto;
-max-width: 100%;
-object-fit: cover;
-border-radius: 3px;
-cursor: pointer;
+.form_contact img{
+width:100%;
+height:100%;
+object-fit:cover;
 }
 
-.hideInput_Contact {
-display: none;
+.form_contact div:first-child::before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(
+180deg,
+rgba(30,64,175,0.3),
+rgba(2,6,23,0.8)
+);
 }
 
-.success_message {
-text-align: center;
+.form_contact div:first-child::after{
+
+content:"Inspired by the timeless streets of London, our collection blends classic British elegance with modern fashion. Every piece is designed to reflect confidence, individuality, and effortless style. From everyday essentials to statement outfits, we focus on quality fabrics, refined details, and contemporary designs that suit every occasion.";
+position:absolute;
+bottom:40px;
+left:40px;
+color:#fff;
+font-size:1.3rem;
+width:75%;
+line-height:1.5;
 }
 
-.about_flex_contct {
-display: flex;
-flex-direction: column;
-}
-
-.about_flex_contct .iframeMap{
-width: 90vw;
-height: 343px;
-margin: auto;
-margin-top: 3.7em;
-}
-
-.out_location {
-width: 70vw;
-text-align: center;
-margin: auto;
-margin-top: 6.3em;
-}
-
-.about_flex_contct div p {
-width: 70vw;
-margin-top: -.6em;
-line-height: 2.5em;
-text-align: center;
-color: #808080;
-}
-
-.about_flex_contct div h2 {
-margin-bottom: -.2em;
-font-size: 2.1rem;
-}
-
-.about_flex_contct div {
-line-height: 1.3em;
-}
-
-.success_message {
-color: #FA0404;
+.success_message{
+margin-top:15px;
+color:green;
 }
 
 
+@media(max-width:1024px){
 
-@media (max-width: 1024px) {
-
-.form_contact {
-width: 95vw;
-flex-direction: column;
-margin: 3.7em auto 0;
-text-align: center;
-padding: 0;
+.form_contact{
+grid-template-columns:1fr;
 }
-
-.form_contact .form_div {
-width: 85vw;
-margin: auto;
-margin-top: -2.7em;
-margin-bottom: 1.7em;
+.form_contact img{
+height:320px;
 }
-
-.form_contact img {
-width: 95%;
-margin: auto;
-margin-left: 0;
-}
-
-.form_contact input {
-width: 95%;
-}
-
-.form_contact textarea {
-width: 95%;
-}
-
-.form_contact button {
-width: 85%;
-font-size: 0.9rem;
-padding: 1.1em;
-}
-
-.form_contact h1:first-child {
-font-size: 1.7rem;
-line-height: 1.8em;
-text-align: center;
-margin-top: -.5em;
-}
-
-.about_flex_contct .iframeMap {
-width: 100%;
-}
-
-.about_flex_contct div{
-width: 85%;
-margin: auto;
-text-align: center;
-margin-top: 1.7em;
-}
-
-.about_flex_contct div p {
-width: 100%;
-text-align: justify;
-margin-top: -.3em;
-}
-
-.about_flex_contct div h2 {
-font-size: 1.6rem;
-}
-
-}
-
-
-
-@media (min-width: 1025px) and (max-width: 1500px) {
-
-.form_contact {
-width: 100%;
-gap: 4.7vw;
-}
-
-.about_flex_contct .iframeMap {
-width: 90vw;
-}
-
-.about_flex_contct div p {
-width: 100%;
-text-align: center;
-margin-top: 0.7em;
-}
-
-.about_flex_contct div h2 {
-margin-bottom: .3em;
+.form_div{
+padding:2em;
 }
 
 }

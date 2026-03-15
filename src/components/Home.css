@@ -1,7 +1,4 @@
 
-/* Password Eye's 
-Hide */
-
 .password-field {
 position: relative;
 display: flex;
@@ -31,12 +28,10 @@ cursor: pointer;
 font-weight: normal;
 font-size: 1.1rem;
 border-bottom: 1px solid #100424;
-background-color: rgb(255, 255, 255);
+background-color: #fff;
 }
 
 .tshirt_Left {
-/* width: 1124px;
-margin: 0 auto; */
 margin-top: 1.7em;
 margin-bottom: 1.3em;
 transform: translateX(-8.74%);
@@ -107,8 +102,15 @@ z-index: 9999;
 
 .success_message {
 margin-bottom: 0.7em;
-color: rgb(255, 0, 0);
+color: #FF0000;
 }
+
+.uptoff{
+width: 100%;
+margin-top: 4.7em;
+}
+
+
 
 @media (max-width: 768px) {
 
@@ -180,6 +182,7 @@ padding: 0em;
 overflow-x: auto;
 scroll-snap-type: x mandatory;
 }
+
 .Icon_ItemsHome div {
 margin-bottom: .7em;
 }

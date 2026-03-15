@@ -4,7 +4,6 @@ import Navbar from "../headers_footer/navbar";
 import Header from "../headers_footer/header";
 import ContactPickle from "../Slider/Contact_Achar1Hair.jpg";
 import "./Contact.css";
-import TrendingCategory from "./TrendingCategory";
 
 const Contactus = () => {
 
@@ -81,9 +80,6 @@ return (
 
 <main>
 
-<img className="ListBanner"
-src="https://www.kimirica.shop/cdn/shop/files/Valentine-Store-2025-Inner-Pages-BANNER-01.jpg?v=1768802129&width=1920"></img>
-
 <form onSubmit={sendEmail} className="form_contact">
 
 <div>
@@ -93,7 +89,6 @@ src="https://www.kimirica.shop/cdn/shop/files/Valentine-Store-2025-Inner-Pages-B
 <div className="form_div">
 
 <h1>
-Hi there! <br/>
 Contact Us
 </h1>
 
@@ -137,7 +132,7 @@ required
 />{" "}
 
 <br />
-<button type="submit">Send Message</button>
+<button type="submit">Contact Us</button>
 {successMessage && (
 <p className="success_message">{successMessage}</p>
 )}
@@ -146,8 +141,6 @@ required
 </form>
 
 </main>
-
-<TrendingCategory></TrendingCategory>
 
 <div className="header-ad">
 <Header></Header>

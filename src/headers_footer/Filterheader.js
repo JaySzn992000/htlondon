@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import LogoNitiArya from "../Logo/LogoNitiArya.png";
-import headerdelivery from "../Slider/header4.img.jpg";
-import headersupport from "../Slider/header2.img.jpg";
-import headerfreeshipping from "../Slider/header1.img.jpg";
-import headeronlinepayment from "../Slider/header3.img.jpg";
+// import headerdelivery from "../Slider/header4.img.jpg";
+// import headersupport from "../Slider/header2.img.jpg";
+// import headerfreeshipping from "../Slider/header1.img.jpg";
+// import headeronlinepayment from "../Slider/header3.img.jpg";
 import "./Filterheader.css";
 
 const Filterheader = () => {
@@ -77,7 +77,7 @@ return (
 
 <section className="headerFlx_left">
 
-<img
+{/* <img
 className="ImgHeader"
 loading="lazy"
 src={headerfreeshipping} alt="logo"></img>
@@ -95,9 +95,8 @@ src={headeronlinepayment} alt="logo"></img>
 <img
 className="ImgHeader"
 loading="lazy"
-src={headerdelivery} alt="logo"></img>
+src={headerdelivery} alt="logo"></img> */}
 
-    
 </section>
 
 </div>

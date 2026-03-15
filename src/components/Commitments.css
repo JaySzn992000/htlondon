@@ -1,143 +1,46 @@
-.commitments_center {
+
+.slider-container_Commitment{
+width: 98%;
+margin: auto;
+padding: 20px 0;
+margin-top: 5.7em;
+}
+
+.slide-content_Commite{
 width: 100%;
-padding: 3rem 1rem;
-margin-top: 4.7em;
 display: flex;
-flex-direction: column;
 justify-content: center;
 align-items: center;
 }
 
-.commitments_center h2 {
-text-align: center;
-margin-bottom: 2rem;
-font-size: 2rem;
-font-family: 'Times New Roman', Times, serif;
-letter-spacing: 1px;
-}
-
-.commitments_center  p {
-margin-top: -1.1em;
-line-height: 1.9em;
-}
-
-.commitments_flex {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(181px, 1fr));
-grid-template-columns: repeat(5, 1fr); 
-gap: 2.7rem;
-max-width: 1000px;
+.slide-image_Commite{
 width: 100%;
-margin-top: .7em;
-justify-items: center;
-align-items: center;
-}
-
-.commitments_flex img {
-width: 100%;
-max-width: 107px;
 height: auto;
-border-radius: 50%;
 object-fit: cover;
 cursor: pointer;
 transition: transform 0.3s ease;
 }
 
-.commitments_flex div label {
-font-weight: normal;
-margin-top: 1em;
-font-size: .9rem;
-line-height: 1.7em;
+.swiper-wrapper{
+transition-timing-function: linear !important;
 }
 
-.commitments_flex div h4 {
-font-size: .9rem;
-font-weight: normal;
+.slider-container_Commitment h1 {
 color: #000;
-line-height: 1.7em;
-}
-
-
-@media (min-width: 999px) and (max-width : 1245px) { 
-
-.commitments_flex {
-gap: 0.2rem;
-}
-
-.commitments_flex img {
-max-width: 11vw;
-}
-
-.commitments_flex div h4 {
-font-size: .8rem;
-}
-
-.commitments_flex div label {
-font-size: .8rem;
-line-height: 2em;
-}
-
+margin-bottom: 1.1em;
+font-family: 'Times New Roman', Times, serif;
 }
 
 
 
-@media (min-width: 769px) and (max-width : 999px) {
+@media (max-width:768px) {
 
-.commitments_flex {
-grid-template-columns: repeat(3, 1fr); 
-gap: 0.8rem;
+.slider-container_Commitment{
+padding: 10px 0;
 }
 
-.commitments_flex div h4 {
-font-size: .8rem;
-}
-
-.commitments_flex div label {
-font-size: .8rem;
-line-height: 2em;
-}
-
-.commitments_flex img {
-max-width: 15vw;
-}
-
-}
-
-
-
-@media (max-width: 769px) {
-
-.commitments_flex {
-grid-template-columns: repeat(3, 1fr); 
-gap: 1rem;
-}
-
-.commitments_center h2 {
+.slider-container_Commitment h1 {
 font-size: 1.6rem;
-}
-
-.commitments_flex div h4 {
-font-size: .7rem;
-}
-
-.commitments_flex div label {
-font-size: .7rem;
-line-height: 2em;
-}
-
-.commitments_flex img {
-max-width: 25vw;
-}
-
-}
-
-
-
-@media (max-width: 360px) {
-
-.commitments_flex {
-grid-template-columns: repeat(3, 1fr); 
-gap: 0.8rem;
 }
 
 }

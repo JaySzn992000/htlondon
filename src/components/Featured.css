@@ -19,10 +19,9 @@ letter-spacing: 1px;
 .shopcategory_flex {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(181px, 1fr));
-grid-template-columns: repeat(4, 1fr); 
+grid-template-columns: repeat(4, 1fr);
 gap: 2.7rem;
-max-width: 1320px;
-width: 100%;
+width: 99%;
 margin-top: .7em;
 justify-items: center;
 align-items: center;
@@ -30,8 +29,7 @@ align-items: center;
 
 .shopcategory_flex img {
 width: 100%;
-max-width: 320px;
-height: 320px;
+height: 365px;
 object-fit: cover;
 cursor: pointer;
 transition: transform 0.3s ease;
@@ -46,7 +44,7 @@ font-size: 1rem;
 .shopcategory_flex {
 display: flex;
 overflow-x: auto;
-gap: 1rem;
+gap: .4rem;
 scroll-snap-type: x mandatory;
 -webkit-overflow-scrolling: touch;
 padding-bottom: 1rem;
@@ -63,8 +61,7 @@ text-align: center;
 }
 
 .shopcategory_flex button {
-background: #000;
-color: #fff;
+background: gainsboro;
 border: 2px solid transparent;
 padding: .9em 2.3em;
 font-size: .9rem;
@@ -91,7 +88,7 @@ z-index: 0;
 .shopcategory_flex button span {
 position: relative;
 z-index: 1; 
-color: #fff; 
+color: #231f20; 
 transition: color 0.3s ease;
 }
 
@@ -111,6 +108,10 @@ border: 2px solid #000;
 
 @media (min-width: 768px) and (max-width: 1245px) {
 
+.featured_center {
+padding: .5rem .5rem;
+}
+
 .featured_center h2 {
 font-size: 1.6rem;
 }
@@ -118,8 +119,11 @@ font-size: 1.6rem;
 }
 
 
-
 @media (max-width: 768px) {
+
+.featured_center {
+padding: .5rem .5rem;
+}
 
 .shopcategory_flex {
 grid-template-columns: repeat(3, 1fr); 

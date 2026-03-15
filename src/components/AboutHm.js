@@ -1,5 +1,4 @@
 import Navbar from "../headers_footer/navbar";
-import AboutHmImg from "../Slider/AboutHm.jpg";
 import "./AboutHm.css";
 
 const AboutHm = () => {
@@ -15,25 +14,32 @@ return (
 <img 
 loading="lazy"
 className="imgAbout" 
-alt="Traditional Indian pickle jar with spices"
-src={AboutHmImg}></img>
+alt=""
+src="https://images.riverisland.com/image/upload/f_auto/q_auto/t_ProductImagePortraitSmall/f_auto/q_auto/935973_main?cc&$retina"></img>
 
 <section>
 
-<h3>WELCOME TO</h3>
-<h2>WINSOM BLOOM</h2>
+<h2>HT LONDON</h2>
 <p>
 {" "}
-Discover premium beauty and personal care products from trusted brands like 
-Lotus Herbals, O3 Plus, L'Oréal Paris, Biotique, Aroma, and Streax. 
-At Winsom Blooms, we bring you a curated collection of skincare, haircare, 
-makeup, and fragrance essentials designed to enhance your natural beauty 
-and boost your confidence every day{" "}
+Discover premium fashion and clothing inspired by the 
+timeless style of London. From classic streetwear to modern 
+wardrobe essentials, our collection blends elegance, comfort, 
+and contemporary design. At our store, we bring you carefully 
+selected outfits, everyday fashion pieces, and seasonal styles 
+crafted to elevate your look and express your individuality with 
+confidence and effortless style every day.{" "}
 </p>
 
 <button><span>DISCOVER NOW</span></button>
 
 </section>
+
+<img 
+loading="lazy"
+className="imgAbout" 
+alt=""
+src="https://images.riverisland.com/image/upload/t_ProductImagePortraitSmall/f_auto/q_auto/932156_main?cf&$retina$"></img>
 
 </main>
 

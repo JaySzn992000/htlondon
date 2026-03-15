@@ -8,7 +8,7 @@ return (
 
 <div className="topnav">
 <div className="topnav-center">
-<li><a>LIMITED TIME OFFER: UP TO 30% OFF SHOP NOW * T & C</a></li>
+<li><a>Up to 30% OFF - Limited Time Only | Shop Now</a></li>
 </div>
 </div>
 

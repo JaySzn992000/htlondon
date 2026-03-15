@@ -1,62 +1,96 @@
-import Fragrances from "../Slider/Fragrance.jpeg"
-import Skincares from "../Slider/Skincare.jpeg"
-import Candles from "../Slider/Candle.jpg"
-import "./ShopCategory.css";
+import { EffectCoverflow, Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { useRef, useState } from 'react';
+import img1 from "../Slider/img1.png";
+import img2 from "../Slider/img2.png";
+import img3 from "../Slider/img3.png";
+import img4 from "../Slider/img4.png";
+import img5 from "../Slider/img5.png";
+import img6 from "../Slider/img6.png";
+import 'swiper/css/effect-coverflow';
+import './ShopCategory.css';
+import 'swiper/css';
 
 const ShopCategory = () => {
 
+const [activeIndex, setActiveIndex] = useState(0);
+const swiperRef = useRef(null);
+
+const images = [
+img1,
+img2,
+img3,
+img4,
+img5,
+img6,
+];
+
+return (
+ 
+<div className="slider-container">
+
+<h1>NEW AND POPULAR</h1>
+
+<Swiper
+ref={swiperRef}
+modules={[EffectCoverflow, Autoplay]}
+effect="coverflow"
+loop={true}
+slidesPerView={3}
+centeredSlides={true}
+spaceBetween={0}
+coverflowEffect={{
+rotate: 0,
+stretch: 0,
+depth: 100,
+modifier: 2,
+slideShadows: false,
+}}
+autoplay={{
+delay: 3000,
+disableOnInteraction: false,
+}}
+onSlideChange={(swiper) => {
+setActiveIndex(swiper.realIndex);
+}}
+breakpoints={{
+320: {
+slidesPerView: 1.5,
+},
+768: {
+slidesPerView: 2.5,
+},
+1024: {
+slidesPerView: 3,
+}
+}}
+
+className="swiper-custom">
+{images.map((image, index) => {
+
+const isCenter = index === activeIndex;
+
 return (
 
-<div>
+<SwiperSlide key={index}>
 
-<div className="shopcategory_center">
+<div className={`slide-content ${isCenter ? 'center-slide' : ''}`}>
 
-<h2>SHOP BY CATEGORY</h2>
-
-<section className="shopcategory_flex">
-
-<div className="shopcategory_card">
-<img src={Skincares}></img>
-<label>SKIN CARE</label>
+<img
+src={image} 
+alt={`Slide ${index}`}
+className={`slide-image ${isCenter ? 'center-image' : ''}`}
+/>
 </div>
-
-<div className="shopcategory_card">
-<img src="https://www.kimirica.shop/cdn/shop/files/Hand_care.png?v=1708602649&width=500" />
-<label>HAND CARE</label>
-</div>
-
-<div className="shopcategory_card">
-<img src="https://www.kimirica.shop/cdn/shop/files/Hair.jpg?v=1708603061&width=500" />
-<label>HAIR CARE</label>
-</div>
-
-<div className="shopcategory_card">
-<img src={Candles}></img>
-<label>CANDLE</label>
-</div>
-<div className="shopcategory_card">
-<img src={Fragrances}></img>
-<label>FRAGRANCE</label>
-</div>
-
-<div className="shopcategory_card">
-<img src="https://www.kimirica.shop/cdn/shop/files/Bath_5609c1e0-57bb-468e-b43a-aaf0495db491.jpg?v=1708605958&width=500" />
-<label>BATH CARE</label>
-</div>
-
-<div className="shopcategory_card">
-<img src="https://www.kimirica.shop/cdn/shop/files/Body-01.jpg?v=1708605116&width=500" />
-<label>BODY CARE</label>
-</div>
-
-</section>
+</SwiperSlide>
+);
+})}
+</Swiper>
 
 </div>
 
-</div>
+);
 
-)
-
-} 
+};
 
 export default ShopCategory;

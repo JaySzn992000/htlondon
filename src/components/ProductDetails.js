@@ -10,265 +10,214 @@ import "./ProductDetails.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-medium-image-zoom/dist/styles.css";
-import winsomeproductdetails from "../Slider/winsomeproductdetails.png"
+import winsomeproductdetails from "../Slider/winsomeproductdetails.png";
 import axios from "axios";
 
-
 const ProductDetails = ({ addToCart, cart }) => {
+  const { category, id } = useParams();
+  const navigate = useNavigate();
+  const [arrayStore, setArrayStore] = useState(null);
+  const [cartCount, setCartCount] = useState(cart.length);
+  const [mainImage, setMainImage] = useState("");
+  const [selectedSize, setSelectedSize] = useState(null);
 
-const { category, id } = useParams();
-const navigate = useNavigate();
-const [arrayStore, setArrayStore] = useState(null);
-const [cartCount, setCartCount] = useState(cart.length);
-const [mainImage, setMainImage] = useState("");
-const [message, setMessage] = useState("");
-const [selectedThumb, setSelectedThumb] = useState(null);
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/fetchProductslist");
+        const data = response.data;
+        const product = data.find((product) => product.id === parseInt(id));
+        setArrayStore(product);
+        setMainImage(product.file_path);
+      } catch (error) {
+        console.log("Error fetching product:", error);
+      }
+    };
+    fetchProduct();
+  }, [id]);
 
+  const handleSizeChange = (size) => {
+    setSelectedSize(size);
+  };
 
-useEffect(() => {
-fetch(`https://omega-zg6z.onrender.com/products/${id}`)
-.then(res => res.json())
-.then(data => {
-});
-}, [id] );
+  const handleAddToCart = () => {
+    if (!selectedSize) {
+      alert("Please select size");
+      return;
+    }
 
-useEffect(() => {
-const fetchProduct = async () => {
-try {
-const response = await axios.get(
-"https://omega-zg6z.onrender.com/fetchProductslist"
-);
-const data = response.data;
-const product = data.find((product) => product.id === parseInt(id));
-setArrayStore(product);
-setMainImage(product.file_path);
-} catch (error) {
-console.log("Error fetching product:", error);
-}
-};
+    if (arrayStore) {
+      const isProductInCart = cart.some(
+        (item) => item.id === arrayStore.id && item.size === selectedSize
+      );
 
-fetchProduct();
-}, [id] );
+      if (isProductInCart) {
+        alert("This product with the selected size is already in your cart.");
+      } else {
+        const productToAdd = {
+          ...arrayStore,
+          size: selectedSize,
+          price: arrayStore.price, // ✅ Fixed: price now always original price
+          originalPrice: arrayStore.price
+        };
 
-const handleAddToCart = () => {
-if (arrayStore) {
-const isProductInCart = cart.some(
-(item) => item.id === arrayStore.id 
-);
+        addToCart(productToAdd);
+        setCartCount(cartCount + 1);
+        localStorage.setItem(`cart-added-${id}-${selectedSize}`, JSON.stringify(true));
+        alert("Product added to cart!");
+      }
+    }
+  };
 
-if (isProductInCart) {
-alert("This product already in your cart.");
-} else {
-const productToAdd = {
-...arrayStore,
-price: arrayStore.price,
-originalPrice: arrayStore.price,
-};
+  const handleGoToCart = () => {
+    navigate("/ECart");
+  };
 
-addToCart(productToAdd);
-setCartCount(cartCount + 1);
-localStorage.setItem(`cart-added-${id}`, JSON.stringify(true));
-alert("Product added to cart!");
-}
-} 
-};
+  const handleThumbnailClick = (imagePath) => {
+    setMainImage(imagePath);
+  };
 
-const handleGoToCart = () => {
-navigate("/ECart");
-};
+  if (!arrayStore) {
+    return <div>Product not found</div>;
+  }
 
-const handleThumbnailClick = (imagePath) => {
-setMainImage(imagePath);
-};
+  const sizes = arrayStore.sizes
+    ? arrayStore.sizes.split(",").map((size) => size.trim())
+    : [];
 
-if (!arrayStore) {
-return <div>Product not found</div>;
-}
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+  };
 
-const sliderSettings = {
-dots: true,
-infinite: true,
-speed: 500,
-slidesToShow: 1,
-slidesToScroll: 1,
-arrows: false,
-};
+  return (
+    <div>
+      <Navbar cartCount={cartCount} />
 
+      <div className="product-details">
+        <div className="mobile-slider">
+          <Slider {...sliderSettings}>
+            <div>
+              <img
+                className="product_img mobile-slider-img"
+                src={arrayStore.file_path}
+                alt={`${arrayStore.name} - Image 1`}
+                loading="lazy"
+              />
+            </div>
+            <div>
+              <img
+                className="product_img mobile-slider-img"
+                src={arrayStore.file_path1}
+                alt={`${arrayStore.name} - Image 2`}
+                loading="lazy"
+              />
+            </div>
+            <div>
+              <img
+                className="product_img mobile-slider-img"
+                src={arrayStore.file_path2}
+                alt={`${arrayStore.name} - Image 3`}
+                loading="lazy"
+              />
+            </div>
+            <div>
+              <img
+                className="product_img mobile-slider-img"
+                src={arrayStore.file_path3}
+                alt={`${arrayStore.name} - Image 4`}
+                loading="lazy"
+              />
+            </div>
+          </Slider>
+        </div>
 
-return (
+        <div className="product-gallery-box">
+          <Zoom>
+            <img className="gallery-img" src={arrayStore.file_path} alt="" loading="lazy" />
+          </Zoom>
+          <Zoom>
+            <img className="gallery-img" src={arrayStore.file_path1} alt="" loading="lazy" />
+          </Zoom>
+          <Zoom>
+            <img className="gallery-img" src={arrayStore.file_path2} alt="" loading="lazy" />
+          </Zoom>
+          <Zoom>
+            <img className="gallery-img" src={arrayStore.file_path3} alt="" loading="lazy" />
+          </Zoom>
+        </div>
 
-<div>
+        <div className="second_div">
+          <section>
+            <h1>{arrayStore.name}</h1>
+            <h2 className="Scnd_hTg">
+              <span>₹ {arrayStore.price}</span>
+            </h2>
+          </section>
 
-<Navbar cartCount={cartCount} />
+          {/* Size selector */}
+          <p>SELECT A SIZE</p>
+          <div className="size_chart">
+            {sizes.map((size) => (
+              <button
+                key={size}
+                id="btnsize"
+                onClick={() => handleSizeChange(size)}
+                className={selectedSize === size ? "selected" : ""}
+              >
+                {size}
+              </button>
+            ))}
+          </div>
 
-<div className="product-details">
+          <div className="review_Cntnr">
+            <img
+              id="Review_Img"
+              src="https://cdn-icons-png.flaticon.com/128/15853/15853959.png"
+            />
+            <li className="fa_Review">{arrayStore.review}</li>
+          </div>
 
-<div className="mobile-slider">
+          <div className="flex_btnADD_CART">
+            <button onClick={handleAddToCart} id="btn" className="add_crtK">
+              <img
+                className="iconDetails Cart_detail"
+                src="https://cdn-icons-png.flaticon.com/128/6322/6322610.png"
+                alt=""
+                loading="lazy"
+              />
+              <span>ADD TO CART</span>
+            </button>
 
-<Slider {...sliderSettings}>
-<div>
-<img
-className="product_img mobile-slider-img"
-src={arrayStore.file_path}
-alt={`${arrayStore.name} - Image 1`}
-loading="lazy" />
-</div>
+            <button className="go-toCart" id="btn" onClick={handleGoToCart}>
+              GO TO CART
+            </button>
+          </div>
 
-<div>
-<img
-className="product_img mobile-slider-img"
-src={arrayStore.file_path1}
-alt={`${arrayStore.name} - Image 2`}
-loading="lazy" />
-</div>
+          <br />
+          <img className="flex_shippedImg" src={winsomeproductdetails} />
+        </div>
+      </div>
 
-<div>
-<img
-className="product_img mobile-slider-img"
-src={arrayStore.file_path2}
-alt={`${arrayStore.name} - Image 3`}
-loading="lazy" />
-</div>
+      <div className="descproduct">
+        <h2>Description</h2>
+        <p style={{ marginTop: "-1.5em" }} className="prdctDetails">
+          <br />
+          {arrayStore.description}
+        </p>
+      </div>
 
-<div>
-<img
-className="product_img mobile-slider-img"
-src={arrayStore.file_path3}
-alt={`${arrayStore.name} - Image 4`}
-loading="lazy"/>
-</div>
-
-</Slider>
-
-</div>
-
-<div className="thumbnails-container">
-
-<img
-className={`thumbnail ${
-selectedThumb === arrayStore.file_path1 ? "thumb-active" : ""
-}`}
-src={arrayStore.file_path1}
-loading="lazy"
-onClick={() => {
-handleThumbnailClick(arrayStore.file_path1);
-setSelectedThumb(arrayStore.file_path1);
-}} />
-
-<img
-className={`thumbnail ${
-selectedThumb === arrayStore.file_path2 ? "thumb-active" : ""
-}`}
-src={arrayStore.file_path2}
-loading="lazy"
-onClick={() => {
-handleThumbnailClick(arrayStore.file_path2);
-setSelectedThumb(arrayStore.file_path2);
-}} />
-
-<img
-className={`thumbnail ${
-selectedThumb === arrayStore.file_path3 ? "thumb-active" : ""
-}`}
-src={arrayStore.file_path3}
-loading="lazy"
-onClick={() => {
-handleThumbnailClick(arrayStore.file_path3);
-setSelectedThumb(arrayStore.file_path3);
-}} />
-
-</div>
-
-<div className="product-img-container">
-
-<Zoom>
-<img
-className="product_img"
-src={mainImage}
-alt={arrayStore.name}
-loading="lazy"
-/>
-</Zoom>
-</div>
-
-<div className="second_div">
-
-<section>
-<h1>{arrayStore.name}</h1>
-
-<h2 className="Scnd_hTg">
-<span>
-{ } ₹{ }
-{arrayStore.price}
-</span>
-</h2>
-
-</section>
-
-<div className="review_Cntnr">
-
-<img
-id="Review_Img"
-src="https://cdn-icons-png.flaticon.com/128/15853/15853959.png"
-/>
-
-<li className="fa_Review">{arrayStore.review}</li>
-
-</div>
-
-<div className="flex_btnADD_CART">
-<button onClick={handleAddToCart} id="btn" className="add_crt">
-<img
-className="iconDetails"
-src="https://www.flavoursguru.com/catalog/view/theme/default/image/cart-icon.svg"
-alt=""
-loading="lazy"
-></img>
-<span>ADD TO CART</span>
-</button>
-
-<button className="go-toCart" id="btn" onClick={handleGoToCart}>
-<img
-className="iconDetails"
-src="https://www.flavoursguru.com/catalog/view/theme/default/image/order-now.svg"
-loading="lazy"
-alt=""
-></img>
-GO TO CART
-</button>
-</div>
-
-<br/>
-
-<img className="flex_shippedImg" src={winsomeproductdetails}></img>
-
-</div>
-
-</div>
-
-<div className="descproduct">
-
-<h2>Description</h2>
-
-<p style={{marginTop : '-1.5em'}} className="prdctDetails">
-
-<br></br>
-
-{arrayStore.description}
-
-</p>
-
-</div>
-
-<Header />
-
-</div>
-
-);
+      <Header />
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => ({
-cart: state.cart,
+  cart: state.cart,
 });
 
 export default connect(mapStateToProps, { addToCart })(ProductDetails);

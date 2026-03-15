@@ -21,10 +21,9 @@ import NavSliderDash from "./NavSliderDash";
 import TlPrdctOrdrearn from "./DashboardADmin/TlPrdctOrdrearn";
 import Navbar from "./headers_footer/navbar";
 import Home from "./components/Home";
-import Lotus from "./Products/lotus";
-import O3plus from "./Products/o3plus";
+import Tops from "./Products/tops";
+import WomenJeans from "./Products/women-jeans";
 import ContactForm from "./components/contactform";
-import VideoSliderComponent from "./videoslider";
 import Aroma from "./Products/aroma";
 import Aboutus from "./components/aboutus";
 import Contactus from "./components/contactus";
@@ -39,10 +38,10 @@ import AdminUpdate from "./AdminUpdate";
 import DashboardcomXKPbcadafcddcfadacbPKXproductlistsearchdashboard from "./Dashboard";
 import Message from "./components/Message";
 import CategoryJackfruit from "./Products/CategoryJackfruit";
-import Biotique from "./Products/biotique";
-import Lorealparis from "./Products/lorealparis";
+import Shorts from "./Products/shorts";
+import Trousers from "./Products/trousers";
 import CategoryLemon from "./Products/aroma";
-import HairGrowth from "./Products/fash-wash";
+import HairGrowth from "./Products/t-shirts";
 import SandalwoodPowder from "./Products/SandalwoodPowder";
 import CategoryGhee from "./Products/CategoryGhee";
 import Pickles from "./Products/Pickle";
@@ -58,16 +57,16 @@ import FAQs from "./Pages/FAQs";
 import Streax from "./Products/streax";
 import Collections from "./components/collections";
 import Skincare from "./components/skincare";
-import BathBody from "./components/bath-body";
-import Haircare from "./components/haircare";
+import Men from "./components/men";
+import Shoes from "./components/shoes";
 import Makeup from "./components/makeup";
 import Perfume from "./components/perfume";
-import Fashwash from "./Products/fash-wash";
-import Fashcream from "./Products/fash-cream";
-import Sunscreen from "./Products/sunscreen";
-import Shampoo from "./Products/shampoo";
-import HairSerum from "./Products/hair-serum";
-import Haircolor from "./Products/hair-color";
+import Tshirts from "./Products/t-shirts";
+import Shirts from "./Products/shirts";
+import Jeans from "./Products/jeans";
+import WomenAccessories from "./Products/women-accessories";
+import WomenTshirts from "./Products/women-t-shirts";
+import Accessories from "./Products/accessories";
 
 
 function App () {
@@ -84,9 +83,9 @@ return (
 <Routes>
 <Route path="/Login" element={<Login />} />
 <Route path="/collections" element={<Collections />} />
-<Route path="/haircare" element={<Haircare />} />
+<Route path="/shoes" element={<Shoes />} />
 <Route path="/skincare" element={<Skincare />} />
-<Route path="/bath-body" element={<BathBody />} />
+<Route path="/men" element={<Men />} />
 <Route path="/perfume" element={<Perfume />} />
 <Route path="/makeup" element={<Makeup />} />
 <Route path="/product/:id" element={<ProductDetails />} />
@@ -108,10 +107,10 @@ return (
 <Route path="/NavSliderDash" element={<NavSliderDash />} />
 <Route path="/TlPrdctOrdrearn" element={<TlPrdctOrdrearn />} />
 <Route path="/Navbar" element={<Navbar />} />
-<Route path="/lotus" element={<Lotus />} />
-<Route path="/o3plus" element={<O3plus />} />
+<Route path="/tops" element={<Tops />} />
+<Route path="/women-jeans" element={<WomenJeans />} />
 <Route path="/Fragrance" element={<Fragrance />}/>
-<Route path="/biotique" element={<Biotique />} />
+<Route path="/shorts" element={<Shorts />} />
 <Route path="/aroma" element={<Aroma />} />
 <Route path="/streax" element={<Streax />} />
 <Route path="/HairGrowth" element={<HairGrowth />} />
@@ -119,13 +118,13 @@ return (
 <Route path="/CategoryGhee" element={<CategoryGhee />} />
 <Route path="/CategoryJackfruit" element={<CategoryJackfruit />} />
 <Route path="/CategoryLemon" element={<CategoryLemon />} />
-<Route path="/lorealparis" element={<Lorealparis />} />
-<Route path="/fash-cream" element={<Fashcream />} />
-<Route path="/fash-wash" element={<Fashwash />} />
-<Route path="/sunscreen" element={<Sunscreen />} />
-<Route path="/shampoo" element={<Shampoo />} />
-<Route path="/hair-serum" element={<HairSerum />} />
-<Route path="/hair-color" element={<Haircolor />} />
+<Route path="/trousers" element={<Trousers />} />
+<Route path="/shirts" element={<Shirts />} />
+<Route path="/t-shirts" element={<Tshirts />} />
+<Route path="/jeans" element={<Jeans />} />
+<Route path="/women-accessories" element={<WomenAccessories />} />
+<Route path="/women-t-shirts" element={<WomenTshirts />} />
+<Route path="/accessories" element={<Accessories />} />
 <Route path="/Pickles" element={<Pickles />} />
 <Route path="/AdminForget" element={<AdminForget />} />
 <Route path="/" element={<Home />} />
@@ -134,7 +133,6 @@ return (
 <Route path="/AdminUpdate" element={<AdminUpdate />} />
 <Route path="/contactform" element={<ContactForm />} />
 <Route path="/Message" element={<Message />} />
-<Route path="/VideoSliderComponent" element={<VideoSliderComponent />} />
 <Route path="/aboutus" element={<Aboutus />} />
 <Route path="/contactus" element={<Contactus />} />
 <Route path="/Shipping" element={<Shipping />} />

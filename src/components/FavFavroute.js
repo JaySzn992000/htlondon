@@ -13,25 +13,46 @@ return (
 
 <div className="Fav_Trending">
 
-<h1>Most Trending</h1>
+<h1>TREDNING CLOTHING</h1>
 <div className="FavFavroute_flex_hm">
 <section>
+
 <img 
 loading="lazy"
 className="imgAbout" 
 alt=""
-src={BiotiqueFavroute}></img>
-<button><span>EXPLORE NOW</span></button>
+src="https://images.riverisland.com/image/upload/t_plp_portraitLarge/f_auto/q_auto/054ECOM26_WK10_MW_CONTENT_BOXES-2-L.jpg?_a=BATAV5AA0"></img>
+
 </section>
 
 <section>
-<img
-src={BiotiqueFavrouteTwo}
+
+<img 
 loading="lazy"
 className="imgAbout" 
 alt=""
-></img>
-<button><span>EXPLORE NOW</span></button>
+src="https://images.riverisland.com/image/upload/t_ProductImagePortraitLarge/f_auto/q_auto/374850_main"></img>
+
+</section>
+
+<section>
+
+<img 
+loading="lazy"
+className="imgAbout" 
+alt=""
+src="https://images.riverisland.com/image/upload/t_ProductImagePortraitSmall/f_auto/q_auto/373333_rollover?_a=BATAV5AA0"></img>
+
+</section>
+
+<section>
+
+<img 
+loading="lazy"
+className="imgAbout" 
+alt=""
+src="https://images.riverisland.com/image/upload/t_ProductImagePortraitSmall/f_auto/q_auto/374893_main?cv&$retina$"></img>
+
 </section>
 </div>
 

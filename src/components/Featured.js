@@ -17,25 +17,25 @@ return (
 <section className="shopcategory_flex">
 <div className="shopcategory_card">
 <img src={o3plussunscreen}></img>
-<label>Muted Pastels</label>
+<label>Shop The Look</label>
 <button><span>DISCOVER</span></button>
 </div>
 
 <div className="shopcategory_card">
 <img src={o3plushandmask}></img>
-<label>Diva Dreams Mascara</label>
+<label>Shop The Look</label>
 <button><span>DISCOVER</span></button>
 </div>
 
 <div className="shopcategory_card">
 <img src={o3pluspedicure}></img>
-<label>Foundation</label>
+<label>Shop The Look</label>
 <button><span>DISCOVER</span></button>
 </div>
 
 <div className="shopcategory_card">
 <img src={o3plushydrogelmask}></img>
-<label>Compact Powder</label>
+<label>Shop The Look</label>
 <button><span>DISCOVER</span></button>
 </div>
 
