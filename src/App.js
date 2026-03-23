@@ -56,7 +56,7 @@ import Fragrance from "./components/Fragrance";
 import FAQs from "./Pages/FAQs";
 import Streax from "./Products/streax";
 import Collections from "./components/collections";
-import Skincare from "./components/skincare";
+import Women from "./components/women";
 import Men from "./components/men";
 import Shoes from "./components/shoes";
 import Makeup from "./components/makeup";
@@ -84,7 +84,7 @@ return (
 <Route path="/Login" element={<Login />} />
 <Route path="/collections" element={<Collections />} />
 <Route path="/shoes" element={<Shoes />} />
-<Route path="/skincare" element={<Skincare />} />
+<Route path="/women" element={<Women />} />
 <Route path="/men" element={<Men />} />
 <Route path="/perfume" element={<Perfume />} />
 <Route path="/makeup" element={<Makeup />} />

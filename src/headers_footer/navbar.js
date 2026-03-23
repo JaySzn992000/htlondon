@@ -71,14 +71,13 @@ const naviProductPage = () => {
 navi("/collections");
 };
 
-const naviStoreBrand = useNavigate();
 
 const naviToStoreBrand = () => {
-naviStoreBrand("/collections");
+navi("/collections");
 };
 
 const naviProductFashWash = () => {
-naviStoreBrand("/t-shirts")
+navi("/t-shirts")
 }
 
 const profileNavi = useNavigate();
@@ -93,107 +92,82 @@ profileNavi("/Profile");
 
 };
 
-const naviorderhistory = useNavigate();
 
-const naviHome = useNavigate();
 const navigateHome = () => {
-naviHome("/");
+navi("/");
 };
 
 const orderhistory = () => {
-naviorderhistory("/ItemHistory");
+navi("/ItemHistory");
 };
 
-const naviheartNavi = useNavigate();
 const heartNavi = () => {
-naviheartNavi("/WishList");
+navi("/WishList");
 };
 
-const naviTshirt = useNavigate();
 const naviGateTshirt = () => {
-naviTshirt("/t-shirts");
+navi("/shirts");
 };
 
-const naviTops = useNavigate();
 const naviToTops = () => {
-naviTops("/tops");
+navi("/tops");
 };
 
 
-
-const naviShirt = useNavigate();
 const naviGateShirt = () => {
-naviShirt("/jeans");
+navi("/jeans");
 };
 
-const naviJeans = useNavigate();
 const naviGateJeans = () => {
-naviJeans("/trousers");
+navi("/trousers");
 };
 
-const naviWomenJeans = useNavigate();
 const naviToWomenJeans = () => {
-naviWomenJeans("/women-jeans");
+navi("/women-jeans");
 };
 
-const navWomenTshirts = useNavigate();
 const naviToWomenTshirts = () => {
-navWomenTshirts("/women-t-shirts");
+navi("/women-t-shirts");
 };
 
-const naviPants = useNavigate();
 const naviGatePants = () => {
-naviPants("/shorts");
+navi("/shorts");
 };
 
-const naviWomenAccessories = useNavigate();
 const naviToWomenAccessories = () => {
-naviWomenAccessories("/women-accessories");
+navi("/women-accessories");
 };
 
-const naviSweaters = useNavigate();
 const naviGateSweaters = () => {
-naviSweaters("/accessories");
+navi("/accessories");
 };
 
-const naviSugar = useNavigate();
 const naviGateSugar = () => {
-naviSugar("/streax");
+navi("/streax");
 };
-
-const NavigatetoBathBody = useNavigate()
 
 const naviToBathBody = () => {
-NavigatetoBathBody('/men')
+navi('/men')
 }
-
-const NaviToShoes = useNavigate()
 
 const naviToShoes = () => {
-NaviToShoes('/shoes')
+navi('/shoes')
 }
-
-const NavigatetoSkinCare = useNavigate()
 
 const naviToSkinCare = () => {
-NavigatetoSkinCare('/skincare')
+navi('/women')
 }
-
-const NavigatetoMakup = useNavigate()
 
 const naviToMakeup = () => {
-NavigatetoMakup('/makeup')
+navi('/makeup')
 }
-
-const NavigatetoPerfume = useNavigate()
 
 const naviToPerfume = () => {
-NavigatetoPerfume('/perfume')
+navi('/perfume')
 }
 
-const navitoLoginPage = useNavigate()
 const naviToLogin = () => {
-navitoLoginPage('/Registeration')
+navi('/Registeration')
 }
 
 const clickOpen = () => {
@@ -213,6 +187,7 @@ slider.classList.remove("active");
 }
 
 slider.classList.add("close");
+
 };
 
 const [scrolled, setScrolled] = useState(false);

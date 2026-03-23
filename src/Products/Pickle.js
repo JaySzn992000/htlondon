@@ -3,8 +3,6 @@ import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import Filters from "../components/Filters";
 import Navbar from "../headers_footer/navbar";
-import Filterheader from "../headers_footer/Filterheader";
-import { Helmet } from "react-helmet";
 import axios from "axios";
 import { connect } from "react-redux";
 import { addToCart } from "../action/action";
@@ -87,41 +85,28 @@ setWishlistCount(wishlist.length);
 
 
 const handleAddToCart = (product) => {
-  if (!product) return;
+if (!product) return;
 
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const isProductInCart = cart.some(
-    (item) => String(item.id) === String(product.id)
-  );
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
+const isProductInCart = cart.some(
+  (item) => String(item.id) === String(product.id)
+);
 
-  if (isProductInCart) {
-    alert("This product is already in your cart.");
-  } else {
-    addToCart(product); // 🔥 REDUX UPDATE (MAIN CHEEZ)
+if (isProductInCart) {
+  alert("This product is already in your cart.");
+} else {
+  addToCart(product);
+  const updatedCart = [...cart, product];
+  localStorage.setItem("cart", JSON.stringify(updatedCart));
 
-    const updatedCart = [...cart, product];
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-
-    setCartCount(updatedCart.length); // 🔥 UI UPDATE
-    alert("Product added to cart!");
-  }
+  setCartCount(updatedCart.length);
+  alert("Product added to cart!");
+}
 };
 
 return (
 
 <div>
-<Helmet>
-<title>Fresh Mangoes | Premium Quality Mango Pickles for Sale</title>
-<meta
-name="description"
-content="Taste the tangy and spicy flavor of our homemade mango pickles. Made with fresh ingredients and traditional recipes"
-/>
-<meta
-name="keywords"
-content="Mango Pickle, Homemade Pickle, Spicy Mango Pickle, Buy Mango Pickle, Traditional Mango Pickle"
-/>
-<link rel="canonical" href="https://www.pickles.com/mangoes" />
-</Helmet>
 
 {showFilters && <Navbar />}
 {showFilters && (

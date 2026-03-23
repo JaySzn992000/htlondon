@@ -9,7 +9,7 @@ import axios from "axios";
 import "./ProductListmodule.css";
 import Header from "../headers_footer/header";
 
-const Skincare = ({ addToCart}) => {
+const Women = ({ addToCart}) => {
 
 const [filteredProducts, setFilteredProducts] = useState([]);
 const [allProducts, setAllProducts] = useState([]);
@@ -232,4 +232,4 @@ onClick={() => handleAddToCart(productlist)}
 
 };
 
-export default connect(null, { addToCart })(Skincare);
+export default connect(null, { addToCart })(Women);
