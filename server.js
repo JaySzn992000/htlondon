@@ -17,7 +17,7 @@ const pool = require("./config");
 app.use(cors({
 
 origin: [
-'https://bloomwinsome.vercel.app',
+'https://htlondon.vercel.app',
 'http://localhost:3000'
 ],
 methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -720,90 +720,89 @@ res.status(500).json({ error: "Database query failed" });
 
 // from here
 
-app.get("/fetchProductslist", (req, res) => {
-const searchQuery = req.query.search || "";
+// app.get("/fetchProductslist", (req, res) => {
+// const searchQuery = req.query.search || "";
 
-const keywords = searchQuery.toLowerCase().split(/\s+/);
-const conditions = keywords
-.map((keyword) => `LOWER(name) LIKE ?`)
-.join(" AND ");
-const advancedSearchQuery = `
-SELECT *
-FROM imgproduct
-WHERE ${conditions}
-`;
-const advancedSearchValues = keywords.map((keyword) => `%${keyword}%`);
+// const keywords = searchQuery.toLowerCase().split(/\s+/);
+// const conditions = keywords
+// .map((keyword) => `LOWER(name) LIKE ?`)
+// .join(" AND ");
+// const advancedSearchQuery = `
+// SELECT *
+// FROM imgproduct
+// WHERE ${conditions}
+// `;
+// const advancedSearchValues = keywords.map((keyword) => `%${keyword}%`);
 
-db.query(
-advancedSearchQuery,
-advancedSearchValues,
-(err, advancedResults) => {
-if (err) {
-console.error("Error fetching data:", err.stack);
-return res.status(500).json({ error: "Database query failed" });
-}
+// db.query(
+// advancedSearchQuery,
+// advancedSearchValues,
+// (err, advancedResults) => {
+// if (err) {
+// console.error("Error fetching data:", err.stack);
+// return res.status(500).json({ error: "Database query failed" });
+// }
 
-if (advancedResults.length > 0) {
-return res.json(advancedResults);
-}
+// if (advancedResults.length > 0) {
+// return res.json(advancedResults);
+// }
 
-// If no advanced results,
-// check exact match
+// // If no advanced results,
+// // check exact match
 
-const exactMatchQuery = `
-SELECT *
-FROM imgproduct
-WHERE LOWER(img) = LOWER(?)
-`;
-const values = [searchQuery];
+// const exactMatchQuery = `
+// SELECT *
+// FROM imgproduct
+// WHERE LOWER(img) = LOWER(?)
+// `;
+// const values = [searchQuery];
 
-db.query(exactMatchQuery, values, (err, exactResults) => {
-if (err) {
-console.error("Error fetching data:", err.stack);
-return res.status(500).json({ error: "Database query failed" });
-}
+// db.query(exactMatchQuery, values, (err, exactResults) => {
+// if (err) {
+// console.error("Error fetching data:", err.stack);
+// return res.status(500).json({ error: "Database query failed" });
+// }
 
-res.json(exactResults);
-});
-}
-);
-});
-
+// res.json(exactResults);
+// });
+// }
+// );
+// });
 
 
 // fetchProductslist PostGreSQL 
 
-// app.get("/fetchProductslist", async (req, res) => {
-// const searchQuery = req.query.search || "";
-// const keywords = searchQuery.toLowerCase().split(/\s+/);
+app.get("/fetchProductslist", async (req, res) => {
+const searchQuery = req.query.search || "";
+const keywords = searchQuery.toLowerCase().split(/\s+/);
 
-// try {
-// const conditions = keywords.map((_, index) => `LOWER(name) ILIKE $${index + 1}`).join(" AND ");
-// const values = keywords.map((keyword) => `%${keyword}%`);
+try {
+const conditions = keywords.map((_, index) => `LOWER(name) ILIKE $${index + 1}`).join(" AND ");
+const values = keywords.map((keyword) => `%${keyword}%`);
 
-// const query = `
-// SELECT * FROM _imgproduct
-// WHERE ${conditions}
-// `;
+const query = `
+SELECT * FROM _imgproduct
+WHERE ${conditions}
+`;
 
-// const result = await pool.query(query, values);
+const result = await pool.query(query, values);
 
-// if (result.rows.length > 0) {
-// return res.json(result.rows);
-// }
+if (result.rows.length > 0) {
+return res.json(result.rows);
+}
 
-// const exactMatchQuery = `
-// SELECT * FROM _imgproduct
-// WHERE LOWER(img) = LOWER($1)
-// `;
-// const exactResult = await pool.query(exactMatchQuery, [searchQuery]);
+const exactMatchQuery = `
+SELECT * FROM _imgproduct
+WHERE LOWER(img) = LOWER($1)
+`;
+const exactResult = await pool.query(exactMatchQuery, [searchQuery]);
 
-// res.json(exactResult.rows);
-// } catch (err) {
-// console.error("❌ Database query failed:", err.message);
-// res.status(500).json({ error: "Database query failed" });
-// }
-// });
+res.json(exactResult.rows);
+} catch (err) {
+console.error("❌ Database query failed:", err.message);
+res.status(500).json({ error: "Database query failed" });
+}
+});
 
 
 // app.get("/fetchProductslist", (req, res) => {
@@ -816,7 +815,7 @@ res.json(exactResults);
 // });
 // });
 
-//
+
 
 app.get("/fetchProductslist", async (req, res) => {
 try {
@@ -1721,7 +1720,7 @@ console.log(`Server is running PORT on ${PORT}`);
 
 setInterval(() => {
   axios
-    .get("https://naturalbuti.onrender.com/ping")
+    .get("https://namasya.onrender.com/ping")
     .then(() => {
       console.log("Pinged self to stay awake");
     })
