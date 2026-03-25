@@ -18,7 +18,6 @@ app.use(cors({
 
 origin: [
 'https://htlondon.vercel.app',
-'http://localhost:3000'
 ],
 
 methods: ['GET', 'POST', 'PUT', 'DELETE'],
