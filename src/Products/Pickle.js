@@ -57,8 +57,8 @@ const [cartCount, setCartCount] = useState(0);
 const [cartItems, setCartItems] = useState([]);
 
 useEffect(() => {
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  setCartCount(cart.length);
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
+setCartCount(cart.length);
 }, []);
 
 const sendToWishlist = (product) => {
@@ -84,25 +84,25 @@ setWishlistCount(wishlist.length);
 };
 
 
-const handleAddToCart = (product) => {
-if (!product) return;
+// const handleAddToCart = (product) => {
+// if (!product) return;
 
-const cart = JSON.parse(localStorage.getItem("cart")) || [];
-const isProductInCart = cart.some(
-  (item) => String(item.id) === String(product.id)
-);
+// const cart = JSON.parse(localStorage.getItem("cart")) || [];
+// const isProductInCart = cart.some(
+// (item) => String(item.id) === String(product.id)
+// );
 
-if (isProductInCart) {
-  alert("This product is already in your cart.");
-} else {
-  addToCart(product);
-  const updatedCart = [...cart, product];
-  localStorage.setItem("cart", JSON.stringify(updatedCart));
+// if (isProductInCart) {
+// alert("This product is already in your cart.");
+// } else {
+// addToCart(product);
+// const updatedCart = [...cart, product];
+// localStorage.setItem("cart", JSON.stringify(updatedCart));
 
-  setCartCount(updatedCart.length);
-  alert("Product added to cart!");
-}
-};
+// setCartCount(updatedCart.length);
+// alert("Product added to cart!");
+// }
+// };
 
 return (
 
@@ -147,7 +147,7 @@ className="product_image"
 <li className="product_price">{product.price}</li>
 </div>
 
-<div className="review_section">
+{/* <div className="review_section">
 <img
 src="https://cdn-icons-png.flaticon.com/128/15853/15853959.png"
 loading="lazy"
@@ -156,14 +156,13 @@ className="review_icon"
 />
 <li className="review_separator"></li>
 <li className="review_text">{product.review}</li>
-</div>
+</div> */}
 
-<button
+{/* <button
 className="add_crtPickle"
-onClick={() => handleAddToCart(product)}
->
+onClick={() => handleAddToCart(product)} >
 <span>ADD TO CART</span>
-</button>
+</button> */}
 
 </div>
 </div>
@@ -173,12 +172,6 @@ onClick={() => handleAddToCart(product)}
 </div>
 </section>
 </div>
-
-{/* <div className="header_Filter">
-{showFilters && <Filterheader />}
-</div> */}
-
-{/* <Filterheader></Filterheader> */}
 
 </div>
 

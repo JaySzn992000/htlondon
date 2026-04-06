@@ -3,7 +3,7 @@
 width: 97%;
 margin: auto;
 height: auto;
-margin-top: 5.7em;
+margin-top: 7.7em;
 overflow: hidden;
 cursor: pointer;
 }
@@ -93,23 +93,6 @@ transform: scale(.9);
 
 .slider-container h1 {
 font-size: 1.5rem;
-}
-
-}
-
-
-@media (prefers-color-scheme: dark) {
-
-.slider-container {
-background: #1a1a1a;
-}
-
-.slide-image {
-box-shadow: 0 5px 15px #00000066;
-}
-
-.slide-image.center-image {
-box-shadow: 0 10px 30px #00000080;
 }
 
 }

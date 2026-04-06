@@ -359,6 +359,24 @@ res.status(500).json({ error: "Database query failed" });
 // });
 // });
 
+app.get("/fetchmens", async (req, res) => {
+
+const query = `
+SELECT *
+FROM _imgproduct
+WHERE img ILIKE '%men%'
+`;
+
+try {
+const result = await pool.query(query);
+res.json(result.rows);
+} catch (err) {
+console.error("Error fetching data:", err.message);
+res.status(500).json({ error: "Database query failed" });
+}
+
+});
+
 
 app.get("/fetchProductslistLotus", async (req, res) => {
 

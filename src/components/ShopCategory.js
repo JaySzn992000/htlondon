@@ -9,7 +9,6 @@ import img5 from "../Slider/img5.png";
 import img6 from "../Slider/img6.png";
 import 'swiper/css/effect-coverflow';
 import './ShopCategory.css';
-import 'swiper/css';
 
 const ShopCategory = () => {
 

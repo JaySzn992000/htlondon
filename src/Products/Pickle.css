@@ -1,7 +1,6 @@
 
 #products_grid_wrapper {
 width: 100%;
-margin-top: 4em;
 }
 
 .product_grid_container {
@@ -24,10 +23,10 @@ gap: 2em;
 .single_product_card {
 position: relative;
 height: auto;
-margin-bottom: 2.1em;
+margin-bottom: 1.5em;
 max-width: 237px;
 padding: 0em;
-padding-bottom: 37px;
+padding-bottom: 17px;
 text-align: center;
 border-radius: 3px;
 transition: transform 0.2s ease;
@@ -98,7 +97,7 @@ align-items: center;
 gap: 0.5em;
 text-align: center;
 width: fit-content;
-max-width: 79px;
+max-width: 107px;
 margin: 0 auto;
 height: 34px;
 height: auto;
