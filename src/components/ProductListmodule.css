@@ -20,16 +20,18 @@ top: 121px;
 
 .flex_productlist {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(277px, 1fr));
-max-width: 75%;
-margin-left: 23.7vw;
-gap: 0.3em;
+grid-template-columns: repeat(auto-fit, minmax(307px, 307px));
+justify-content: center;
+width: 100%;
+max-width: 1400px;
+margin: 0 auto;
+gap: 0em;
 }
 
 .flex_productlist .produclist_divContainer {
 position: relative;
 height: auto;
-max-width: 277px;
+max-width: 327px;
 margin-bottom: 0em;
 }
 
@@ -98,7 +100,7 @@ margin: 0.6em 0 0;
 padding: 2px 10px;
 padding-left: 13px;
 padding-right: 6px;
-margin-top: .2em;
+margin-top: .7em;
 gap: 0.3em;
 width: auto;
 max-width: 79px;
@@ -294,10 +296,9 @@ margin: 0em 0em 0em 0em;
 .flex_productlist {
 position: relative;
 display: grid;
-max-width: 69vw;
-margin-top: 4.3em;
-grid-template-columns: repeat(auto-fit, minmax(21vw, 0fr));
-transform: translateX(4.5vw);
+max-width: 95vw;
+margin-top: 7.3em;
+grid-template-columns: repeat(auto-fit, minmax(23.7vw, 0fr));
 }
 
 .flex_productlist .produclist_divContainer {

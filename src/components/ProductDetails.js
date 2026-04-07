@@ -1,5 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";import { useEffect, useState } from "react";
 import { addToCart } from "../action/action";
 import Navbar from "../headers_footer/navbar";
 import Header from "../headers_footer/header";
@@ -10,7 +9,6 @@ import "./ProductDetails.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-medium-image-zoom/dist/styles.css";
-import winsomeproductdetails from "../Slider/winsomeproductdetails.png";
 import axios from "axios";
 
 const ProductDetails = ({ addToCart, cart }) => {
@@ -24,7 +22,7 @@ const [selectedSize, setSelectedSize] = useState(null);
 useEffect(() => {
 const fetchProduct = async () => {
 try {
-const response = await axios.get("http://localhost:3001/fetchProductslist");
+const response = await axios.get("https://namasya.onrender.com/fetchProductslist");
 const data = response.data;
 const product = data.find((product) => product.id === parseInt(id));
 setArrayStore(product);
@@ -184,12 +182,14 @@ src="https://cdn-icons-png.flaticon.com/128/15853/15853959.png"
 
 <div className="flex_btnADD_CART">
 <button onClick={handleAddToCart} id="btn" className="add_crtK">
+
 <img
 className="iconDetails Cart_detail"
 src="https://cdn-icons-png.flaticon.com/128/6322/6322610.png"
 alt=""
 loading="lazy"
 />
+
 <span>ADD TO CART</span>
 </button>
 
@@ -197,9 +197,8 @@ loading="lazy"
 GO TO CART
 </button>
 </div>
+<br/>
 
-<br />
-<img className="flex_shippedImg" src={winsomeproductdetails} />
 </div>
 </div>
 
