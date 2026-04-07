@@ -47,7 +47,7 @@ res.send("✅ Backend is Live & Working");
 
 
 app.get("/ping", (req, res) => {
-  res.status(200).send("Server is alive!");
+res.status(200).send("Server is alive!");
 });
 
 
@@ -324,22 +324,42 @@ app.use(express.static(path.join(__dirname, "public")));
 // });
 
 
-app.get("/fetchProductslistTshirt", async (req, res) => {
-const exactMatchQuery = `
+app.get("/fetchshirts", async (req, res) => {
+
+const query = `
 SELECT *
 FROM _imgproduct
-WHERE LOWER(img) = LOWER($1)
+WHERE img ILIKE '%shirt%'
 `;
 
 try {
-const result = await pool.query(exactMatchQuery, ['AloeVeraGel']);
+const result = await pool.query(query);
 res.json(result.rows);
 } catch (err) {
 console.error("Error fetching data:", err.message);
 res.status(500).json({ error: "Database query failed" });
 }
+
 });
 
+
+app.get("/fetchjeans", async (req, res) => {
+
+const query = `
+SELECT *
+FROM _imgproduct
+WHERE img ILIKE '%jeans%'
+`;
+
+try {
+const result = await pool.query(query);
+res.json(result.rows);
+} catch (err) {
+console.error("Error fetching data:", err.message);
+res.status(500).json({ error: "Database query failed" });
+}
+
+});
 
 
 // app.get("/fetchProductslistChilli", (req, res) => {
@@ -358,6 +378,63 @@ res.status(500).json({ error: "Database query failed" });
 // res.json(results);
 // });
 // });
+
+app.get("/fetchwomenjeans", async (req, res) => {
+
+const query = `
+SELECT *
+FROM _imgproduct
+WHERE img ILIKE '%women jeans%'
+`;
+
+try {
+const result = await pool.query(query);
+res.json(result.rows);
+} catch (err) {
+console.error("Error fetching data:", err.message);
+res.status(500).json({ error: "Database query failed" });
+}
+
+});
+
+
+app.get("/fetchwomentshirts", async (req, res) => {
+
+const query = `
+SELECT *
+FROM _imgproduct
+WHERE img ILIKE '%women tshirt%'
+`;
+
+try {
+const result = await pool.query(query);
+res.json(result.rows);
+} catch (err) {
+console.error("Error fetching data:", err.message);
+res.status(500).json({ error: "Database query failed" });
+}
+
+});
+
+
+app.get("/fetchwomenacessories", async (req, res) => {
+
+const query = `
+SELECT *
+FROM _imgproduct
+WHERE img ILIKE '%women acessories%'
+`;
+
+try {
+const result = await pool.query(query);
+res.json(result.rows);
+} catch (err) {
+console.error("Error fetching data:", err.message);
+res.status(500).json({ error: "Database query failed" });
+}
+
+});
+
 
 app.get("/fetchmens", async (req, res) => {
 
@@ -378,12 +455,12 @@ res.status(500).json({ error: "Database query failed" });
 });
 
 
-app.get("/fetchProductslistLotus", async (req, res) => {
+app.get("/fetchwomen", async (req, res) => {
 
 const query = `
 SELECT *
 FROM _imgproduct
-WHERE img ILIKE '%lotus%'
+WHERE img ILIKE '%women%'
 `;
 
 try {
@@ -397,12 +474,86 @@ res.status(500).json({ error: "Database query failed" });
 });
 
 
-app.get("/fetchProductslistFacewash", async (req, res) => {
+app.get("/fetchaccessories", async (req, res) => {
 
 const query = `
 SELECT *
 FROM _imgproduct
-WHERE img ILIKE '%face wash%'
+WHERE img ILIKE '%accessories%'
+`;
+
+try {
+const result = await pool.query(query);
+res.json(result.rows);
+} catch (err) {
+console.error("Error fetching data:", err.message);
+res.status(500).json({ error: "Database query failed" });
+}
+
+});
+
+app.get("/fetchshorts", async (req, res) => {
+
+const query = `
+SELECT *
+FROM _imgproduct
+WHERE img ILIKE '%shorts%'
+`;
+
+try {
+const result = await pool.query(query);
+res.json(result.rows);
+} catch (err) {
+console.error("Error fetching data:", err.message);
+res.status(500).json({ error: "Database query failed" });
+}
+
+});
+
+app.get("/fetchtrousers", async (req, res) => {
+
+const query = `
+SELECT *
+FROM _imgproduct
+WHERE img ILIKE '%trouser%'
+`;
+
+try {
+const result = await pool.query(query);
+res.json(result.rows);
+} catch (err) {
+console.error("Error fetching data:", err.message);
+res.status(500).json({ error: "Database query failed" });
+}
+
+});
+
+
+app.get("/fetchtops", async (req, res) => {
+
+const query = `
+SELECT *
+FROM _imgproduct
+WHERE img ILIKE '%top%'
+`;
+
+try {
+const result = await pool.query(query);
+res.json(result.rows);
+} catch (err) {
+console.error("Error fetching data:", err.message);
+res.status(500).json({ error: "Database query failed" });
+}
+
+});
+
+
+app.get("/fetchtshirts", async (req, res) => {
+
+const query = `
+SELECT *
+FROM _imgproduct
+WHERE img ILIKE '%t shirt%'
 `;
 
 try {
@@ -435,21 +586,21 @@ res.status(500).json({ error: "Database query failed" });
 // });
 
 
-app.get("/fetchProductslistJeans", async (req, res) => {
-const exactMatchQuery = `
-SELECT *
-FROM _imgproduct
-WHERE LOWER(img) = LOWER($1)
-`;
+// app.get("/fetchProductslistJeans", async (req, res) => {
+// const exactMatchQuery = `
+// SELECT *
+// FROM _imgproduct
+// WHERE LOWER(img) = LOWER($1)
+// `;
 
-try {
-const result = await pool.query(exactMatchQuery, ['Jeans']);
-res.json(result.rows);
-} catch (err) {
-console.error("Error fetching data:", err.message);
-res.status(500).json({ error: "Database query failed" });
-}
-});
+// try {
+// const result = await pool.query(exactMatchQuery, ['Jeans']);
+// res.json(result.rows);
+// } catch (err) {
+// console.error("Error fetching data:", err.message);
+// res.status(500).json({ error: "Database query failed" });
+// }
+// });
 
 
 // app.get("/fetchProductslistShirt", (req, res) => {
@@ -471,21 +622,21 @@ res.status(500).json({ error: "Database query failed" });
 
 
 
-app.get("/fetchProductslistShirt", async (req, res) => {
-const exactMatchQuery = `
-SELECT *
-FROM _imgproduct
-WHERE LOWER(img) = LOWER($1)
-`;
+// app.get("/fetchProductslistShirt", async (req, res) => {
+// const exactMatchQuery = `
+// SELECT *
+// FROM _imgproduct
+// WHERE LOWER(img) = LOWER($1)
+// `;
 
-try {
-const result = await pool.query(exactMatchQuery, ['BananaPowder']);
-res.json(result.rows);
-} catch (err) {
-console.error("Error fetching data:", err.message);
-res.status(500).json({ error: "Database query failed" });
-}
-});
+// try {
+// const result = await pool.query(exactMatchQuery, ['BananaPowder']);
+// res.json(result.rows);
+// } catch (err) {
+// console.error("Error fetching data:", err.message);
+// res.status(500).json({ error: "Database query failed" });
+// }
+// });
 
 
 // app.get("/fetchProductslistJeans", (req, res) => {
@@ -507,21 +658,21 @@ res.status(500).json({ error: "Database query failed" });
 // });
 
 
-app.get("/fetchProductslistJeans", async (req, res) => {
-const exactMatchQuery = `
-SELECT *
-FROM _imgproduct
-WHERE LOWER(img) = LOWER($1)
-`;
+// app.get("/fetchProductslistJeans", async (req, res) => {
+// const exactMatchQuery = `
+// SELECT *
+// FROM _imgproduct
+// WHERE LOWER(img) = LOWER($1)
+// `;
 
-try {
-const result = await pool.query(exactMatchQuery, ['Jeans']);
-res.json(result.rows);
-} catch (err) {
-console.error("Error fetching data:", err.message);
-res.status(500).json({ error: "Database query failed" });
-}
-});
+// try {
+// const result = await pool.query(exactMatchQuery, ['Jeans']);
+// res.json(result.rows);
+// } catch (err) {
+// console.error("Error fetching data:", err.message);
+// res.status(500).json({ error: "Database query failed" });
+// }
+// });
 
 
 // app.get("/fetchProductslistPants", (req, res) => {
@@ -543,21 +694,21 @@ res.status(500).json({ error: "Database query failed" });
 // });
 
 
-app.get("/fetchProductslistPants", async (req, res) => {
-const exactMatchQuery = `
-SELECT *
-FROM _imgproduct
-WHERE LOWER(img) = LOWER($1)
-`;
+// app.get("/fetchProductslistPants", async (req, res) => {
+// const exactMatchQuery = `
+// SELECT *
+// FROM _imgproduct
+// WHERE LOWER(img) = LOWER($1)
+// `;
 
-try {
-const result = await pool.query(exactMatchQuery, ['LicoricePowder']);
-res.json(result.rows);
-} catch (err) {
-console.error("Error fetching data:", err.message);
-res.status(500).json({ error: "Database query failed" });
-}
-});
+// try {
+// const result = await pool.query(exactMatchQuery, ['LicoricePowder']);
+// res.json(result.rows);
+// } catch (err) {
+// console.error("Error fetching data:", err.message);
+// res.status(500).json({ error: "Database query failed" });
+// }
+// });
 
 
 
@@ -579,21 +730,21 @@ res.status(500).json({ error: "Database query failed" });
 // });
 
 
-app.get("/fetchProductslistSweatshirt", async (req, res) => {
-const exactMatchQuery = `
-SELECT *
-FROM _imgproduct
-WHERE LOWER(img) = LOWER($1)
-`;
+// app.get("/fetchProductslistSweatshirt", async (req, res) => {
+// const exactMatchQuery = `
+// SELECT *
+// FROM _imgproduct
+// WHERE LOWER(img) = LOWER($1)
+// `;
 
-try {
-const result = await pool.query(exactMatchQuery, ['HairGrowth']);
-res.json(result.rows);
-} catch (err) {
-console.error("Error fetching data:", err.message);
-res.status(500).json({ error: "Database query failed" });
-}
-});
+// try {
+// const result = await pool.query(exactMatchQuery, ['HairGrowth']);
+// res.json(result.rows);
+// } catch (err) {
+// console.error("Error fetching data:", err.message);
+// res.status(500).json({ error: "Database query failed" });
+// }
+// });
 
 
 // app.get("/fetchProductslistShorts", (req, res) => {
@@ -614,21 +765,21 @@ res.status(500).json({ error: "Database query failed" });
 // });
 
 
-app.get("/fetchProductslistShorts", async (req, res) => {
-const exactMatchQuery = `
-SELECT *
-FROM _imgproduct
-WHERE LOWER(img) = LOWER($1)
-`;
+// app.get("/fetchProductslistShorts", async (req, res) => {
+// const exactMatchQuery = `
+// SELECT *
+// FROM _imgproduct
+// WHERE LOWER(img) = LOWER($1)
+// `;
 
-try {
-const result = await pool.query(exactMatchQuery, ['SandalwoodPowder']);
-res.json(result.rows);
-} catch (err) {
-console.error("Error fetching data:", err.message);
-res.status(500).json({ error: "Database query failed" });
-}
-});
+// try {
+// const result = await pool.query(exactMatchQuery, ['SandalwoodPowder']);
+// res.json(result.rows);
+// } catch (err) {
+// console.error("Error fetching data:", err.message);
+// res.status(500).json({ error: "Database query failed" });
+// }
+// });
 
 
 // app.get("/fetchProductslistTrouser", (req, res) => {
@@ -649,21 +800,21 @@ res.status(500).json({ error: "Database query failed" });
 // });
 
 
-app.get("/fetchProductslistTrouser", async (req, res) => {
-const exactMatchQuery = `
-SELECT *
-FROM _imgproduct
-WHERE LOWER(img) = LOWER($1)
-`;
+// app.get("/fetchProductslistTrouser", async (req, res) => {
+// const exactMatchQuery = `
+// SELECT *
+// FROM _imgproduct
+// WHERE LOWER(img) = LOWER($1)
+// `;
 
-try {
-const result = await pool.query(exactMatchQuery, ['Ghee']);
-res.json(result.rows);
-} catch (err) {
-console.error("Error fetching data:", err.message);
-res.status(500).json({ error: "Database query failed" });
-}
-});
+// try {
+// const result = await pool.query(exactMatchQuery, ['Ghee']);
+// res.json(result.rows);
+// } catch (err) {
+// console.error("Error fetching data:", err.message);
+// res.status(500).json({ error: "Database query failed" });
+// }
+// });
 
 
 // app.get("/fetchProductslistBlazers", (req, res) => {
@@ -686,21 +837,21 @@ res.status(500).json({ error: "Database query failed" });
 // ..
 
 
-app.get("/fetchProductslistBlazers", async (req, res) => {
-const exactMatchQuery = `
-SELECT *
-FROM _imgproduct
-WHERE LOWER(img) = LOWER($1)
-`;
+// app.get("/fetchProductslistBlazers", async (req, res) => {
+// const exactMatchQuery = `
+// SELECT *
+// FROM _imgproduct
+// WHERE LOWER(img) = LOWER($1)
+// `;
 
-try {
-const result = await pool.query(exactMatchQuery, ['Aavla']);
-res.json(result.rows);
-} catch (err) {
-console.error("Error fetching data:", err.message);
-res.status(500).json({ error: "Database query failed" });
-}
-});
+// try {
+// const result = await pool.query(exactMatchQuery, ['Aavla']);
+// res.json(result.rows);
+// } catch (err) {
+// console.error("Error fetching data:", err.message);
+// res.status(500).json({ error: "Database query failed" });
+// }
+// });
 
 
 // app.get("/fetchProductslistHoodies", (req, res) => {
@@ -720,21 +871,6 @@ res.status(500).json({ error: "Database query failed" });
 // });
 // });
 
-app.get("/fetchProductslistHoodies", async (req, res) => {
-const exactMatchQuery = `
-SELECT *
-FROM _imgproduct
-WHERE LOWER(img) = LOWER($1)
-`;
-
-try {
-const result = await pool.query(exactMatchQuery, ['BeetrootPowder']);
-res.json(result.rows);
-} catch (err) {
-console.error("Error fetching data:", err.message);
-res.status(500).json({ error: "Database query failed" });
-}
-});
 
 
 // from here
@@ -821,6 +957,7 @@ res.json(exactResult.rows);
 console.error("❌ Database query failed:", err.message);
 res.status(500).json({ error: "Database query failed" });
 }
+
 });
 
 
@@ -998,33 +1135,33 @@ return res
 
 
 app.post("/resetpassword", async (req, res) => {
-  const { email, newPassword } = req.body;
+const { email, newPassword } = req.body;
 
-  if (!email || !newPassword) {
-    return res.status(400).json({ message: "Missing fields" });
-  }
+if (!email || !newPassword) {
+return res.status(400).json({ message: "Missing fields" });
+}
 
-  try {
-    const checkUser = await pool.query(
-      "SELECT * FROM _registeration WHERE email = $1",
-      [email]
-    );
+try {
+const checkUser = await pool.query(
+"SELECT * FROM _registeration WHERE email = $1",
+[email]
+);
 
-    if (checkUser.rows.length === 0) {
-      return res.status(404).json({ message: "User not found" });
-    }
+if (checkUser.rows.length === 0) {
+return res.status(404).json({ message: "User not found" });
+}
 
-    await pool.query(
-      "UPDATE _registeration SET password = $1 WHERE email = $2",
-      [newPassword, email]
-    );
+await pool.query(
+"UPDATE _registeration SET password = $1 WHERE email = $2",
+[newPassword, email]
+);
 
-    return res.json({ message: "Password updated successfully" });
+return res.json({ message: "Password updated successfully" });
 
-  } catch (err) {
-    console.error("RESET ERROR:", err.message);
-    return res.status(500).json({ message: "Server error" });
-  }
+} catch (err) {
+console.error("RESET ERROR:", err.message);
+return res.status(500).json({ message: "Server error" });
+}
 });
 
 
@@ -1287,31 +1424,31 @@ res.status(500).json({ message: "Fetch error", error: err.message });
 
 
 app.post("/resetAdminPassword", async (req, res) => {
-  const { adminuser, newPassword } = req.body;
+const { adminuser, newPassword } = req.body;
 
-  if (!adminuser || !newPassword) {
-    return res.status(400).json({ message: "Missing fields" });
-  }
+if (!adminuser || !newPassword) {
+return res.status(400).json({ message: "Missing fields" });
+}
 
-  try {
-    const checkUser = await pool.query(
-      "SELECT * FROM _admindashboard WHERE adminuser = $1",
-      [adminuser]
-    );
+try {
+const checkUser = await pool.query(
+"SELECT * FROM _admindashboard WHERE adminuser = $1",
+[adminuser]
+);
 
-    if (checkUser.rows.length === 0) {
-      return res.status(404).json({ message: "User not found" });
-    }
+if (checkUser.rows.length === 0) {
+return res.status(404).json({ message: "User not found" });
+}
 
-    await pool.query(
-      "UPDATE _admindashboard SET adminpass = $1 WHERE adminuser = $2",
-      [newPassword, adminuser]
-    );
+await pool.query(
+"UPDATE _admindashboard SET adminpass = $1 WHERE adminuser = $2",
+[newPassword, adminuser]
+);
 
-    res.json({ message: "Password updated successfully" });
-  } catch (err) {
-    res.status(500).json({ message: "Error updating password", error: err.message });
-  }
+res.json({ message: "Password updated successfully" });
+} catch (err) {
+res.status(500).json({ message: "Error updating password", error: err.message });
+}
 });
 
 
@@ -1519,28 +1656,28 @@ error: err.message,
 
 
 app.post('/registerAdmin', async (req, res) => {
-  const { adminuser, adminpass } = req.body;
-    console.log("Received admin register:", adminuser, adminpass); // 👈 Debug log
+const { adminuser, adminpass } = req.body;
+console.log("Received admin register:", adminuser, adminpass); // 👈 Debug log
 
-  try {
-  const insertAdminQuery = `
-  INSERT INTO _admindashboard (adminuser, adminpass)
-  VALUES ($1, $2)
-  `;
-  await pool.query(insertAdminQuery, [adminuser, adminpass]); 
+try {
+const insertAdminQuery = `
+INSERT INTO _admindashboard (adminuser, adminpass)
+VALUES ($1, $2)
+`;
+await pool.query(insertAdminQuery, [adminuser, adminpass]); 
 
-    return res.status(200).json({
-      success: true,
-      message: "Admin registered successfully"
-    });
-  } catch (err) {
-    console.error("Error in /registerAdmin:", err);
-    return res.status(500).json({
-      success: false,
-      message: "Server error while registering admin"
-    });
-  }
-  
+return res.status(200).json({
+success: true,
+message: "Admin registered successfully"
+});
+} catch (err) {
+console.error("Error in /registerAdmin:", err);
+return res.status(500).json({
+success: false,
+message: "Server error while registering admin"
+});
+}
+
 });
 
 
@@ -1738,14 +1875,14 @@ console.log(`Server is running PORT on ${PORT}`);
 
 
 setInterval(() => {
-  axios
-    .get("https://namasya.onrender.com/ping")
-    .then(() => {
-      console.log("Pinged self to stay awake");
-    })
-    .catch((err) => {
-      console.error("Ping failed", err.message);
-    });
+axios
+.get("https://namasya.onrender.com/ping")
+.then(() => {
+console.log("Pinged self to stay awake");
+})
+.catch((err) => {
+console.error("Ping failed", err.message);
+});
 }, 10 * 60 * 1000); 
 
 

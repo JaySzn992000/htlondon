@@ -17,10 +17,10 @@ return (
 
 <h2 className="return_tag">TERMS & CONDITIONS</h2>
 
-<p>Welcome to our website. Kimirica.shop is an 
-online service operated and managed by Kimirica 
+<p>Welcome to our website. HtLondon.shop is an 
+online service operated and managed by HtLondon 
 Hunter International LLP. If you continue to browse 
-and use Kimirica.shop you are agreeing to comply with 
+and use HtLondon.shop you are agreeing to comply with 
 and be bound by the following terms and conditions
 of the agreement listed below or as may be revised 
 from time to time ('User Agreement').

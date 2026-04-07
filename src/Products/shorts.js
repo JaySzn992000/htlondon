@@ -21,7 +21,7 @@ const query = new URLSearchParams(location.search).get("search");
 
 useEffect(() => {
 axios
-.get("http://localhost:3001/fetchProductslistChilli")
+.get("http://localhost:3001/fetchshorts")
 .then((response) => {
 console.log("Fetched Mangoes Pickles products:", response.data); 
 setAllProducts(response.data); 
@@ -38,7 +38,7 @@ useEffect(() => {
 
 if (query) {
 axios
-.get("http://localhost:3001/fetchProductslist", {
+.get("http://localhost:3001/fetchshorts", {
 params: { search: query },
 })
 .then((response) => {

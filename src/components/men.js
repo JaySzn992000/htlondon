@@ -19,7 +19,6 @@ const [cartCount, setCartCount] = useState(0);
 const [arrayStore, setArrayStore] = useState([]);
 const [products, setProducts] = useState([]);
 
-
 useEffect(() => {
 
 axios

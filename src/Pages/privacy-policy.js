@@ -18,7 +18,7 @@ return (
 
 <p>This Privacy Policy describes how your personal 
 information is collected, used, and shared when you 
-visit or make a purchase from www.kimirica.shop.
+visit or make a purchase from www.HtLondon.shop.
 </p>
 
 <h2>PERSONAL INFORMATION</h2>
@@ -43,7 +43,7 @@ automatically collected information as
 
 <p>
 {" "}
-All online payments on kimirica.shop are 
+All online payments on HtLondon.shop are 
 managed on a secure payment gateway. We do 
 not store or have visibility into customers' net 
 banking information or credit/debit card details as 

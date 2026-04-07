@@ -23,7 +23,7 @@ const [products, setProducts] = useState([]);
 useEffect(() => {
 
 axios
-.get("http://localhost:3001/fetchProductslist")
+.get("http://localhost:3001/fetchwomen")
 .then((res) => setProducts(res.data))
 .catch((err) => console.error(err));
 }, []);
@@ -46,13 +46,15 @@ alert("Product added to cart!");
 }
 };
 
+
 useEffect(() => {
+
 const storedWishlistStatus =
 JSON.parse(localStorage.getItem("wishlistStatus")) || {};
 setWishlistStatus(storedWishlistStatus);
 
 axios
-.get("http://localhost:3001/fetchProductslist")
+.get("http://localhost:3001/fetchwomen")
 .then((response) => {
 setArrayStore(response.data);
 setFilteredProducts(response.data);
@@ -69,7 +71,7 @@ const query = new URLSearchParams(location.search).get("search");
 useEffect(() => {
 if (query) {
 axios
-.get("http://localhost:3001/fetchProductslist", {
+.get("http://localhost:3001/fetchwomen", {
 params: { search: query },
 })
 .then((response) => {
@@ -81,7 +83,7 @@ console.error("Error fetching products:", error);
 });
 } else {
 axios
-.get("http://localhost:3001/fetchProductslist")
+.get("http://localhost:3001/fetchwomen")
 .then((response) => {
 setAllProducts(response.data);
 setFilteredProducts(response.data);

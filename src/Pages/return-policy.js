@@ -21,7 +21,7 @@ to assist you for eligible returns. If you
 received the product and wish to exchange it 
 for another item, or you received a damaged 
 product, directions are provided below. Only 
-products purchased on https://www.winsomebloom.shop/ 
+products purchased on www.HtLondon.shop
 can be returned.
 </p>
 

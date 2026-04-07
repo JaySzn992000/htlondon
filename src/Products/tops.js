@@ -21,7 +21,7 @@ const query = new URLSearchParams(location.search).get("search");
 
 useEffect(() => {
 axios
-.get("https://omega-zg6z.onrender.com/fetchProductslistLotus")
+.get("https://omega-zg6z.onrender.com/fetchtops")
 .then((response) => {
 console.log("Fetched Mangoes Pickles products:", response.data); 
 setAllProducts(response.data); 
@@ -35,9 +35,10 @@ console.error("Error fetching Mangoes Pickles products:", error);
 }, [] ); 
 
 useEffect(() => {
+
 if (query) {
 axios
-.get("https://omega-zg6z.onrender.com/fetchProductslist", {
+.get("https://omega-zg6z.onrender.com/fetchtops", {
 params: { search: query },
 })
 .then((response) => {
