@@ -30,6 +30,7 @@ align-items: center;
 flex-wrap: wrap;
 width: 100%;
 margin-top: .7em;
+padding-bottom: 13px;
 border-bottom: 0.5px solid #DCDCDC;
 }
 
