@@ -23,7 +23,7 @@ const [products, setProducts] = useState([]);
 useEffect(() => {
 
 axios
-.get("http://localhost:3001/fetchwomen")
+.get("https://namasya.onrender.com/fetchwomen")
 .then((res) => setProducts(res.data))
 .catch((err) => console.error(err));
 }, []);
@@ -54,7 +54,7 @@ JSON.parse(localStorage.getItem("wishlistStatus")) || {};
 setWishlistStatus(storedWishlistStatus);
 
 axios
-.get("http://localhost:3001/fetchwomen")
+.get("https://namasya.onrender.com/fetchwomen")
 .then((response) => {
 setArrayStore(response.data);
 setFilteredProducts(response.data);
@@ -71,7 +71,7 @@ const query = new URLSearchParams(location.search).get("search");
 useEffect(() => {
 if (query) {
 axios
-.get("http://localhost:3001/fetchwomen", {
+.get("https://namasya.onrender.com/fetchwomen", {
 params: { search: query },
 })
 .then((response) => {
@@ -83,7 +83,7 @@ console.error("Error fetching products:", error);
 });
 } else {
 axios
-.get("http://localhost:3001/fetchwomen")
+.get("https://namasya.onrender.com/fetchwomen")
 .then((response) => {
 setAllProducts(response.data);
 setFilteredProducts(response.data);
@@ -146,7 +146,7 @@ return (
 
 <Navbar wishlistCount={wishlistCount} cartCount={cartCount} />
 
-<img className="ListBanner" src="https://www.kimirica.shop/cdn/shop/files/Valentine-Store-2025-Inner-Pages-BANNER-01.jpg?v=1768802129&width=1920"></img>
+<img className="ListBanner" src="https://cdn.shopify.com/s/files/1/0420/7073/7058/files/shop_your_size2_1.jpg?v=1773041954"></img>
 
 <Filters allProducts={allProducts} onFilterUpdate={handleFilterUpdate} />
 

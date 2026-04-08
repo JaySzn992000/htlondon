@@ -147,7 +147,7 @@ return (
 
 <Navbar wishlistCount={wishlistCount} cartCount={cartCount} />
 
-<img className="ListBanner" src="https://www.kimirica.shop/cdn/shop/files/Valentine-Store-2025-Inner-Pages-BANNER-01.jpg?v=1768802129&width=1920"></img>
+<img className="ListBanner" src="https://cdn.shopify.com/s/files/1/0420/7073/7058/files/shop_your_size2_1.jpg?v=1773041954"></img>
 
 <Filters allProducts={allProducts} onFilterUpdate={handleFilterUpdate} />
 

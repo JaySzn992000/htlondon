@@ -102,7 +102,7 @@ return (
 <Iconicselection></Iconicselection>
 <AboutHm></AboutHm>
 <Commitments></Commitments>
-<img className="uptoff" src="https://cdn.shopify.com/s/files/1/0420/7073/7058/files/shop_your_size2_1.jpg?v=1773041954"></img>
+<img className="uptoff" src="https://images.riverisland.com/image/upload/v1771417360/007CAM26_IN_BLOOM_SECONDARY_BANNER_DESKTOP_MW.jpg"></img>
 <ShopCategory></ShopCategory>
 <Featured></Featured>
 
