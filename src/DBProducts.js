@@ -15,7 +15,7 @@ const DbFetch = async () => {
 
 try {
 
-const response = await fetch("https://naturalbuti.onrender.com/fetchDB");
+const response = await fetch("https://namasya.onrender.com/fetchDB");
 
 const data = await response.json();
 
@@ -105,7 +105,7 @@ DB_products_PRQuery ? "DB_products_PRQuery-inside" : ""
 <td>
 {DisDb.file_path && (
 <img
-src={`http://localhost:3001${DisDb.file_path}`}
+src={`https://namasya.onrender.com${DisDb.file_path}`}
 alt={DisDb.name}
 className="product-img"
 />

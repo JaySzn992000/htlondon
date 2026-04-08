@@ -14,7 +14,7 @@ const DbFetch = async () => {
 
 try {
 
-const response = await fetch("https://naturalbuti.onrender.com/adminusersDeatils");
+const response = await fetch("https://namasya.onrender.com/adminusersDeatils");
 
 const data = await response.json();
 

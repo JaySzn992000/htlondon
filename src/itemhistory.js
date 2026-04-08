@@ -28,7 +28,7 @@ useEffect(() => {
 const customerFetch = async () => {
 try {
 const response = await fetch(
-"https://naturalbuti.onrender.com/historyfetchcustomer"
+"https://namasya.onrender.com/historyfetchcustomer"
 );
 const data = await response.json();
 if (loggedInUser) {
@@ -96,7 +96,7 @@ Purchase History ({quantities.length})
 <td>
 {item.file_path && (
 <img
-src={`http://localhost:3001${item.file_path}`}
+src={`https://namasya.onrender.com${item.file_path}`}
 alt={item.productname}
 className="custorders-imageItem"
 />

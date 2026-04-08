@@ -27,7 +27,7 @@ formData.append("image", productImage);
 }
 
 try {
-const response = await fetch("https://naturalbuti.onrender.com/api/update-product", {
+const response = await fetch("https://namasya.onrender.com/api/update-product", {
 method: "POST",
 body: formData,
 });
