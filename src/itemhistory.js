@@ -46,9 +46,7 @@ customerFetch();
 }, [loggedInUser] );
 
 
-
 return (
-
 
 <div>
 

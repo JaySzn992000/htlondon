@@ -55,7 +55,7 @@ alert("This product with the selected size is already in your cart.");
 const productToAdd = {
 ...arrayStore,
 size: selectedSize,
-price: arrayStore.price, // ✅ Fixed: price now always original price
+price: arrayStore.price,
 originalPrice: arrayStore.price
 };
 
@@ -93,6 +93,7 @@ arrows: false,
 };
 
 return (
+
 <div>
 <Navbar cartCount={cartCount} />
 
@@ -157,7 +158,6 @@ loading="lazy"
 </h2>
 </section>
 
-{/* Size selector */}
 <p>SELECT A SIZE</p>
 <div className="size_chart">
 {sizes.map((size) => (
@@ -212,6 +212,7 @@ GO TO CART
 
 <Header />
 </div>
+
 );
 };
 

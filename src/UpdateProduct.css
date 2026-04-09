@@ -5,7 +5,6 @@ margin: auto;
 transition: 0.3s ease-in-out;
 }
 
-
 .update-product-container {
 margin-left: 17vw;
 gap: 1.3em;
@@ -20,13 +19,11 @@ width: 99%;
 margin-left: .5vw;
 }
 
-
 .update-product-form  section {
 display: flex;
 align-items: center;
 position: relative;
 }
-
 
 .update-product-form section img {
 width: 217px;
@@ -47,11 +44,9 @@ border-radius: 7px;
 color: #000000;
 }
 
-
 .IconAddPrdct {
 width: 53px;
 }
-
 
 .update-product-form .addProductDiv {
 display: flex;
@@ -59,11 +54,9 @@ gap: .7em;
 width: 100%;
 }
 
-
 .browse-btn {
 line-height: 2.1em;
 }
-
 
 .update-product-container .Update_upload_container {
 background-color:  #FFFFFF;
@@ -81,14 +74,12 @@ margin-bottom: 0.1em;
 font-weight: normal;
 }
 
-
 .update-product-container h2,
 h4,
 h1 {
 color: #808080;
 font-weight: normal;
 }
-
 
 .update-product-container .Update_upload_container h3 {
 margin: 0.3em 0 0.7em;
@@ -104,7 +95,6 @@ width: 67px;
 margin: 0.7em 0 0.2em;
 }
 
-
 .update-product-form {
 display: flex;
 flex-direction: column;
@@ -115,7 +105,6 @@ border-radius: 7px;
 box-shadow: 0 4px 6px rgba(2, 0, 0, 0.195);
 }
 
-
 .update-product-form input {
 padding: 13px;
 height: 38px;
@@ -125,16 +114,13 @@ border-radius: 13px;
 transition: border-color 0.3s ease-in-out;
 }
 
-
 .update-product-form .priceInput {
 width: 19%;
 }
 
-
 .update-product-form input:focus {
 border-color: #6a5acd;
 }
-
 
 .update-product-form button {
 color: #FFFFFF;
@@ -151,7 +137,6 @@ transition: background-color 0.3s ease;
 .update-product-form button:hover {
 background-color: #483d8b;
 }
-
 
 .upload-box_Update {
 display: flex;
@@ -170,7 +155,6 @@ cursor: pointer;
 margin-top: 0.7em;
 }
 
-
 .update-product-btn {
 width: 100%;
 padding: 16px;
@@ -186,7 +170,6 @@ transition: background-color 0.3s ease-in-out;
 background-color: #555;
 cursor: pointer;
 }
-
 
 .upload-box_Update p {
 color: #808080;
@@ -235,7 +218,6 @@ width: 100%;
 .update-product-form .priceInput {
 width: 100%;
 }
-
 
 }
 
@@ -350,7 +332,6 @@ margin-left: 24vw;
 width: 75%;
 padding: 27px;
 transition: all 0.3s ease-in-out;
-
 }
 
 .update-product-container.update_containerConinside {
@@ -369,13 +350,11 @@ right: 1.7%;
 margin-top: 2.3em;
 }
 
-
 .update-product-form input {
 height: 38px;
 width: 147px;
 border-radius: 13px;
 }
-
 
 .addProductDiv label {
 width: 117px;

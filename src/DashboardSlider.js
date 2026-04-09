@@ -26,18 +26,15 @@ const pdmanagmenthandler = () => {
 naviManagmentProduct("/Productmanagment");
 };
 
-
 const naviAdmin = useNavigate()
 const adminNavi = () => {
 naviAdmin('/AdminUsers')
 }
 
-
 const NaviUsers = useNavigate()
 const userNavi = () => {
 NaviUsers('/UsersDetails')
 }
-
 
 const adminProfileNavi = useNavigate()
 const adminProfile = () => {

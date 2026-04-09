@@ -105,7 +105,6 @@ inputHandler(e);
 }}
 />
 
-
 <span
 className="eye-icon"
 onClick={() => setShowPassword(!showPassword)}

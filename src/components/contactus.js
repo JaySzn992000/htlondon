@@ -75,7 +75,6 @@ return (
 
 <div>
 
-
 <Navbar></Navbar>
 
 <main>

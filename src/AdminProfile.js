@@ -5,7 +5,6 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./AdminProfile.css"; 
 import { useNavigate } from "react-router";
 
-
 function AdminProfile() {
 
 const [loggedInAdmin, setLoggedInAdmin] = useState(null);
@@ -42,7 +41,6 @@ setNavContainer(!navContainer);
 setRelativeClass(!relativeClass);
 setProductClass(!productClass);
 };
-
 
 const naviupdateProfile = useNavigate()
 const updateProfile = () => {

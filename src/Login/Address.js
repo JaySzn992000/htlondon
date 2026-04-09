@@ -41,7 +41,6 @@ const reactLocation = useLocation();
 const totalAmount = reactLocation.state?.totalAmount || 0;
 const quantities = reactLocation.state?.quantities || [];
 
-
 useEffect(() => {
 const storedUser = localStorage.getItem("loggedInUser");
 if (storedUser) {
@@ -66,7 +65,6 @@ if (alphaOnly.length < 3) {
 alert("Name must be at least 3 characters long.");
 return false;
 }
-
 
 if (!/^\d+$/.test(formData.pincode)) {
 alert("Pincode must contain only digits.");

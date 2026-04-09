@@ -46,7 +46,6 @@ alert("Product added to cart!");
 }
 };
 
-
 useEffect(() => {
 
 const storedWishlistStatus =

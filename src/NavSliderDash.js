@@ -1,4 +1,3 @@
-import React from "react";
 import DashboardNav from "./DashboardNav";
 import DashboardSlider from "./DashboardSlider";
 import { useState } from "react";

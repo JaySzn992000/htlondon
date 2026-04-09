@@ -27,7 +27,6 @@ axios
 .catch((err) => console.error(err));
 }, []);
 
-
 const handleAddToCart = (product) => {
 if (!product) return;
 const isProductInCart = JSON.parse(localStorage.getItem("cart"))?.some(
@@ -90,7 +89,6 @@ console.error("Error fetching all products:", error);
 });
 }
 }, [query] );
-
 
 const sendToWishlist = (product) => {
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];

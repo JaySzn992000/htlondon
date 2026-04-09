@@ -1,3 +1,4 @@
+
 .product-gallery-box{
 width: 805px;
 display: grid;
@@ -12,7 +13,6 @@ height: auto;
 object-fit: cover;
 cursor: zoom-in;
 }
-
 
 .thumbnails-container {
 width: 177px;
@@ -245,7 +245,6 @@ border: 1px solid #000;
 
 
 
-
 @media (max-width: 768px) {
 
 .mobile-slider {
@@ -265,7 +264,7 @@ display: none;
 display: none;
 }
 
-    .review_Cntnr {
+.review_Cntnr {
 justify-content: center !important;
 }
 

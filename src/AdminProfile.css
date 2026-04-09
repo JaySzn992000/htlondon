@@ -10,12 +10,10 @@ background-size: cover;
 background-position: center;
 }
 
-
 .admin-avatar h2 {
 color: #000000;
 margin-bottom: .8em;
 }
-
 
 .circle-avatar {
 background-color: #f08080;
@@ -29,12 +27,10 @@ margin-bottom: 1.8em;
 margin-top: 1.7em;
 }
 
-
 .circle-avatar h1 {
 color: #FFFFFF;
 font-size: 2rem;
 }
-
 
 .admin-info-box h2 {
 margin: 0.3em 0;
@@ -48,8 +44,6 @@ word-break: break-all;
 font-weight: normal;
 }
 
-
-
 .flx_adminPr {
 display: flex;
 justify-content: center;
@@ -57,12 +51,10 @@ gap: 1.2em;
 line-height: 3.3em;
 }
 
-
 .flx_adminPr li {
 color: #808080;
 cursor: pointer;
 }
-
 
 .flx_adminPr i {
 font-size: 1.3rem;
@@ -70,7 +62,6 @@ color: #C1BCBC;
 line-height: 2.5em;
 cursor: pointer;
 }
-
 
 .password-section {
 display: flex;
@@ -82,11 +73,9 @@ margin: 1em 0;
 margin-top: 1.5em;
 }
 
-
 .password-section p {
 font-size: 1rem;
 }
-
 
 .password-section span {
 cursor: pointer;

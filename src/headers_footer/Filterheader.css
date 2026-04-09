@@ -1,23 +1,22 @@
 
-
 .headerFlex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  row-gap: 1em;
-  column-gap: 1.5em;
-  background-color: #100424;
-  border-bottom: 1px solid gainsboro;
-  margin-top: 2.1em;
-  padding: .5em;
-  padding-top: 31px;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+row-gap: 1em;
+column-gap: 1.5em;
+background-color: #100424;
+border-bottom: 1px solid #DCDCDC;
+margin-top: 2.1em;
+padding: .5em;
+padding-top: 31px;
 }
 
 
 .ImgHeader {
-  width: 163px;
-  height: auto;
+width: 163px;
+height: auto;
 }
 
 
@@ -75,7 +74,7 @@ font-size: 1.1rem;
 
 
 .div_header_Filter h4 {
-    font-size: .9rem;
+font-size: .9rem;
 }
 
 

@@ -2,7 +2,6 @@ import { useState } from "react";
 import AddProductImg from "./Images_ToolsSymbols/addProduct.jpg";
 import "./AddProducts.css";
 
-
 function AddProducts({ Product_relativeCon, dashboard_containerCon }) {
 
 const [productCategory, setProductCategory] = useState("");
@@ -116,7 +115,6 @@ src="https://cdn-icons-png.flaticon.com/128/5444/5444684.png"></img>
 <h3 id="addTag">ADD PRODUCTS</h3>
 </div>
 
-
 <section>
 
 <div className="addProductDiv">
@@ -142,7 +140,6 @@ required
 placeholder="Product Sizes"
 />
 </div>
-
 
 <div className="addProductDiv">
 
@@ -177,7 +174,6 @@ placeholder="Price"
 
 </div>
 
-
 {/*  */}
 
 <div className="addProductDiv">
@@ -209,7 +205,6 @@ maxLength={10}
 
 </div>
 
-
 {/*  */}
 
 <label>Description:</label>
@@ -223,7 +218,6 @@ required
 placeholder="Description"
 maxLength={1500}
 />
-
 
 <input
 style={{ display: "none" }}

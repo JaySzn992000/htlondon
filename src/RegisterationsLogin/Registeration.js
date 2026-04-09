@@ -65,7 +65,6 @@ return true;
 
 };
 
-
 const registerhanlder = (e) => {
 
 setformdata({ ...formdata, [e.target.name]: e.target.value });
@@ -134,7 +133,6 @@ return (
 
 <section className="flex_form">
 
-{/*  */}
 
 <div>
 <div>
@@ -160,7 +158,6 @@ maxLength={50}
 </div>
 </div>
 
-{/*  */}
 
 <div>
 <div>
@@ -187,7 +184,6 @@ maxLength={10}
 </div>
 </div>
 
-{/*  */}
 
 </section>
 

@@ -1,6 +1,5 @@
 import "./Iconicselection.css";
 
-
 const Iconicselection = () => {
 
 return (

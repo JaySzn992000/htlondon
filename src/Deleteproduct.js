@@ -59,7 +59,6 @@ src="https://cdn-icons-png.flaticon.com/128/6713/6713666.png"></img>
 <h3 id="Addtag">DELETE PRODUCTS</h3>
 </div>
 
-
 <label>Delete Product Name :</label>
 <input
 type="text"

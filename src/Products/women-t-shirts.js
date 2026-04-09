@@ -132,6 +132,7 @@ alert("Product added to cart !");
 
 return (
 
+
 <div>
 
 <Navbar wishlistCount={wishlistCount} cartCount={cartCount} />

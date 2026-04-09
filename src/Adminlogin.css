@@ -1,4 +1,3 @@
-/* Done */
 
 .admin-login-container {
 display: flex;
@@ -7,7 +6,6 @@ height: 100vh;
 align-items: center;
 background-color: #ffffff;
 }
-
 
 .admin-login-form {
 width: 100%;
@@ -21,11 +19,9 @@ box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 transition: transform 0.3s ease-in-out;
 }
 
-
 .admin-login-container h3 {
 margin-top: 1.2em;
 }
-
 
 .admin-login-form h4 {
 margin-top: 21px;
@@ -34,19 +30,16 @@ text-align: start;
 color: #333;
 }
 
-
 .admin-login-form section {
 margin-top: 2.5em;
 line-height: .9em;
 }
-
 
 .admin-login-form section h4 {
 font-size: .9rem;
 text-align: center;
 cursor: pointer;
 }
-
 
 .admin-login-form p {
 font-size: 0.8rem;
@@ -55,12 +48,10 @@ line-height: 1.7em;
 color: #808080;
 }
 
-
 .form-group {
 margin-bottom: 17px;
 margin-top: 1.5em;
 }
-
 
 .form-input {
 width: 100%;
@@ -73,7 +64,6 @@ border-radius: 5px;
 outline: none;
 transition: all 0.3s ease;
 }
-
 
 .login-button {
 margin-top: 0.9em;
@@ -93,7 +83,6 @@ width: 40%;
 background: linear-gradient(135deg, #6ae7f5, #4c84ff);
 box-shadow: 0 4px 15px rgba(76, 132, 255, 0.3);
 }
-
 
 
 

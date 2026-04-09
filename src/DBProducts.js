@@ -6,7 +6,6 @@ import "./DBProducts.css";
 
 function DBProducts() {
 
-
 const [storeDB, setstoreDB] = useState([]);
 const [totalProducts, setTotalProducts] = useState(0);
 

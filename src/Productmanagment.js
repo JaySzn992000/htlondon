@@ -1,4 +1,3 @@
-import React from "react";
 import AddProducts from "./AddProducts";
 import UpdateProduct from "./UpdateProduct";
 import Deleteproduct from "./Deleteproduct";
@@ -13,18 +12,14 @@ function Productmanagment () {
 const [sidebarOpen, setSidebarOpen] = useState(true);
 const [navContainer,setnavContainer] = useState(false);
 
-
 const [Product_relativeCon, setProduct_relativeCon] = useState(false);
 const [dashboard_containerCon, setdashboard_containerCon] = useState(false);
-
 
 const [Update_relativeCon, setUpdate_relativeCon] = useState(false);
 const [update_containerCon, setupdate_containerCon] = useState(false);
 
-
 const [Delete_relativeCon, setDelete_relativeCon] = useState(false);
 const [Delete_formCon, setDelete_formCon] = useState(false);
-
 
 const toggleSidebar = () => {
 
@@ -68,7 +63,6 @@ navContainer={navContainer}
 Product_relativeCon={Product_relativeCon}
 dashboard_containerCon={dashboard_containerCon}
 />
-
 
 <UpdateProduct Update_relativeCon={Update_relativeCon} 
 update_containerCon={update_containerCon}

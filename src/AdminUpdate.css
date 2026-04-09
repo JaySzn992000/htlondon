@@ -17,7 +17,6 @@ border-radius: 17px;
 transition: transform 0.3s ease-in-out;
 }
 
-
 .admin-adminUpdate-form h2 {
 font-size: 1.1rem;
 text-align: start;
@@ -25,13 +24,11 @@ margin-bottom: 1.1em;
 text-align: center;
 }
 
-
 #adminupdatePTg {
 color: #808080;
 line-height: 1.7em;
 font-size: 0.8rem;
 }
-
 
 .admin-adminUpdate-form label {
 font-weight: normal;
@@ -43,7 +40,6 @@ margin-bottom: 17px;
 text-align: start;
 }
 
-
 label {
 display: block;
 margin-bottom: 8px;
@@ -51,7 +47,6 @@ font-weight: 600;
 font-size: 0.9rem;
 color: #333;
 }
-
 
 .form-input {
 width: 100%;
