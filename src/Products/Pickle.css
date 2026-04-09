@@ -79,17 +79,6 @@ gap: 0.4em;
 text-align: center;
 }
 
-.review_icon {
-width: 19px;
-height: 19px;
-}
-
-.review_separator {
-margin-top: 0.2em;
-font-size: 0.9rem;
-color: #888;
-}
-
 .price_section {
 display: flex;
 justify-content: center;
@@ -108,14 +97,6 @@ padding-right: 11px;
 flex-wrap: wrap;
 color: #000000;
 border-radius: 17px;
-}
-
-.review_section {
-display: flex;
-align-items: center;
-gap: 0.3em;
-text-align: center;
-margin-top: 0em;
 }
 
 .product_info_container li {
@@ -147,52 +128,6 @@ color: #444;
 .product_price {
 font-size: .9rem;
 color: #222;
-}
-
-.add_crtPickle {
-background: #231F20;
-color: #fff;
-border: 2px solid transparent;
-padding: .6em 1.8em;
-font-size: 1rem;
-margin-top: 1em;
-cursor: pointer;
-width: 75%;
-position: relative;
-overflow: hidden;
-border-radius: 2px;
-transition: color 0.3s ease, border 0.3s ease;
-}
-
-.add_crtPickle::before {
-content: "";
-position: absolute;
-top: 0;
-left: -100%;
-width: 100%;
-height: 100%;
-background: #fff;
-transition: left 0.4s ease;
-z-index: 0; 
-}
-
-.add_crtPickle span {
-position: relative;
-z-index: 1; 
-color: #fff; 
-transition: color 0.3s ease;
-}
-
-.add_crtPickle:hover::before {
-left: 0; 
-}
-
-.add_crtPickle:hover span {
-color: #000; 
-}
-
-.add_crtPickle:hover {
-border: .5px solid #231F20; 
 }
 
 
@@ -243,11 +178,6 @@ margin-right: .7em;
 margin-top: 0em;
 }
 
-.add_crtPickle{
-width: 98%;
-padding: 7px;
-}
-
 .fa-heart_Pickle {
 font-size: 1.1rem;
 margin-right: .7em;
@@ -270,10 +200,6 @@ width: 30%;
 
 .product_cards_wrapper {
 gap: .8em;
-}
-
-.add_crtPickle {
-padding: 9px;
 }
 
 }

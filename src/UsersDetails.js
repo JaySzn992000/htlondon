@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DashboardNav from "./DashboardNav";
 import DashboardSlider from "./DashboardSlider";
 import { useNavigate } from "react-router";

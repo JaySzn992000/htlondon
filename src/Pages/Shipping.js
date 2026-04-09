@@ -1,4 +1,3 @@
-import React from "react";
 import './Shipping.css';
 import ShippImg from "../OtherImages//CustomersShipping.jpg";
 import Navbar from "../headers_footer/navbar";

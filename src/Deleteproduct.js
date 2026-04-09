@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Deleteproduct.css";
 
 function Delete({ Delete_relativeCon, Delete_formCon }) {

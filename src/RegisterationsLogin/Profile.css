@@ -18,12 +18,12 @@ line-height: 3em;
 .flex_Profile_ i {
 font-size: 1.3rem;
 margin-right: 0.5em;
-color: rgb(199, 188, 188);
+color: #C7BCBC;
 }
 
 .Sign_out i {
 font-size: 1.3rem;
-color: rgb(199, 188, 188);
+color: #C7BCBC;
 }
 
 .flex_prf_ {
@@ -38,7 +38,7 @@ justify-content: center;
 width: 100%;
 font-size: 1.2rem;
 margin: auto;
-color: rgb(64, 59, 59);
+color:#403B3B;
 padding: 13px;
 margin-top: -0.7em;
 margin-bottom: -.7em;
@@ -51,7 +51,7 @@ align-items: center;
 gap: 1em;
 margin-top: 0.5em;
 justify-content: center;
-color: rgb(64, 59, 59);
+color: #403B3B;
 }
 
 .fontsizeProfile{
@@ -99,7 +99,7 @@ font-size: 0.9rem;
 
 .Sign_out p,
 li {
-color: rgb(64, 59, 59);
+color: #403B3B;
 }
 
 .item_history,

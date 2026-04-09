@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "../headers_footer/navbar";
 import Header from "../headers_footer/header";
 import './ReturnPolicy.css';

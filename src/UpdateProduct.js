@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import uploadProductImg from "./Images_ToolsSymbols/uploadProduct.jpg";
 import "./UpdateProduct.css";
 

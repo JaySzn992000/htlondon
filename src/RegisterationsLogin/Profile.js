@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../headers_footer/navbar";
 import Header from "../headers_footer/header";
-import ProfileBG from "../Logo/ProfileBG.jpg";
 import "./Profile.css";
+// import ProfileBG from "../Logo/ProfileBG.jpg";
 
 const Profile = () => {
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import Filters from "../components/Filters";
@@ -84,26 +84,6 @@ setWishlistCount(wishlist.length);
 };
 
 
-// const handleAddToCart = (product) => {
-// if (!product) return;
-
-// const cart = JSON.parse(localStorage.getItem("cart")) || [];
-// const isProductInCart = cart.some(
-// (item) => String(item.id) === String(product.id)
-// );
-
-// if (isProductInCart) {
-// alert("This product is already in your cart.");
-// } else {
-// addToCart(product);
-// const updatedCart = [...cart, product];
-// localStorage.setItem("cart", JSON.stringify(updatedCart));
-
-// setCartCount(updatedCart.length);
-// alert("Product added to cart!");
-// }
-// };
-
 return (
 
 <div>
@@ -146,23 +126,6 @@ className="product_image"
 <li className="fa fa-inr price_icon"></li>
 <li className="product_price">{product.price}</li>
 </div>
-
-{/* <div className="review_section">
-<img
-src="https://cdn-icons-png.flaticon.com/128/15853/15853959.png"
-loading="lazy"
-alt="review"
-className="review_icon"
-/>
-<li className="review_separator"></li>
-<li className="review_text">{product.review}</li>
-</div> */}
-
-{/* <button
-className="add_crtPickle"
-onClick={() => handleAddToCart(product)} >
-<span>ADD TO CART</span>
-</button> */}
 
 </div>
 </div>

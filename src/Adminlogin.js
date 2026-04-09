@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./Adminlogin.css";
@@ -48,8 +48,6 @@ return;
 }
 
 try {
-
-// https://namasya.onrender.com/fetchAdmin
 
 const response = await fetch("https://namasya.onrender.com/fetchAdmin", {
 method: "POST",

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import AddProductImg from "./Images_ToolsSymbols/addProduct.jpg";
 import "./AddProducts.css";
 

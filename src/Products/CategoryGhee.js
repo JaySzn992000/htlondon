@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import Filterheader from "../headers_footer/Filterheader";
@@ -11,11 +11,10 @@ import "./Categoriesfruits.css";
 const CategoryGhee = ({ showFilters = true, limit }) => {
 
 const [allProducts, setAllProducts] = useState([]); 
-const [filteredProducts, setFilteredProducts] = useState([]); // Store 
-// filtered products
+const [filteredProducts, setFilteredProducts] = useState([]); 
+
 const location = useLocation();
-const query = new URLSearchParams(location.search).get("search"); // Extract '
-// search' query
+const query = new URLSearchParams(location.search).get("search");
 
 useEffect(() => {
 axios
