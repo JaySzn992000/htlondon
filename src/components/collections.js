@@ -191,24 +191,7 @@ loading="lazy"
 <li className="fa_Price">{productlist.price}</li>
 </div>
 
-{/* <div className="review_Cntnr">
-
-<img
-id="Review_Img"
-src="https://cdn-icons-png.flaticon.com/128/15853/15853959.png"/>
-<li style={{ marginTop: ".5em", marginLeft: "-.2em" }}></li>
-<li className="fa_Review">{productlist.review}</li>
-
-</div> */}
-
 </div>
-
-{/* <button
-className="add_crt"
-onClick={() => handleAddToCart(productlist)}
->
-<span>ADD TO CART</span>
-</button> */}
 
 </div>
 

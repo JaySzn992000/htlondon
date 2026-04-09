@@ -1,7 +1,7 @@
 import Navbar from "../headers_footer/navbar";
-import BiotiqueFavroute from "../Slider/biotique1.png";
-import BiotiqueFavrouteTwo from "../Slider/biotique2.png";
 import "./FavFavroute.css";
+// import BiotiqueFavroute from "../Slider/biotique1.png";
+// import BiotiqueFavrouteTwo from "../Slider/biotique2.png";
 
 const FavFavroute = () => {
 

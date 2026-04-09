@@ -1,8 +1,8 @@
 import Navbar from "../headers_footer/navbar";
 import Header from "../headers_footer/header";
-import AboutPickle from "../Slider/AboutPickle.jpg";
-import AboutCollectionOne from "../Slider/ourcollectionone.png";
-import AboutCollectionTwo from "../Slider/ourcollectiontwo.png";
+// import AboutPickle from "../Slider/AboutPickle.jpg";
+// import AboutCollectionOne from "../Slider/ourcollectionone.png";
+// import AboutCollectionTwo from "../Slider/ourcollectiontwo.png";
 import "./about.css";
 
 const Aboutus = () => {
