@@ -28,7 +28,6 @@ axios
 .catch((err) => console.error(err));
 }, []);
 
-
 const handleAddToCart = (product) => {
 if (!product) return;
 const isProductInCart = JSON.parse(localStorage.getItem("cart"))?.some(

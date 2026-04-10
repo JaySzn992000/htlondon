@@ -223,14 +223,13 @@ cursor: pointer;
 .review_Cntnr {
 display: flex;
 justify-content: start !important;
-gap: .2em;
+gap: .5em;
 width: 100%;
 align-items: center;
 }
 
 .review_Cntnr img {
 width: 25px;
-margin-left: .6em;
 }
 
 .thumbnail {
