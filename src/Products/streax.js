@@ -21,7 +21,7 @@ const query = new URLSearchParams(location.search).get("search");
 
 useEffect(() => {
 axios
-.get("http://localhost:3001/fetchProductslistPants")
+.get("https://namasya.onrender.com/fetchProductslistPants")
 .then((response) => {
 console.log("Fetched Mangoes Pickles products:", response.data); 
 setAllProducts(response.data); 
@@ -38,7 +38,7 @@ console.error("Error fetching Mangoes Pickles products:", error);
 useEffect(() => {
 if (query) {
 axios
-.get("http://localhost:3001/fetchProductslist", {
+.get("https://namasya.onrender.com/fetchProductslist", {
 params: { search: query },
 })
 .then((response) => {
@@ -191,13 +191,6 @@ src="https://cdn-icons-png.flaticon.com/128/15853/15853959.png" />
 <li className="fa_Review">{productlist.review}</li>
 </div>
 </div>
-
-<button
-className="add_crt"
-onClick={() => handleAddToCart(productlist)}
->
-<span>ADD TO CART</span>
-</button>
 
 </div>
 

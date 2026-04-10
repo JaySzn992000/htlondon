@@ -2,7 +2,6 @@ import Navbar from "../headers_footer/navbar";
 import Header from "../headers_footer/header";
 import './ReturnPolicy.css';
 
-
 const FAQs = () => {
 
 return (

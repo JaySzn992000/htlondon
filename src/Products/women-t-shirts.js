@@ -191,13 +191,6 @@ src="https://cdn-icons-png.flaticon.com/128/15853/15853959.png" />
 </div>
 </div>
 
-<button
-className="add_crt"
-onClick={() => handleAddToCart(productlist)}
->
-<span>ADD TO CART</span>
-</button>
-
 </div>
 
 </div>
