@@ -33,8 +33,8 @@ transform: scale(1.15);
 }
 
 .slide-image {
-width: 86%;
-height: auto;
+width: 85%;
+height: 485px;
 object-fit: cover;
 transition: all 0.3s ease;
 border: none;
@@ -81,6 +81,7 @@ width: 95%;
 
 .slide-image {
 width: 100%;
+height: 375px;
 }
 
 .slide-content {
@@ -96,7 +97,6 @@ font-size: 1.5rem;
 }
 
 }
-
 
 
 @media print {

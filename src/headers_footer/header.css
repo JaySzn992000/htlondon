@@ -1,4 +1,42 @@
 
+.footer_bottom {
+width: 100%;
+padding: 17px 20px;
+border-top: 1px solid #333;
+text-align: left;
+}
+
+.footer_bottom p {
+color: #ccc;
+font-size: 14px;
+margin: 0;
+}
+
+@media (max-width: 768px) {
+
+.footer_bottom {
+padding: 12px 15px;
+}
+
+.footer_bottom p {
+font-size: 13px;
+}
+
+}
+
+
+@media (max-width: 480px) {
+.footer_bottom {
+padding: 10px;
+}
+
+.footer_bottom p {
+font-size: 12px;
+line-height: 1.4;
+}
+}
+
+
 .normal_header {
 background-color: #f8f8f8;
 border-top: 1px solid #e5e5e5;

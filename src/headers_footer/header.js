@@ -93,6 +93,11 @@ exclusive offers.</p>
 </ul>
 
 </div>
+
+<div className="footer_bottom">
+<p>© 2026 Json Softech. All Rights Reserved.</p>
+</div>
+
 </header>
 </div>
 

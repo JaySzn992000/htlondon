@@ -10,6 +10,10 @@ const images = [
 'https://d2d5n4ft74bagm.cloudfront.net/media/banners/07b336dd-ed17-4b62-84c9-c18dc84265b3/1772714397.jpeg?w=90',
 'https://d2d5n4ft74bagm.cloudfront.net/media/banners/d344a7dc-7977-4463-935c-de212f93ea97/1772714499.jpeg?w=90',
 'https://d2d5n4ft74bagm.cloudfront.net/media/banners/df2c0250-f5ef-4eec-af94-dc7692b05161/1771572365.jpeg?w=90',
+'https://d2d5n4ft74bagm.cloudfront.net/media/banners/07b336dd-ed17-4b62-84c9-c18dc84265b3/1775472686.jpeg?w=90',
+'https://d2d5n4ft74bagm.cloudfront.net/media/banners/d344a7dc-7977-4463-935c-de212f93ea97/1775472623.jpeg?w=90',
+'https://d2d5n4ft74bagm.cloudfront.net/media/banners/1704323f-be05-49d1-abdf-2b9d4b380892/1774010458.jpeg?w=90',
+'https://d2d5n4ft74bagm.cloudfront.net/media/banners/f60a0f10-ed69-47cb-b82d-6604c344666f/1775472640.jpeg?w=90',
 ];
 
 
