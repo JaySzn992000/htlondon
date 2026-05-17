@@ -97,6 +97,7 @@ return (
 
 <li>IMAGE</li>
 <li>PRODUCT NAME</li>
+<li>Size</li>
 <li>UNIT PRICE</li>
 <li>ACTION</li>
 <li>QTY</li>
@@ -123,6 +124,10 @@ className="cart-item-image"
 <div className="Produt_nCart">
 <span className="fontSizeSpn">In Stock</span> <br></br>
 <span className="fontSizeSpn">{item.name}</span>
+</div>
+
+<div className="Produt_nCart">
+<span className="fontSizeSpn">{item.size}</span>
 </div>
 
 <div className="fontSizeSpn">

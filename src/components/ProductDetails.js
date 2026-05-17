@@ -55,7 +55,7 @@ item.size === selectedSize
 
 if (isProductInCart) {
 
-alert("This product with the selected size is already in your cart.");
+alert("This product size is already in your cart.");
 return;
 
 }
