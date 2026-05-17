@@ -47,10 +47,7 @@ return;
 
 if (arrayStore) {
 
-const existingCart =
-JSON.parse(localStorage.getItem("cart")) || [];
-
-const isProductInCart = existingCart.some(
+const isProductInCart = cart.some(
 (item) =>
 item.id === arrayStore.id &&
 item.size === selectedSize
@@ -58,7 +55,7 @@ item.size === selectedSize
 
 if (isProductInCart) {
 
-alert("Selected size already in cart.");
+alert("Selected size is already in cart.");
 return;
 
 }
@@ -72,16 +69,7 @@ originalPrice: arrayStore.price,
 
 addToCart(productToAdd);
 
-const updatedCart = [...existingCart, productToAdd];
-
-localStorage.setItem("cart", JSON.stringify(updatedCart));
-
-setCartCount(updatedCart.length);
-
-localStorage.setItem(
-`cart-added-${id}-${selectedSize}`,
-JSON.stringify(true)
-);
+setCartCount(cart.length + 1);
 
 alert("Product added to cart!");
 
