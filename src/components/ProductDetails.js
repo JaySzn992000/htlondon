@@ -39,31 +39,52 @@ setSelectedSize(size);
 };
 
 const handleAddToCart = () => {
+
 if (!selectedSize) {
 alert("Please select size");
 return;
 }
 
 if (arrayStore) {
-const isProductInCart = cart.some(
-(item) => item.id === arrayStore.id && item.size === selectedSize
+
+const existingCart =
+JSON.parse(localStorage.getItem("cart")) || [];
+
+const isProductInCart = existingCart.some(
+(item) =>
+item.id === arrayStore.id &&
+item.size === selectedSize
 );
 
 if (isProductInCart) {
-alert("This product with the selected size is already in your cart.");
-} else {
+
+alert("Selected size already in cart.");
+return;
+
+}
+
 const productToAdd = {
 ...arrayStore,
 size: selectedSize,
 price: arrayStore.price,
-originalPrice: arrayStore.price
+originalPrice: arrayStore.price,
 };
 
 addToCart(productToAdd);
-setCartCount(cartCount + 1);
-localStorage.setItem(`cart-added-${id}-${selectedSize}`, JSON.stringify(true));
+
+const updatedCart = [...existingCart, productToAdd];
+
+localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+setCartCount(updatedCart.length);
+
+localStorage.setItem(
+`cart-added-${id}-${selectedSize}`,
+JSON.stringify(true)
+);
+
 alert("Product added to cart!");
-}
+
 }
 };
 
