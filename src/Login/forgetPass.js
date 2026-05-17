@@ -21,11 +21,15 @@ const [showRetypePassword, setShowRetypePassword] = useState(false);
 
 
 const inputgetHandler = (e) => {
-setformdata({ ...formdata, [e.target.name]: e.target.value });
 
 let { name, value } = e.target;
+
 value = value.replace(/\s/g, "");
-setformdata(prev => ({ ...prev, [name]: value }));
+
+setformdata(prev => ({
+...prev,
+[name]: value,
+}));
 
 };
 
