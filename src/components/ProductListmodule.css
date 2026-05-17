@@ -107,9 +107,8 @@ cursor: pointer;
 
 .fa-heart_products.wishlist-active {
 color: #EF9FC9 !important;
-background-color: #FFFFFF !important;
+background-color: transparent !important;
 }
-
 
 
 @media (max-width: 768px) {

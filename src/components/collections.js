@@ -89,7 +89,6 @@ console.error("Error fetching all products:", error);
 }
 }, [query] );
 
-
 const sendToWishlist = (product) => {
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 const productIndex = wishlist.findIndex((item) => item.id === product.id);

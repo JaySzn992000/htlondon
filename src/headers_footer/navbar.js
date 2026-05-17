@@ -224,19 +224,38 @@ const [wishlistCount, setWishlistCount] = useState(0);
 useEffect(() => {
 
 const updateWishlistCount = () => {
-const storedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+const storedWishlist =
+JSON.parse(localStorage.getItem("wishlist")) || [];
+
 setWishlistCount(storedWishlist.length);
+
 };
 
 updateWishlistCount();
 
 window.addEventListener("storage", updateWishlistCount);
 
+window.addEventListener(
+"wishlistUpdated",
+updateWishlistCount
+);
+
 return () => {
-window.removeEventListener("storage", updateWishlistCount);
-window.addEventListener("wishlistUpdated", updateWishlistCount);
+
+window.removeEventListener(
+"storage",
+updateWishlistCount
+);
+
+window.removeEventListener(
+"wishlistUpdated",
+updateWishlistCount
+);
+
 };
-}, [] );
+
+}, []);
 
 const cart = useSelector((state) => state.cart);
 const cartCount = cart.length;

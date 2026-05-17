@@ -17,6 +17,7 @@ const pool = require("./config");
 app.use(cors({
 
 origin: [
+'http://localhost:3000',
 'https://htlondon.vercel.app',
 ],
 
@@ -532,54 +533,54 @@ res.status(500).json({ error: "Database query failed" });
 
 // from here
 
-// app.get("/fetchProductslist", (req, res) => {
-// const searchQuery = req.query.search || "";
+app.get("/fetchProductslist", (req, res) => {
+const searchQuery = req.query.search || "";
 
-// const keywords = searchQuery.toLowerCase().split(/\s+/);
-// const conditions = keywords
-// .map((keyword) => `LOWER(name) LIKE ?`)
-// .join(" AND ");
-// const advancedSearchQuery = `
-// SELECT *
-// FROM imgproduct
-// WHERE ${conditions}
-// `;
-// const advancedSearchValues = keywords.map((keyword) => `%${keyword}%`);
+const keywords = searchQuery.toLowerCase().split(/\s+/);
+const conditions = keywords
+.map((keyword) => `LOWER(name) LIKE ?`)
+.join(" AND ");
+const advancedSearchQuery = `
+SELECT *
+FROM imgproduct
+WHERE ${conditions}
+`;
+const advancedSearchValues = keywords.map((keyword) => `%${keyword}%`);
 
-// db.query(
-// advancedSearchQuery,
-// advancedSearchValues,
-// (err, advancedResults) => {
-// if (err) {
-// console.error("Error fetching data:", err.stack);
-// return res.status(500).json({ error: "Database query failed" });
-// }
+db.query(
+advancedSearchQuery,
+advancedSearchValues,
+(err, advancedResults) => {
+if (err) {
+console.error("Error fetching data:", err.stack);
+return res.status(500).json({ error: "Database query failed" });
+}
 
-// if (advancedResults.length > 0) {
-// return res.json(advancedResults);
-// }
+if (advancedResults.length > 0) {
+return res.json(advancedResults);
+}
 
-// // If no advanced results,
-// // check exact match
+// If no advanced results,
+// check exact match
 
-// const exactMatchQuery = `
-// SELECT *
-// FROM imgproduct
-// WHERE LOWER(img) = LOWER(?)
-// `;
-// const values = [searchQuery];
+const exactMatchQuery = `
+SELECT *
+FROM imgproduct
+WHERE LOWER(img) = LOWER(?)
+`;
+const values = [searchQuery];
 
-// db.query(exactMatchQuery, values, (err, exactResults) => {
-// if (err) {
-// console.error("Error fetching data:", err.stack);
-// return res.status(500).json({ error: "Database query failed" });
-// }
+db.query(exactMatchQuery, values, (err, exactResults) => {
+if (err) {
+console.error("Error fetching data:", err.stack);
+return res.status(500).json({ error: "Database query failed" });
+}
 
-// res.json(exactResults);
-// });
-// }
-// );
-// });
+res.json(exactResults);
+});
+}
+);
+});
 
 
 app.get("/fetchProductslist", async (req, res) => {
