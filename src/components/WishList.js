@@ -15,7 +15,6 @@ const storedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 setWishlist(storedWishlist);
 }, [] );
 
-
 const handleRemove = (index) => {
 const removedItem = wishlist[index];
 const newWishlist = wishlist.filter((_, i) => i !== index);
@@ -44,6 +43,7 @@ console.log("Error fetching products:", error);
 };
 
 fetchProductData();
+
 }, [] );
 
 const getProductImagePath = (productId) => {

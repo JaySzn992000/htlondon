@@ -225,7 +225,7 @@ onClick={() => setShowRetypePassword(!showRetypePassword)} >
 
 </div>
 
-<br />
+<br/>
 
 <button id="rstBtn"
 type="submit">Reset Password</button>

@@ -2,7 +2,7 @@
 .message_forget p {
 color: #FF0000;
 max-width: 420px;
-margin: 2.1em auto 0;
+margin: 2.1em auto 1.3em;
 line-height: 2.3em;
 font-size: 0.9rem;
 text-align: center;
