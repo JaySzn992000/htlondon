@@ -21,6 +21,32 @@ const [products, setProducts] = useState([]);
 
 useEffect(() => {
 
+const syncWishlistStatus = () => {
+
+const updatedWishlistStatus =
+JSON.parse(localStorage.getItem("wishlistStatus")) || {};
+
+setWishlistStatus(updatedWishlistStatus);
+
+const wishlist =
+JSON.parse(localStorage.getItem("wishlist")) || [];
+
+setWishlistCount(wishlist.length);
+
+};
+
+window.addEventListener("storage", syncWishlistStatus);
+
+syncWishlistStatus();
+
+return () => {
+window.removeEventListener("storage", syncWishlistStatus);
+};
+
+}, []);
+
+useEffect(() => {
+
 axios
 .get("https://namasya.onrender.com/fetchProductslist")
 .then((res) => setProducts(res.data))

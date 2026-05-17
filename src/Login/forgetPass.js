@@ -55,6 +55,7 @@ headers: {
 },
 body: JSON.stringify({
 email: formdata.email,
+newPassword: formdata.password,
 }),
 });
 
