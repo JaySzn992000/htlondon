@@ -19,7 +19,6 @@ const [cartCount, setCartCount] = useState(0);
 const [arrayStore, setArrayStore] = useState([]);
 const [products, setProducts] = useState([]);
 
-
 useEffect(() => {
 
 axios
@@ -45,7 +44,6 @@ alert("Product added to cart!");
 }
 };
 
-
 useEffect(() => {
 const storedWishlistStatus =
 JSON.parse(localStorage.getItem("wishlistStatus")) || {};
@@ -62,7 +60,6 @@ setFilteredProducts(response.data);
 console.error("Error fetching data:", error);
 });
 }, [] );
-
 
 const location = useLocation();
 const query = new URLSearchParams(location.search).get("search");
@@ -91,6 +88,7 @@ console.error("Error fetching all products:", error);
 });
 }
 }, [query] );
+
 
 const sendToWishlist = (product) => {
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];

@@ -23,7 +23,9 @@ let filtered = allProducts;
 
 if (selectedNames.length > 0) {
 filtered = filtered.filter((product) =>
-selectedNames.includes(product.img)
+selectedNames.some((name) =>
+product.img?.toLowerCase().includes(name.toLowerCase())
+)
 );
 }
 

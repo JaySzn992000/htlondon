@@ -26,7 +26,6 @@ credentials: true
 }));
 
 
-
 app.use(express.json());
 app.use(bodyParser.json());
 const PORT = 3001;
