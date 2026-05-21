@@ -516,7 +516,7 @@ app.get("/fetchtshirts", async (req, res) => {
 const query = `
 SELECT *
 FROM _imgproduct
-WHERE img ILIKE '%t shirt%'
+WHERE img ILIKE '%t-shirts%'
 `;
 
 try {
@@ -580,7 +580,6 @@ res.status(500).json({ error: "Database query failed" });
 // }
 // );
 // });
-
 
 app.get("/fetchProductslist", async (req, res) => {
 const searchQuery = req.query.search || "";

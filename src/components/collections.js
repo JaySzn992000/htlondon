@@ -70,22 +70,22 @@ alert("Product added to cart!");
 }
 };
 
-useEffect(() => {
-const storedWishlistStatus =
-JSON.parse(localStorage.getItem("wishlistStatus")) || {};
-setWishlistStatus(storedWishlistStatus);
+// useEffect(() => {
+// const storedWishlistStatus =
+// JSON.parse(localStorage.getItem("wishlistStatus")) || {};
+// setWishlistStatus(storedWishlistStatus);
 
-axios
-.get("https://namasya.onrender.com/fetchProductslist")
-.then((response) => {
-setArrayStore(response.data);
-setFilteredProducts(response.data);
-})
+// axios
+// .get("https://namasya.onrender.com/fetchProductslist")
+// .then((response) => {
+// setArrayStore(response.data);
+// setFilteredProducts(response.data);
+// })
 
-.catch((error) => {
-console.error("Error fetching data:", error);
-});
-}, [] );
+// .catch((error) => {
+// console.error("Error fetching data:", error);
+// });
+// }, [] );
 
 const location = useLocation();
 const query = new URLSearchParams(location.search).get("search");
