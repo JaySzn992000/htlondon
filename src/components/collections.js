@@ -125,7 +125,6 @@ wishlist.push(product);
 wishlist.splice(productIndex, 1);
 }
 
-
 localStorage.setItem("wishlist", JSON.stringify(wishlist));
 window.dispatchEvent(new Event("storage"));
 
@@ -133,9 +132,6 @@ setWishlistStatus({
 ...wishlistStatus,
 [product.id]: !wishlistStatus[product.id],
 } );
-
-// Update 
-// wishlist count
 
 setWishlistCount(wishlist.length);
 

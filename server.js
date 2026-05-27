@@ -13,7 +13,6 @@ const app = express();
 require("dotenv").config();
 const pool = require("./config");
 
-
 app.use(cors({
 
 origin: [
