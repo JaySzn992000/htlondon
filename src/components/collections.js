@@ -44,12 +44,13 @@ window.removeEventListener("storage", syncWishlistStatus);
 
 }, []);
 
-// useEffect(() => {
-// axios
-// .get("https://namasya.onrender.com/fetchProductslist")
-// .then((res) => setProducts(res.data))
-// .catch((err) => console.error(err));
-// }, []);
+useEffect(() => {
+
+axios
+.get("https://namasya.onrender.com/fetchProductslist")
+.then((res) => setProducts(res.data))
+.catch((err) => console.error(err));
+}, []);
 
 const handleAddToCart = (product) => {
 if (!product) return;
@@ -86,92 +87,52 @@ alert("Product added to cart!");
 // }, [] );
 
 const location = useLocation();
-
 const query = new URLSearchParams(location.search).get("search");
-
 useEffect(() => {
-
 if (query) {
-
 axios
 .get("https://namasya.onrender.com/fetchProductslist", {
 params: { search: query },
 })
-
 .then((response) => {
-
 setAllProducts(response.data);
-
+setFilteredProducts(response.data);
 })
-
 .catch((error) => {
-
 console.error("Error fetching products:", error);
-
 });
-
 } else {
-
 axios
 .get("https://namasya.onrender.com/fetchProductslist")
-
 .then((response) => {
-
 setAllProducts(response.data);
-
+setFilteredProducts(response.data);
 })
-
 .catch((error) => {
-
 console.error("Error fetching all products:", error);
-
 });
-
 }
-
-}, [query]);
-
-useEffect(() => {
-
-setFilteredProducts(allProducts);
-
-}, [allProducts]);
+}, [query] );
 
 const sendToWishlist = (product) => {
 
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+let wishlistStatus = JSON.parse(localStorage.getItem("wishlistStatus")) || {};
 
-const productIndex = wishlist.findIndex(
-(item) => item.id === product.id
-);
-
-const updatedWishlistStatus = {
-...wishlistStatus,
-[product.id]: !wishlistStatus[product.id],
-};
+const productIndex = wishlist.findIndex((item) => item.id === product.id);
 
 if (productIndex === -1) {
-
 wishlist.push(product);
-
+wishlistStatus[product.id] = true;
 } else {
-
 wishlist.splice(productIndex, 1);
-
+wishlistStatus[product.id] = false;
 }
 
 localStorage.setItem("wishlist", JSON.stringify(wishlist));
-
-localStorage.setItem(
-"wishlistStatus",
-JSON.stringify(updatedWishlistStatus)
-);
-
-setWishlistStatus(updatedWishlistStatus);
-
+localStorage.setItem("wishlistStatus", JSON.stringify(wishlistStatus));
+setWishlistStatus(wishlistStatus);
 setWishlistCount(wishlist.length);
-
-window.dispatchEvent(new Event("storage"));
 
 };
 
