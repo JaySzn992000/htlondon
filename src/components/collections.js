@@ -20,6 +20,7 @@ const [arrayStore, setArrayStore] = useState([]);
 const [products, setProducts] = useState([]);
 
 useEffect(() => {
+
 const syncWishlistStatus = () => {
 
 const updatedWishlistStatus =
@@ -115,25 +116,34 @@ console.error("Error fetching all products:", error);
 }, [query] );
 
 const sendToWishlist = (product) => {
-
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-let wishlistStatus = JSON.parse(localStorage.getItem("wishlistStatus")) || {};
-
 const productIndex = wishlist.findIndex((item) => item.id === product.id);
 
 if (productIndex === -1) {
 wishlist.push(product);
-wishlistStatus[product.id] = true;
 } else {
 wishlist.splice(productIndex, 1);
-wishlistStatus[product.id] = false;
 }
 
 localStorage.setItem("wishlist", JSON.stringify(wishlist));
-localStorage.setItem("wishlistStatus", JSON.stringify(wishlistStatus));
-setWishlistStatus(wishlistStatus);
+window.dispatchEvent(new Event("storage"));
+
+setWishlistStatus({
+...wishlistStatus,
+[product.id]: !wishlistStatus[product.id],
+} );
+
 setWishlistCount(wishlist.length);
 
+const updatedWishlistStatus = {
+...wishlistStatus,
+[product.id]: !wishlistStatus[product.id],
+};
+localStorage.setItem(
+"wishlistStatus",
+JSON.stringify(updatedWishlistStatus)
+);
+setWishlistStatus(updatedWishlistStatus);
 };
 
 const handleFilterUpdate = (filtered) => {
