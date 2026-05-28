@@ -20,7 +20,6 @@ const [arrayStore, setArrayStore] = useState([]);
 const [products, setProducts] = useState([]);
 
 useEffect(() => {
-
 const syncWishlistStatus = () => {
 
 const updatedWishlistStatus =
@@ -45,13 +44,12 @@ window.removeEventListener("storage", syncWishlistStatus);
 
 }, []);
 
-useEffect(() => {
-
-axios
-.get("https://namasya.onrender.com/fetchProductslist")
-.then((res) => setProducts(res.data))
-.catch((err) => console.error(err));
-}, []);
+// useEffect(() => {
+// axios
+// .get("https://namasya.onrender.com/fetchProductslist")
+// .then((res) => setProducts(res.data))
+// .catch((err) => console.error(err));
+// }, []);
 
 const handleAddToCart = (product) => {
 if (!product) return;
@@ -88,62 +86,93 @@ alert("Product added to cart!");
 // }, [] );
 
 const location = useLocation();
+
 const query = new URLSearchParams(location.search).get("search");
+
 useEffect(() => {
+
 if (query) {
+
 axios
 .get("https://namasya.onrender.com/fetchProductslist", {
 params: { search: query },
 })
+
 .then((response) => {
+
 setAllProducts(response.data);
-setFilteredProducts(response.data);
+
 })
+
 .catch((error) => {
+
 console.error("Error fetching products:", error);
+
 });
+
 } else {
+
 axios
 .get("https://namasya.onrender.com/fetchProductslist")
+
 .then((response) => {
+
 setAllProducts(response.data);
-setFilteredProducts(response.data);
+
 })
+
 .catch((error) => {
+
 console.error("Error fetching all products:", error);
+
 });
+
 }
-}, [query] );
+
+}, [query]);
+
+useEffect(() => {
+
+setFilteredProducts(allProducts);
+
+}, [allProducts]);
 
 const sendToWishlist = (product) => {
+
 let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-const productIndex = wishlist.findIndex((item) => item.id === product.id);
 
-if (productIndex === -1) {
-wishlist.push(product);
-} else {
-wishlist.splice(productIndex, 1);
-}
-
-localStorage.setItem("wishlist", JSON.stringify(wishlist));
-window.dispatchEvent(new Event("storage"));
-
-setWishlistStatus({
-...wishlistStatus,
-[product.id]: !wishlistStatus[product.id],
-} );
-
-setWishlistCount(wishlist.length);
+const productIndex = wishlist.findIndex(
+(item) => item.id === product.id
+);
 
 const updatedWishlistStatus = {
 ...wishlistStatus,
 [product.id]: !wishlistStatus[product.id],
 };
+
+if (productIndex === -1) {
+
+wishlist.push(product);
+
+} else {
+
+wishlist.splice(productIndex, 1);
+
+}
+
+localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
 localStorage.setItem(
 "wishlistStatus",
 JSON.stringify(updatedWishlistStatus)
 );
+
 setWishlistStatus(updatedWishlistStatus);
+
+setWishlistCount(wishlist.length);
+
+window.dispatchEvent(new Event("storage"));
+
 };
 
 const handleFilterUpdate = (filtered) => {
