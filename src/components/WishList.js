@@ -11,48 +11,16 @@ const [wishlist, setWishlist] = useState([]);
 const [productData, setProductData] = useState([]);
 
 useEffect(() => {
-
-const syncWishlist = () => {
-
-const wishlist =
-JSON.parse(localStorage.getItem("wishlist")) || [];
-
-setWishlistCount(wishlist.length);
-
-};
-
-window.addEventListener("wishlistUpdated", syncWishlist);
-
-syncWishlist();
-
-return () => {
-window.removeEventListener("wishlistUpdated", syncWishlist);
-};
-
-}, []) ;
+const storedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+setWishlist(storedWishlist);
+}, [] );
 
 const handleRemove = (index) => {
-
-const removedItem = wishlist[index];
-
 const newWishlist = wishlist.filter((_, i) => i !== index);
-
 setWishlist(newWishlist);
-
 localStorage.setItem("wishlist", JSON.stringify(newWishlist));
 
-const storedWishlistStatus =
-JSON.parse(localStorage.getItem("wishlistStatus")) || {};
-
-delete storedWishlistStatus[removedItem.id];
-
-localStorage.setItem(
-"wishlistStatus",
-JSON.stringify(storedWishlistStatus)
-);
-
 window.dispatchEvent(new Event("wishlistUpdated"));
-
 };
 
 useEffect(() => {

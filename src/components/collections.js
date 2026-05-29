@@ -14,12 +14,13 @@ const Collections = ({ addToCart}) => {
 const [filteredProducts, setFilteredProducts] = useState([]);
 const [allProducts, setAllProducts] = useState([]);
 const [wishlistCount, setWishlistCount] = useState(0);
-// const [wishlistStatus, setWishlistStatus] = useState({});
+const [wishlistStatus, setWishlistStatus] = useState({});
 const [cartCount, setCartCount] = useState(0);
 const [arrayStore, setArrayStore] = useState([]);
 const [products, setProducts] = useState([]);
 
 useEffect(() => {
+
 const syncWishlistStatus = () => {
 
 const updatedWishlistStatus =
@@ -35,11 +36,11 @@ setWishlistCount(wishlist.length);
 };
 
 window.addEventListener("storage", syncWishlistStatus);
-window.addEventListener("wishlistUpdated", syncWishlistStatus);
+
+syncWishlistStatus();
 
 return () => {
 window.removeEventListener("storage", syncWishlistStatus);
-window.removeEventListener("wishlistUpdated", syncWishlistStatus);
 };
 
 }, []);
@@ -115,35 +116,34 @@ console.error("Error fetching all products:", error);
 }, [query] );
 
 const sendToWishlist = (product) => {
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+const productIndex = wishlist.findIndex((item) => item.id === product.id);
 
-let wishlist =
-JSON.parse(localStorage.getItem("wishlist")) || [];
-
-const exists = wishlist.some(
-(item) => item.id === product.id
-);
-
-if (exists) {
-
-wishlist = wishlist.filter(
-(item) => item.id !== product.id
-);
-
-} else {
-
+if (productIndex === -1) {
 wishlist.push(product);
-
+} else {
+wishlist.splice(productIndex, 1);
 }
 
-localStorage.setItem(
-"wishlist",
-JSON.stringify(wishlist)
-);
+localStorage.setItem("wishlist", JSON.stringify(wishlist));
+window.dispatchEvent(new Event("storage"));
+
+setWishlistStatus({
+...wishlistStatus,
+[product.id]: !wishlistStatus[product.id],
+} );
 
 setWishlistCount(wishlist.length);
 
-window.dispatchEvent(new Event("wishlistUpdated"));
-
+const updatedWishlistStatus = {
+...wishlistStatus,
+[product.id]: !wishlistStatus[product.id],
+};
+localStorage.setItem(
+"wishlistStatus",
+JSON.stringify(updatedWishlistStatus)
+);
+setWishlistStatus(updatedWishlistStatus);
 };
 
 const handleFilterUpdate = (filtered) => {
@@ -182,11 +182,7 @@ return (
 <i
 onClick={() => sendToWishlist(productlist)}
 className={`fa fa-heart fa-heart_products ${
-JSON.parse(localStorage.getItem("wishlist"))?.some(
-(item) => item.id === productlist.id
-)
-? "wishlist-active"
-: ""
+wishlistStatus[productlist.id] ? "wishlist-active" : ""
 }`}
 >
 {" "}
