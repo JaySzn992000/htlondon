@@ -20,7 +20,6 @@ const [arrayStore, setArrayStore] = useState([]);
 const [products, setProducts] = useState([]);
 
 useEffect(() => {
-
 const syncWishlistStatus = () => {
 
 const updatedWishlistStatus =
@@ -36,11 +35,11 @@ setWishlistCount(wishlist.length);
 };
 
 window.addEventListener("storage", syncWishlistStatus);
-
-syncWishlistStatus();
+window.addEventListener("wishlistUpdated", syncWishlistStatus);
 
 return () => {
 window.removeEventListener("storage", syncWishlistStatus);
+window.removeEventListener("wishlistUpdated", syncWishlistStatus);
 };
 
 }, []);
