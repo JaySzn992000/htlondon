@@ -16,11 +16,24 @@ setWishlist(storedWishlist);
 }, [] );
 
 const handleRemove = (index) => {
+const removedItem = wishlist[index];
+
 const newWishlist = wishlist.filter((_, i) => i !== index);
+
 setWishlist(newWishlist);
 localStorage.setItem("wishlist", JSON.stringify(newWishlist));
 
-window.dispatchEvent(new Event("wishlistUpdated"));
+let storedWishlistStatus =
+JSON.parse(localStorage.getItem("wishlistStatus")) || {};
+
+storedWishlistStatus[removedItem.id] = false;
+
+localStorage.setItem(
+"wishlistStatus",
+JSON.stringify(storedWishlistStatus)
+);
+
+window.dispatchEvent(new Event("storage"));
 };
 
 useEffect(() => {
