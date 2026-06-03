@@ -18,6 +18,7 @@ app.use(cors({
 
 origin: [
 'https://htlondon.vercel.app',
+'https://www.htlondon.shop',
 ],
 
 methods: ['GET', 'POST', 'PUT', 'DELETE'],
