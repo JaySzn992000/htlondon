@@ -88,7 +88,7 @@ exclusive offers.</p>
 
 <ul>
 <h4>Contact Us</h4>
-<li><a>Email: WINSOMEBLOOM.SHOP</a></li>
+<li><a>Email: HTLondon@gmail.com</a></li>
 <li><a>Phone: +91 9111574281</a></li>
 </ul>
 
