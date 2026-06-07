@@ -89,7 +89,7 @@ exclusive offers.</p>
 <ul>
 <h4>Contact Us</h4>
 <li><a>Email: HTLondon@gmail.com</a></li>
-<li><a>Phone: +91 9111574281</a></li>
+<li><a>Phone: +91 90050 45678</a></li>
 
 <li><a>Address : Phoenix Square, Sector 1, <br></br>
 Aimnabad, Bisrakh Jalalpur, Greater Noida, <br></br>
