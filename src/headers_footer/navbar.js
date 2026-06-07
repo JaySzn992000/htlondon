@@ -496,12 +496,13 @@ loading="lazy" />
 </li>
 
 <section className={`storeBrand_dropdown ${openMenu.store ? "open" : ""}`}>
-<li><a>M.A.C</a></li>
-<li><a>Maybelline</a></li>
-<li><a>L'Oréal Paris</a></li>
-<li><a>Lakmé</a></li>
-<li><a>Aroma</a></li>
-<li><a>Sugar</a></li>
+<li><a>MEN</a></li>
+<li><a>T-SHIRTS</a></li>
+<li><a>SHIRTS</a></li>
+<li><a>JEANS</a></li>
+<li><a>TROUSERS</a></li>
+<li><a>SHORTS</a></li>
+<li><a>ACCESSORIES</a></li>
 </section>
 
 </div>
@@ -510,20 +511,20 @@ loading="lazy" />
 
 <li onClick={() => toggleMenu("bath")}>
 <a href="javascript:void(0)">
-BATH & BODY
+WOMEN
 </a>
 </li>
 
 <section className={`storeBrand_dropdown ${openMenu.bath ? "open" : ""}`}>
-<li><a>Aloe Vera Gel</a></li>
-<li><a>Banana Powder</a></li>
-<li><a>Beetroot Powder</a></li>
-<li><a>Kasturi Haldi</a></li>
+<li><a>TOPS</a></li>
+<li><a>WOMEN JEANS</a></li>
+<li><a>WOMEN T-SHIRTS</a></li>
+<li><a>WOMEN ACCESSORIES</a></li>
 </section>
 
 </div>
 
-<div className="flex_icon_ storeBrand">
+{/* <div className="flex_icon_ storeBrand">
 
 <li onClick={() => toggleMenu("skincare")}>
 <a href="javascript:void(0)">
@@ -531,7 +532,7 @@ SKINCARE
 </a>
 </li>
 
-</div>
+</div> */}
 
 {loggedInUser && (
 <div className="flex_icon_">
@@ -545,7 +546,7 @@ SKINCARE
 
 <div className="sign_out flex_icon_ div_log_signout">
 <li onClick={logout}>
-<a href="">Log Out</a>
+<a href="">LOG OUT</a>
 </li>
 </div>
 
@@ -553,7 +554,7 @@ SKINCARE
 
 <div className="flex_icon_ div_log_signout">
 <li onClick={naviToLogin}>
-<a href="">Log ln</a>
+<a href="">LOG IN</a>
 </li>
 </div>
 
