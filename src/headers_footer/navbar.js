@@ -113,7 +113,6 @@ const naviToTops = () => {
 navi("/tops");
 };
 
-
 const naviGateShirt = () => {
 navi("/jeans");
 };
@@ -496,13 +495,13 @@ loading="lazy" />
 </li>
 
 <section className={`storeBrand_dropdown ${openMenu.store ? "open" : ""}`}>
-<li><a>MEN</a></li>
-<li><a>T-SHIRTS</a></li>
-<li><a>SHIRTS</a></li>
-<li><a>JEANS</a></li>
-<li><a>TROUSERS</a></li>
-<li><a>SHORTS</a></li>
-<li><a>ACCESSORIES</a></li>
+<li onClick={naviToBathBody}><a>MEN</a></li>
+<li onClick={naviProductFashWash}><a>T-SHIRTS</a></li>
+<li onClick={naviGateTshirt}><a>SHIRTS</a></li>
+<li onClick={naviGateShirt}><a>JEANS</a></li>
+<li onClick={naviGateJeans}><a>TROUSERS</a></li>
+<li onClick={naviGatePants}><a>SHORTS</a></li>
+<li onClick={naviGateSweaters}><a>ACCESSORIES</a></li>
 </section>
 
 </div>
@@ -511,15 +510,15 @@ loading="lazy" />
 
 <li onClick={() => toggleMenu("bath")}>
 <a href="javascript:void(0)">
-WOMEN
+WOMEN COLLECTIONS
 </a>
 </li>
 
 <section className={`storeBrand_dropdown ${openMenu.bath ? "open" : ""}`}>
-<li><a>TOPS</a></li>
-<li><a>WOMEN JEANS</a></li>
-<li><a>WOMEN T-SHIRTS</a></li>
-<li><a>WOMEN ACCESSORIES</a></li>
+<li onClick={naviToTops}><a>TOPS</a></li>
+<li onClick={naviToWomenJeans}><a>WOMEN JEANS</a></li>
+<li onClick={naviToWomenTshirts}><a>WOMEN T-SHIRTS</a></li>
+<li onClick={naviToWomenAccessories}><a>WOMEN ACCESSORIES</a></li>
 </section>
 
 </div>
