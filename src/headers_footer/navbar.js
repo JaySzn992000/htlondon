@@ -515,6 +515,7 @@ WOMEN COLLECTIONS
 </li>
 
 <section className={`storeBrand_dropdown ${openMenu.bath ? "open" : ""}`}>
+<li onClick={naviToSkinCare}><a>WOMEN</a></li>
 <li onClick={naviToTops}><a>TOPS</a></li>
 <li onClick={naviToWomenJeans}><a>WOMEN JEANS</a></li>
 <li onClick={naviToWomenTshirts}><a>WOMEN T-SHIRTS</a></li>
@@ -532,6 +533,16 @@ SKINCARE
 </li>
 
 </div> */}
+
+<div className="flex_icon_ storeBrand">
+
+<li onClick={naviToShoes}>
+<a href="javascript:void(0)">
+SHOES
+</a>
+</li>
+
+</div>
 
 {loggedInUser && (
 <div className="flex_icon_">
