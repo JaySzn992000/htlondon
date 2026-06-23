@@ -30,8 +30,8 @@ gap: 0em;
 
 .flex_productlist .produclist_divContainer {
 position: relative;
-height: auto;
 max-width: 327px;
+height: 427px;
 margin-bottom: 0em;
 }
 
