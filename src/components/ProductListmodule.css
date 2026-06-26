@@ -37,10 +37,8 @@ margin-bottom: 0em;
 
 .flex_productlist .produclist_divContainer img{
 width:100%;
-height:auto;
-display:block;
-margin-bottom:-0.5em;
-padding:7px;
+height:420px;
+object-fit:cover;
 }
 
 .flex_productlist .padding_contain {
