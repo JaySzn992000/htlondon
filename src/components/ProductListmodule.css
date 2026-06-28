@@ -10,7 +10,7 @@ width: 100%;
 #sticky_products_height {
 height: auto;
 position: relative;
-margin-top: -61.6em;
+margin-top: 2.2em;
 }
 
 .sticky-wrapper {
@@ -136,9 +136,9 @@ line-height: 2.3em;
 .flex_productlist {
 display: grid;
 max-width: 97%;
-/* transform: translateX(1.2vw); */
+transform: translateX(1.2vw);
 margin-left: 0vw;
-margin-top: 7.7em;
+margin-top: 6.1em;
 grid-template-columns: repeat(2, 1fr);
 }
 

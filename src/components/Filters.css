@@ -1,6 +1,18 @@
 
-.content_sticky {
-height: 150vh;
+.content_sticky{
+position:absolute;
+width:341px;
+height:150vh;
+z-index:999;
+pointer-events:none;
+}
+
+#div_filter{
+pointer-events:auto;
+}
+
+.filters{
+pointer-events:auto;
 }
 
 .filters {
@@ -75,10 +87,9 @@ margin-bottom: .4em;
 transform: translateX(0%);
 }
 
-
 #div_filter .filter_ {
 position: absolute;
-width: 27px;
+width: 31px;
 left: .3em;
 cursor: pointer;
 }
@@ -183,7 +194,7 @@ width: 95%;
 }
 
 #div_filter .filter_ {
-width: 28px;
+width: 33px;
 margin-top: .3em;
 z-index: 999px;
 }
@@ -222,8 +233,8 @@ width: 93%;
 }
 
 #div_filter .filter_ {
-width: 29px;
-right: 4.7vw;
+width: 33px;
+margin-left: 1.3em;
 margin-top: -.5em;
 }
 
