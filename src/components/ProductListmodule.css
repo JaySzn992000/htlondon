@@ -136,9 +136,9 @@ line-height: 2.3em;
 .flex_productlist {
 display: grid;
 max-width: 97%;
-transform: translateX(1.2vw);
+/* transform: translateX(1.2vw); */
 margin-left: 0vw;
-margin-top: 0.7em;
+margin-top: 7.7em;
 grid-template-columns: repeat(2, 1fr);
 }
 
