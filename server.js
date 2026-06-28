@@ -1188,40 +1188,40 @@ error: err.message,
 //  Registeration ...
 
 
-// app.post("/fetchAdmin", (req, res) => {
-// const { adminuser, adminpass } = req.body;
+app.post("/fetchAdmin", (req, res) => {
+const { adminuser, adminpass } = req.body;
 
-// // SQL query to check
-// // if the credentials match
-// const insertQueryLogin =
-// "SELECT * FROM admindashboard WHERE adminuser = ? AND adminpass = ?";
+// SQL query to check
+// if the credentials match
+const insertQueryLogin =
+"SELECT * FROM admindashboard WHERE adminuser = ? AND adminpass = ?";
 
-// db.query(insertQueryLogin, [adminuser, adminpass], (err, result) => {
-// if (err) {
-// console.log("Error fetching user:", err);
-// res
-// .status(500)
-// .json({
-// success: false,
-// message: "Error fetching data",
-// error: err.message,
-// });
-// return;
-// }
+db.query(insertQueryLogin, [adminuser, adminpass], (err, result) => {
+if (err) {
+console.log("Error fetching user:", err);
+res
+.status(500)
+.json({
+success: false,
+message: "Error fetching data",
+error: err.message,
+});
+return;
+}
 
-// if (result.length > 0) {
-// // User found,
-// // login successful
-// console.log("Login successful");
-// res.status(200).json({ success: true, message: "Login successful" });
-// } else {
-// // No user found with
-// //  the provided credentials
-// console.log("Invalid credentials");
-// res.status(401).json({ success: false, message: "Invalid credentials" });
-// }
-// });
-// });
+if (result.length > 0) {
+// User found,
+// login successful
+console.log("Login successful");
+res.status(200).json({ success: true, message: "Login successful" });
+} else {
+// No user found with
+//  the provided credentials
+console.log("Invalid credentials");
+res.status(401).json({ success: false, message: "Invalid credentials" });
+}
+});
+});
 
 app.post("/fetchAdmin", async (req, res) => {
 const { adminuser, adminpass } = req.body;
@@ -1611,75 +1611,75 @@ res.status(400).json({ error: "Payment verification failed" });
 // Multer
 // storage configuration
 
-// const storage = multer.diskStorage({
-// destination: (req, file, cb) => {
-// cb(null, "public/Images");
-// },
-// filename: (req, file, cb) => {
-// cb(null, Date.now() + path.extname(file.originalname));
-// },
-// });
+const storage = multer.diskStorage({
+destination: (req, file, cb) => {
+cb(null, "public/Images");
+},
+filename: (req, file, cb) => {
+cb(null, Date.now() + path.extname(file.originalname));
+},
+});
 
 // Configure
 // multer for multiple fields
 
-// const upload = multer({
-// storage: storage,
-// });
+const upload = multer({
+storage: storage,
+});
 
-// app.post(
-// "/api/add-product",
-// upload.fields([
-// { name: "image", maxCount: 1 },
-// { name: "imageone", maxCount: 1 },
-// { name: "imagetwo", maxCount: 1 },
-// { name: "imagethree", maxCount: 1 },
-// ]),
-// (req, res) => {
-// const { category, name, price, sizes, stock, description, review } =
-// req.body;
+app.post(
+"/api/add-product",
+upload.fields([
+{ name: "image", maxCount: 1 },
+{ name: "imageone", maxCount: 1 },
+{ name: "imagetwo", maxCount: 1 },
+{ name: "imagethree", maxCount: 1 },
+]),
+(req, res) => {
+const { category, name, price, sizes, stock, description, review } =
+req.body;
 
-// const imagePath = req.files.image
-// ? `/Images/${req.files.image[0].filename}`
-// : null;
-// const imagePathOne = req.files.imageone
-// ? `/Images/${req.files.imageone[0].filename}`
-// : null;
-// const imagePathTwo = req.files.imagetwo
-// ? `/Images/${req.files.imagetwo[0].filename}`
-// : null;
-// const imagePathThree = req.files.imagethree
-// ? `/Images/${req.files.imagethree[0].filename}`
-// : null;
+const imagePath = req.files.image
+? `/Images/${req.files.image[0].filename}`
+: null;
+const imagePathOne = req.files.imageone
+? `/Images/${req.files.imageone[0].filename}`
+: null;
+const imagePathTwo = req.files.imagetwo
+? `/Images/${req.files.imagetwo[0].filename}`
+: null;
+const imagePathThree = req.files.imagethree
+? `/Images/${req.files.imagethree[0].filename}`
+: null;
 
-// const query =
-// "INSERT INTO imgproduct (img, name, price, file_path, sizes, file_path1, file_path2, file_path3, stock, description, review) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?)";
+const query =
+"INSERT INTO imgproduct (img, name, price, file_path, sizes, file_path1, file_path2, file_path3, stock, description, review) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?)";
 
-// db.query(
-// query,
-// [
-// category,
-// name,
-// price,
-// imagePath,
-// sizes,
-// imagePathOne,
-// imagePathTwo,
-// imagePathThree,
-// stock,
-// description,
-// review,
-// ],
-// (err, result) => {
-// if (err) {
-// console.error("Error inserting product into database:", err);
-// return res.status(500).send("Error adding product");
-// }
-// res.status(200).send("Product added successfully");
-// }
-// );
-// }
-// );
+db.query(
+query,
+[
+category,
+name,
+price,
+imagePath,
+sizes,
+imagePathOne,
+imagePathTwo,
+imagePathThree,
+stock,
+description,
+review,
+],
+(err, result) => {
+if (err) {
+console.error("Error inserting product into database:", err);
+return res.status(500).send("Error adding product");
+}
+res.status(200).send("Product added successfully");
+}
+);
+}
+);
 
 
 // Dashboard
@@ -1692,82 +1692,82 @@ res.status(400).json({ error: "Payment verification failed" });
 
 // 🔑 Cloudinary Config
 
-cloudinary.config({
-cloud_name: "dwwmpm9qy", // आपका cloud_name
-api_key: "428986251698984",
-api_secret: "RWf2H7aeMTAEL2pTguwLKIS-110",
-});
+// cloudinary.config({
+// cloud_name: "dwwmpm9qy", // आपका cloud_name
+// api_key: "428986251698984",
+// api_secret: "RWf2H7aeMTAEL2pTguwLKIS-110",
+// });
 
-// ✅ Multer (temp folder)
-const upload = multer({ dest: "uploads/" });
+// // ✅ Multer (temp folder)
+// const upload = multer({ dest: "uploads/" });
 
-const uploadToCloudinary = async (file) => {
-if (!file) return null;
-const result = await cloudinary.uploader.upload(file.path, {
-folder: "products",
-});
-fs.unlinkSync(file.path); // local temp file delete
-return result.secure_url; // Cloudinary URL
-};
+// const uploadToCloudinary = async (file) => {
+// if (!file) return null;
+// const result = await cloudinary.uploader.upload(file.path, {
+// folder: "products",
+// });
+// fs.unlinkSync(file.path); // local temp file delete
+// return result.secure_url; // Cloudinary URL
+// };
 
-// ✅ Add Product API (PostgreSQL compatible)
-app.post(
-"/api/add-product",
-upload.fields([
-{ name: "image", maxCount: 1 },
-{ name: "imageone", maxCount: 1 },
-{ name: "imagetwo", maxCount: 1 },
-{ name: "imagethree", maxCount: 1 },
-]),
-async (req, res) => {
-try {
-console.log("📩 Body Data:", req.body);
-console.log("📸 Files Data:", req.files);
+// // ✅ Add Product API (PostgreSQL compatible)
+// app.post(
+// "/api/add-product",
+// upload.fields([
+// { name: "image", maxCount: 1 },
+// { name: "imageone", maxCount: 1 },
+// { name: "imagetwo", maxCount: 1 },
+// { name: "imagethree", maxCount: 1 },
+// ]),
+// async (req, res) => {
+// try {
+// console.log("📩 Body Data:", req.body);
+// console.log("📸 Files Data:", req.files);
 
-const { category, name, price, sizes, stock, description, review } =
-req.body;
+// const { category, name, price, sizes, stock, description, review } =
+// req.body;
 
-// Cloudinary Upload
-const imagePath = await uploadToCloudinary(req.files.image?.[0]);
-const imagePathOne = await uploadToCloudinary(req.files.imageone?.[0]);
-const imagePathTwo = await uploadToCloudinary(req.files.imagetwo?.[0]);
-const imagePathThree = await uploadToCloudinary(req.files.imagethree?.[0]);
+// // Cloudinary Upload
+// const imagePath = await uploadToCloudinary(req.files.image?.[0]);
+// const imagePathOne = await uploadToCloudinary(req.files.imageone?.[0]);
+// const imagePathTwo = await uploadToCloudinary(req.files.imagetwo?.[0]);
+// const imagePathThree = await uploadToCloudinary(req.files.imagethree?.[0]);
 
-// ✅ PostgreSQL Insert Query
-const query = `
-INSERT INTO _imgproduct 
-(img, name, price, file_path, sizes, file_path1, file_path2, file_path3, stock, description, review) 
-VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)
-RETURNING id;
-`;
+// // ✅ PostgreSQL Insert Query
+// const query = `
+// INSERT INTO _imgproduct 
+// (img, name, price, file_path, sizes, file_path1, file_path2, file_path3, stock, description, review) 
+// VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)
+// RETURNING id;
+// `;
 
-const values = [
-category,
-name,
-price,
-imagePath,
-sizes,
-imagePathOne,
-imagePathTwo,
-imagePathThree,
-stock,
-description,
-review,
-];
+// const values = [
+// category,
+// name,
+// price,
+// imagePath,
+// sizes,
+// imagePathOne,
+// imagePathTwo,
+// imagePathThree,
+// stock,
+// description,
+// review,
+// ];
 
-const result = await pool.query(query, values);
+// const result = await pool.query(query, values);
 
-res.status(200).json({
-message: "✅ Product added successfully",
-productId: result.rows[0].id,
-});
-} catch (err) {
-console.error("❌ Upload failed:", err);
-res.status(500).send("Upload failed");
-}
-}
+// res.status(200).json({
+// message: "✅ Product added successfully",
+// productId: result.rows[0].id,
+// });
+// } catch (err) {
+// console.error("❌ Upload failed:", err);
+// res.status(500).send("Upload failed");
+// }
+// }
 
-);
+// );
 
 
 // const storage = multer.diskStorage({
