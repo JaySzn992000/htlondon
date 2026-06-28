@@ -24,9 +24,10 @@ gap: 2em;
 .single_product_card {
 position: relative;
 height: auto;
-max-width: 237px;
+max-width: 257px;
 height: 387px;
 padding: 0em;
+margin-bottom: 8.7em;
 padding-bottom: 17px;
 text-align: center;
 border-radius: 3px;
