@@ -138,7 +138,7 @@ display: grid;
 max-width: 97%;
 transform: translateX(1.2vw);
 margin-left: 0vw;
-margin-top: 2.7em;
+margin-top: 0.7em;
 grid-template-columns: repeat(2, 1fr);
 }
 
