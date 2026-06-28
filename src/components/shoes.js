@@ -23,7 +23,7 @@ const [products, setProducts] = useState([]);
 useEffect(() => {
 
 axios
-.get("https://namasya.onrender.com/fetchProductslist")
+.get("https://namasya.onrender.com/fetchshoes")
 .then((res) => setProducts(res.data))
 .catch((err) => console.error(err));
 }, [] );
@@ -52,7 +52,7 @@ JSON.parse(localStorage.getItem("wishlistStatus")) || {};
 setWishlistStatus(storedWishlistStatus);
 
 axios
-.get("https://namasya.onrender.com/fetchProductslist")
+.get("https://namasya.onrender.com/fetchshoes")
 .then((response) => {
 setArrayStore(response.data);
 setFilteredProducts(response.data);
@@ -69,7 +69,7 @@ const query = new URLSearchParams(location.search).get("search");
 useEffect(() => {
 if (query) {
 axios
-.get("https://namasya.onrender.com/fetchProductslist", {
+.get("https://namasya.onrender.com/fetchshoes", {
 params: { search: query },
 })
 .then((response) => {
@@ -81,7 +81,7 @@ console.error("Error fetching products:", error);
 });
 } else {
 axios
-.get("https://namasya.onrender.com/fetchProductslist")
+.get("https://namasya.onrender.com/fetchshoes")
 .then((response) => {
 setAllProducts(response.data);
 setFilteredProducts(response.data);
