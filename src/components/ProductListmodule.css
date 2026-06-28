@@ -23,7 +23,7 @@ display: grid;
 grid-template-columns: repeat(auto-fit, minmax(307px, 307px));
 justify-content: center;
 width: 100%;
-max-width: 1400px;
+max-width: 1300px;
 margin: 0 auto;
 gap: 0em;
 }
