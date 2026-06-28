@@ -405,7 +405,7 @@ app.get("/fetchmens", async (req, res) => {
 const query = `
 SELECT *
 FROM _imgproduct
-WHERE img ILIKE '%men%'
+WHERE img ILIKE '%mens%'
 `;
 
 try {
