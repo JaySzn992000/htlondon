@@ -1,62 +1,111 @@
 
-.selection_center {
-width: 100%;
-padding: 3rem 1rem;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;   
+.selection{
+width:100%;
+max-width:1450px;
+margin:90px auto;
+padding:0 40px;
 }
 
-.selection_center h2 {
-text-align: center;
-margin-bottom: 2.7rem;
-font-size: 2rem;
-letter-spacing: 1px;
-font-family: 'Times New Roman', Times, serif;
+.selection_heading{
+text-align:center;
+margin-bottom:45px;
 }
 
-.selection_flex {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(181px, 1fr));
-grid-template-columns: repeat(6, 1fr); 
-gap: .5em;
-margin-top: .7em;
-justify-items: center;
-align-items: center;
+.selection_heading p{
+letter-spacing:6px;
+color:#777;
+font-size:13px;
+margin-bottom:8px;
 }
 
-.selection_flex img {
-width: 100%;
-max-width: 241px;
-height: auto;
-object-fit: cover;
-cursor: pointer;
-transition: transform 0.3s ease;
+.selection_heading h2{
+font-size:42px;
+font-weight:700;
+letter-spacing:2px;
 }
 
-.selection_flex div label {
-font-weight: normal;
-margin-top: 1.3em;
-font-size: 1rem;
+.selection_grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:22px;
 }
 
-
-
-@media (max-width: 768px) {
-
-.selection_center {
-padding: 7px;
+.category_card{
+position:relative;
+overflow:hidden;
+border-radius:16px;
+cursor:pointer;
+background:#f5f5f5;
 }
 
-.selection_flex {
-grid-template-columns: repeat(3, 1fr); 
-gap: .3rem;
+.category_card img{
+width:100%;
+aspect-ratio:3/4;
+object-fit:cover;
+display:block;
+transition:.6s;
 }
 
-.selection_center h2 {
-font-size: 1.6rem;
+.overlay{
+position:absolute;
+inset:0;
+display:flex;
+flex-direction:column;
+justify-content:flex-end;
+padding:28px;
+background:linear-gradient(to top,
+rgba(0,0,0,.82),
+rgba(0,0,0,.1),
+transparent);
+color:#fff;
+}
+
+.overlay h3{
+font-size:24px;
+letter-spacing:1px;
+margin-bottom:8px;
+font-weight:600;
+}
+
+.overlay span{
+font-size:14px;
+letter-spacing:2px;
+opacity:.85;
+transition:.3s;
+}
+
+.category_card:hover img{
+transform:scale(1.08);
+}
+
+.category_card:hover .overlay span{
+letter-spacing:4px;
+}
+
+.category_card:hover{
+box-shadow:0 20px 45px rgba(0,0,0,.18);
+}
+
+@media(max-width:1100px){
+
+.selection_grid{
+grid-template-columns:repeat(2,1fr);
 }
 
 }
 
+@media(max-width:600px){
+
+.selection{
+padding:0 15px;
+}
+
+.selection_heading h2{
+font-size:30px;
+}
+
+.selection_grid{
+grid-template-columns:1fr;
+}
+
+}

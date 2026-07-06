@@ -100,7 +100,50 @@ return (
 <button onClick={seeAllProducts} className="seeLLProducts">View All</button>
 
 <Iconicselection></Iconicselection>
+
 <AboutHm></AboutHm>
+
+<div className="smartBuy_section">
+
+<div className="heading">
+<h2>Smart Buys, Big Savings ✨⚡</h2>
+<p>Find footwear that fits both your style and your wallet.</p>
+</div>
+
+<div className="smartBuy_grid">
+
+<div className="smart_card">
+<img
+src="https://cdn.asianlive.in/digital-website/Artboard%201_12199428785285556948.jpg?tr=w-800"
+alt=""
+/>
+</div>
+
+<div className="smart_card">
+<img
+src="https://cdn.asianlive.in/digital-website/Artboard%201-1_83314411146578058591.jpg?tr=w-800"
+alt=""
+/>
+</div>
+
+<div className="smart_card">
+<img
+src="https://cdn.asianlive.in/digital-website/Artboard%201-2_80778727410633334431.jpg?tr=w-800"
+alt=""
+/>
+</div>
+
+<div className="smart_card">
+<img
+src="https://cdn.asianlive.in/digital-website/Artboard%201-3_83458392744769498681.jpg?tr=w-800"
+alt=""
+/>
+</div>
+
+</div>
+
+</div>
+
 <Commitments></Commitments>
 <img className="uptoff" src="https://images.riverisland.com/image/upload/v1771417360/007CAM26_IN_BLOOM_SECONDARY_BANNER_DESKTOP_MW.jpg"></img>
 <ShopCategory></ShopCategory>

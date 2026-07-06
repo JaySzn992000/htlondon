@@ -1,152 +1,181 @@
 
-.about_flex_hm {
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: start;
-gap: 5.1vw;
-line-height: 2.7em;
-margin: 2.7em 0 .5em 0;
+.about_flex_hm{
+width:min(1450px,92%);
+margin:110px auto;
+display:grid;
+grid-template-columns:1fr 520px 1fr;
+align-items:center;
+gap:5rem;
 }
 
-.about_flex_hm section {
-width: 617px;
+.about_flex_hm img{
+width:100%;
+aspect-ratio:3/4;
+object-fit:cover;
+display:block;
+border-radius:12px;
+transition:all .6s ease;
+cursor: pointer;
+box-shadow:0 20px 45px rgba(0,0,0,.08);
 }
 
-.about_flex_hm img {
-width: 487px;
-height: auto;
-max-width: 100%;
+.about_flex_hm img:first-child{
+transform:translateY(-45px);
+}
+
+.about_flex_hm img:last-child{
+transform:translateY(45px);
+}
+
+.about_flex_hm img:hover{
+transform:scale(1.04);
+box-shadow:0 35px 70px rgba(0,0,0,.15);
+}
+
+.about_flex_hm section{
+text-align:center;
+max-width:520px;
+margin:auto;
+}
+
+.about_flex_hm section::before{
+content:"EST. LONDON";
+display:block;
+font-size:.75rem;
+letter-spacing:6px;
+color:#8d8d8d;
+margin-bottom:18px;
 }
 
 .about_flex_hm h2{
-font-family: 'Times New Roman', Times, serif;
-color: #000;
+font-family:"Times New Roman",serif;
+font-size:3.3rem;
+font-weight:500;
+letter-spacing:2px;
+margin-bottom:22px;
+color:#111;
+line-height:1.5;
 }
 
-.about_flex_hm p {
-width: 100%;
-margin-top: 0.7em;
-line-height: 1.9em;
-font-size: .9rem;
-text-align: justify;
-color: #202434;
+.about_flex_hm p{
+font-size:1rem;
+color:#555;
+line-height:2;
+text-align:center;
 }
 
-.about_flex_hm button {
-background: #000;
-color: #fff;
-border: 2px solid transparent;
-padding: .9em 2.7em;
-font-size: .9rem;
-margin-top: 1.7em;
-cursor: pointer;
-position: relative;
-overflow: hidden;
-border-radius: 2px;
-transition: color 0.3s ease, border 0.3s ease;
+.about_flex_hm button{
+margin-top:40px;
+background:#111;
+color:#fff;
+border:1px solid #111;
+padding:17px 46px;
+cursor:pointer;
+letter-spacing:2px;
+font-size:.82rem;
+transition:.35s ease;
 }
 
-.about_flex_hm button::before {
-content: "";
-position: absolute;
-top: 0;
-left: -100%;
-width: 100%;
-height: 100%;
-background: #fff;
-transition: left 0.4s ease;
-z-index: 0; 
+.about_flex_hm button span{
+color:inherit;
 }
 
-.about_flex_hm button span {
-position: relative;
-z-index: 1; 
-color: #fff; 
-transition: color 0.3s ease;
+.about_flex_hm button:hover{
+background:#fff;
+color:#111;
+transform:translateY(-5px);
+box-shadow:0 15px 35px rgba(0,0,0,.12);
 }
 
-.about_flex_hm button:hover::before {
-left: 0; 
+@media(max-width:1400px){
+
+.about_flex_hm{
+grid-template-columns:1fr 430px 1fr;
+gap:3rem;
 }
 
-.about_flex_hm button:hover span {
-color: #000; 
-}
-
-.about_flex_hm button:hover {
-border: 2px solid #000; 
-}
-
-
-
-@media (max-width: 768px) {
-
-.about_flex_hm {
-flex-direction: column;
-margin: 3.7em 0 3.3em 0;
-}
-
-.about_flex_hm section {
-width: 95vw;
-text-align: center;
-}
-
-.about_flex_hm h1,
-.about_flex_hm h2 {
-text-align: center;
-}
-
-.about_flex_hm h2 {
-font-size: 1.4rem;
-margin-top: .3em;
-}
-
-.about_flex_hm img {
-width: 100vw;
-margin-left: 0;
-margin-top: 1.1em;
-}
-
-.about_flex_hm section p {
-width: 85vw;
-margin: auto;
-text-align: justify;
-font-size: .9rem;
-margin-top: .5em;
-}
-
-.header-ad {
-margin-top: 8.7em;
+.about_flex_hm h2{
+font-size:2.8rem;
 }
 
 }
 
+@media(max-width:1100px){
 
-
-@media (min-width: 769px) and (max-width: 1500px) {
-
-.about_flex_hm {
-gap: 3.5vw;
-width: 100%;
+.about_flex_hm{
+grid-template-columns:1fr;
+gap:45px;
+margin:80px auto;
 }
 
-.about_flex_hm img {
-width: 30vw;
+.about_flex_hm img{
+max-width:500px;
+margin:auto;
 }
 
-.about_flex_hm section {
-width: 33vw;
+.about_flex_hm img:first-child,
+.about_flex_hm img:last-child{
+transform:none;
 }
 
-.about_flex_hm p {
-font-size: .9rem;
-width: 31vw;
+.about_flex_hm section{
+order:-1;
+max-width:650px;
 }
 
-.about_flex_hm h2 {
-font-size: 1.5rem;
-text-align: start;
+.about_flex_hm h2{
+font-size:2.5rem;
+}
+
+}
+
+@media(max-width:768px){
+
+.about_flex_hm{
+width:94%;
+gap:30px;
+margin:60px auto;
+}
+
+.about_flex_hm img{
+max-width:100%;
+border-radius:8px;
+}
+
+.about_flex_hm h2{
+font-size:2rem;
+}
+
+.about_flex_hm p{
+font-size:.92rem;
+line-height:1.9;
+}
+
+.about_flex_hm button{
+width:100%;
+padding:16px;
+}
+
+}
+
+@media(max-width:480px){
+
+.about_flex_hm{
+width:95%;
+margin:45px auto;
+}
+
+.about_flex_hm h2{
+font-size:1.7rem;
+}
+
+.about_flex_hm section::before{
+letter-spacing:4px;
+font-size:.68rem;
+}
+
+.about_flex_hm p{
+font-size:.88rem;
 }
 
 }

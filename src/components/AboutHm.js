@@ -11,35 +11,36 @@ return (
 
 <main className="about_flex_hm">
 
-<img 
+<img
 loading="lazy"
-className="imgAbout" 
-alt=""
-src="https://images.riverisland.com/image/upload/f_auto/q_auto/t_ProductImagePortraitSmall/f_auto/q_auto/935973_main?cc&$retina"></img>
+className="imgAbout"
+src="https://images.riverisland.com/image/upload/f_auto/q_auto/t_ProductImagePortraitSmall/f_auto/q_auto/935973_main?cc&$retina"
+alt=""/>
 
 <section>
 
+<span className="subHeading">EST. LONDON</span>
+
 <h2>HT LONDON</h2>
+
 <p>
-{" "}
-Discover premium fashion and clothing inspired by the 
-timeless style of London. From classic streetwear to modern 
-wardrobe essentials, our collection blends elegance, comfort, 
-and contemporary design. At our store, we bring you carefully 
-selected outfits, everyday fashion pieces, and seasonal styles 
-crafted to elevate your look and express your individuality with 
-confidence and effortless style every day.{" "}
+Discover premium fashion inspired by the timeless elegance of
+London. Every collection reflects modern tailoring, refined
+craftsmanship and everyday luxury, helping you build a wardrobe
+that feels confident, versatile and effortlessly sophisticated.
 </p>
 
-<button><span>DISCOVER NOW</span></button>
+<button>
+<span>DISCOVER COLLECTION</span>
+</button>
 
 </section>
 
-<img 
+<img
 loading="lazy"
-className="imgAbout" 
-alt=""
-src="https://images.riverisland.com/image/upload/t_ProductImagePortraitSmall/f_auto/q_auto/932156_main?cf&$retina$"></img>
+className="imgAbout"
+src="https://images.riverisland.com/image/upload/t_ProductImagePortraitSmall/f_auto/q_auto/932156_main?cf&$retina$"
+alt=""/>
 
 </main>
 
