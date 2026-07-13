@@ -13,12 +13,12 @@ const app = express();
 require("dotenv").config();
 const pool = require("./config");
 
-
 app.use(cors({
 
 origin: [
 'https://htlondon.vercel.app',
 'https://www.htlondon.shop',
+'http://localhost:3000'
 ],
 
 methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -27,7 +27,8 @@ credentials: true
 }));
 
 
-app.use(express.json());
+app.use(express.json())
+;
 app.use(bodyParser.json());
 const PORT = 3001;
 
@@ -599,7 +600,9 @@ res.status(500).json({ error: "Database query failed" });
 // });
 // }
 // );
+
 // });
+
 
 app.get("/fetchProductslist", async (req, res) => {
 const searchQuery = req.query.search || "";

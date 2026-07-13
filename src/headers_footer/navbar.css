@@ -19,7 +19,7 @@ width: 100%;
 max-width: 1440px;
 margin: 0 auto;
 height: 77px;
-z-index: 9999;
+z-index: 999;
 background: transparent;
 position: relative;
 transition: var(--transition-smooth);
@@ -279,10 +279,10 @@ height: 38px;
 }
 
 .cart_bag .cart-count {
-top: -9px;
-right: -9px;
-min-width: 16px;
-height: 16px;
+top: 0px;
+right: -6px;
+min-width: 20px;
+height: 20px;
 font-size: 9px;
 background-color: #231f20;
 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
