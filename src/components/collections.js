@@ -345,6 +345,7 @@ onClick={(e) => handleLinkClick(e, product.id)}>
 ))}
 </div>
 
+
 {totalPages > 1 && (
 <div className="pagination">
 <button
@@ -370,6 +371,7 @@ disabled={currentPage === totalPages}>
 </button>
 </div>
 )}
+
 </>
 )}
 </div>

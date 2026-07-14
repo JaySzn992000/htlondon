@@ -28,6 +28,8 @@ padding-bottom: 4rem;
 }
 
 .section-header {
+display: flex;
+flex-direction: column;
 text-align: center;
 position: relative;
 }
