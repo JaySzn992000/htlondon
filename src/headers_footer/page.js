@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Birthday.css';
 
-function Birthday() {
+function Page() {
   const [currentSection, setCurrentSection] = useState(0);
   const [giftOpened, setGiftOpened] = useState(false);
   const [showReasons, setShowReasons] = useState(false);
@@ -248,4 +248,4 @@ function Birthday() {
   );
 }
 
-export default Birthday;
+export default Page;

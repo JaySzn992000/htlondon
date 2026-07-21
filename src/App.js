@@ -67,7 +67,7 @@ import Jeans from "./Products/jeans";
 import WomenAccessories from "./Products/women-accessories";
 import WomenTshirts from "./Products/women-t-shirts";
 import Accessories from "./Products/accessories";
-import Birthday from "./headers_footer/birthday";
+import Page from "./headers_footer/page";
 
 
 function App () {
@@ -88,7 +88,7 @@ return (
 <Route path="/women" element={<Women />} />
 <Route path="/men" element={<Men />} />
 <Route path="/perfume" element={<Perfume />} />
-<Route path="/birthday" element={<Birthday/>} />
+<Route path="/page" element={<Page/>} />
 <Route path="/makeup" element={<Makeup />} />
 <Route path="/product/:id" element={<ProductDetails />} />
 <Route path="/Ecart" element={<Ecart />} />
