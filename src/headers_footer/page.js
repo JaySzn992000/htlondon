@@ -167,7 +167,7 @@ function Page() {
                   </button>
                 </div>
                 <p style={{ marginTop: 35, fontSize: '0.9rem', color: '#6a1b3a', opacity: 0.7 }}>
-                  ✨ Something here...✨
+                  ✨ Something Something...✨
                 </p>
               </div>
             </div>
