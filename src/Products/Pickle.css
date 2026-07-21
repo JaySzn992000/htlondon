@@ -1,216 +1,810 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
-#products_grid_wrapper {
-width: 100%;
-margin-top: 6.7em;
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
 }
 
-.product_grid_container {
-width: 85%;
-margin: auto;
-transform: translateX(10%);
+.pickle-wrapper {
+font-family: 'Inter', sans-serif;
+background: #fafafa;
+min-height: 100vh;
+padding-top: 20px;
 }
 
-.filter_spacing_div {
-margin-bottom: 1rem;
+.pickle-category-strip {
+background: #fff;
+padding: 1rem 2rem;
+border-bottom: 1px solid #f0f0f0;
+position: sticky;
+top: 0;
+z-index: 50;
 }
 
-.product_cards_wrapper {
+.pickle-category-scroll {
+display: flex;
+gap: 0.5rem;
+overflow-x: auto;
+justify-content: center;
+padding: 0.3rem 0;
+}
+
+.pickle-category-scroll::-webkit-scrollbar {
+display: none;
+}
+
+.pickle-category-pill {
+padding: 8px 24px;
+border: 1px solid #e0e0e0;
+border-radius: 50px;
+background: transparent;
+font-size: 0.8rem;
+font-weight: 400;
+color: #666;
+cursor: pointer;
+transition: all 0.3s ease;
+white-space: nowrap;
+letter-spacing: 0.5px;
+}
+
+.pickle-category-pill:hover,
+.pickle-category-pill.active {
+background: #000;
+color: #fff;
+border-color: #000;
+}
+
+.pickle-results-bar {
+max-width: 1400px;
+margin: 1.5rem auto;
+padding: 0 2rem;
+}
+
+.pickle-results-count {
+font-size: 0.9rem;
+color: #888;
+font-weight: 300;
+letter-spacing: 1px;
+}
+
+.pickle-grid-container {
+max-width: 1450px;
+margin: 0 auto;
+padding: 0 2rem;
 display: flex;
 justify-content: center;
-flex-wrap: wrap;
-gap: 2em;
 }
 
-.single_product_card {
+.pickle-product-grid {
+display: grid;
+grid-template-columns: repeat(5, 1fr);
+gap: 1.2rem;
+width: 100%;
+max-width: 1400px;
+margin: 0 auto;
+justify-content: center;
+}
+
+.pickle-product-card {
 position: relative;
-height: auto;
-max-width: 267px;
-height: 387px;
-padding: 0em;
-margin-bottom: 8.7em;
-padding-bottom: 17px;
-text-align: center;
-border-radius: 3px;
-transition: transform 0.2s ease;
+background: #fff;
+border-radius: 12px;
+overflow: hidden;
+transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+box-shadow: 0 2px 20px rgba(0,0,0,0.03);
+animation: pickleCardReveal 0.6s ease both;
+animation-delay: var(--delay);
+width: 100%;
 }
 
-.product_image {
+@keyframes pickleCardReveal {
+from { opacity: 0; transform: translateY(20px) scale(0.97); }
+to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.pickle-product-card:hover {
+transform: translateY(-8px);
+box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+}
+
+.pickle-card-badges {
+position: absolute;
+top: 12px;
+left: 12px;
+z-index: 5;
+display: flex;
+flex-direction: column;
+gap: 4px;
+}
+
+.pickle-badge-sale,
+.pickle-badge-new {
+padding: 3px 12px;
+font-size: 0.55rem;
+font-weight: 600;
+letter-spacing: 2px;
+text-transform: uppercase;
+border-radius: 3px;
+color: #fff;
+}
+
+.pickle-badge-sale { background: #ff6b8a; }
+.pickle-badge-new { background: #4CAF50; }
+
+.pickle-wishlist-btn {
+position: absolute;
+top: 12px;
+right: 12px;
+z-index: 5;
+width: 45px;
+height: 45px;
+border: none;
+border-radius: 50%;
+backdrop-filter: blur(8px);
+background-color: #fff;
+box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+font-size: 1.1rem;
+cursor: pointer;
+transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.pickle-wishlist-btn i {
+color: #000;
+}
+
+.pickle-wishlist-btn:hover {
+transform: scale(1.15);
+box-shadow: 0 4px 25px rgba(0,0,0,0.12);
+}
+
+.pickle-wishlist-btn.active {
+background-color: #fff;
+box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+}
+
+.pickle-wishlist-btn.active i {
+animation: pickleHeartBounce 0.4s ease;
+}
+
+@keyframes pickleHeartBounce {
+0% { transform: scale(1); }
+50% { transform: scale(1.3); }
+70% { transform: scale(0.9); }
+100% { transform: scale(1); }
+}
+
+.pickle-wishlist-tooltip {
+position: absolute;
+right: calc(100% + 10px);
+top: 50%;
+transform: translateY(-50%);
+background: rgba(0,0,0,0.9);
+color: #fff;
+padding: 5px 12px;
+border-radius: 6px;
+font-size: 0.65rem;
+font-weight: 400;
+white-space: nowrap;
+opacity: 0;
+pointer-events: none;
+transition: all 0.3s ease;
+font-family: 'Inter', sans-serif;
+}
+
+.pickle-wishlist-btn:hover .pickle-wishlist-tooltip {
+opacity: 1;
+transform: translateY(-50%) translateX(-4px);
+}
+
+.pickle-image-wrapper {
+position: relative;
+overflow: hidden;
+padding-top: 125%;
+background: #f5f5f5;
+}
+
+.pickle-product-image {
+position: absolute;
+top: 0;
+left: 0;
 width: 100%;
 height: 100%;
 object-fit: cover;
+transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.wishlist_icon {
+.pickle-product-card:hover .pickle-product-image {
+transform: scale(1.05);
+}
+
+.pickle-image-overlay {
 position: absolute;
-right: 0px;
-z-index: 999;
-padding: 11px;
-font-size: 1.2rem;
-margin-top: -.6em;
-margin-right: .1em;
-cursor: pointer;
+inset: 0;
+background: rgba(0,0,0,0.3);
+backdrop-filter: blur(4px);
+display: flex;
+align-items: center;
+justify-content: center;
+opacity: 0;
+transition: all 0.4s ease;
 }
 
-.fa-heart_Pickle {
-position: absolute;
-right: 0px;
-z-index: 999;
-padding: 4px;
-font-size: 1.2rem;
-margin-right: .8em;
-margin-top: .6em;
-color: #DCDCDC;
-transition: background-color 0.3s ease;
-cursor: pointer;
+.pickle-product-card:hover .pickle-image-overlay {
+opacity: 1;
 }
 
-.active_wishlist {
-color: #EF9FC9 !important;
-}
-
-.product_info_container {
-padding-top: 0.7em;
-text-align: center;
-}
-
-.info_inner {
+.pickle-overlay-buttons {
 display: flex;
 flex-direction: column;
-align-items: center;
-gap: 0.4em;
-text-align: center;
+gap: 10px;
+width: 80%;
 }
 
-.price_section {
+.pickle-overlay-btn {
+padding: 12px 20px;
+border: none;
+border-radius: 50px;
+font-size: 0.75rem;
+font-weight: 500;
+cursor: pointer;
+transition: all 0.3s ease;
 display: flex;
-justify-content: center;
 align-items: center;
-gap: 0.5em;
-text-align: center;
-width: fit-content;
-max-width: 107px;
-margin: 0 auto;
-height: 34px;
-height: auto;
-padding: 9px;
-margin-top: 0em;
-padding-left: 13px;
-padding-right: 11px;
-flex-wrap: wrap;
-color: #000000;
-border-radius: 17px;
+justify-content: center;
+gap: 8px;
+letter-spacing: 0.5px;
+font-family: 'Inter', sans-serif;
 }
 
-.product_info_container li {
-list-style: none;
-padding: 0;
+.pickle-quick-view-btn {
+background: rgba(255,255,255,0.15);
+color: #fff;
+border: 1px solid rgba(255,255,255,0.3);
+backdrop-filter: blur(4px);
+}
+
+.pickle-quick-view-btn:hover {
+background: rgba(255,255,255,0.25);
+transform: translateY(-2px);
+}
+
+.pickle-add-cart-btn {
+background: #fff;
+color: #000;
+}
+
+.pickle-add-cart-btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 10px 40px rgba(255,255,255,0.2);
+}
+
+.pickle-product-info {
+padding: 14px 16px 18px;
+text-align: start;
+}
+
+.pickle-product-link {
+text-decoration: none;
+}
+
+.pickle-product-name {
+font-size: 0.90rem;
+font-weight: 400;
+color: #1a1a1a;
+margin: 0 0 6px 0;
+line-height: 1.7;
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+overflow: hidden;
+transition: color 0.2s ease;
+}
+
+.pickle-product-name:hover {
+color: #555;
+}
+
+.pickle-price-row {
+display: flex;
+align-items: center;
+gap: 10px;
+margin-bottom: 8px;
+}
+
+.pickle-price-current {
+font-size: .95rem;
+font-weight: 500;
+color: #1a1a1a;
+}
+
+.pickle-price-original {
+font-size: 0.8rem;
+color: #999;
+text-decoration: line-through;
+}
+
+.pickle-color-row {
+display: flex;
+align-items: center;
+gap: 8px;
+margin-bottom: 8px;
+}
+
+.pickle-color-label {
+font-size: 0.65rem;
+color: #888;
+letter-spacing: 1px;
+text-transform: uppercase;
+}
+
+.pickle-color-dots {
+display: flex;
+gap: 4px;
+}
+
+.pickle-color-dot {
+width: 14px;
+height: 14px;
+border-radius: 50%;
+border: 1px solid rgba(0,0,0,0.06);
+transition: transform 0.2s ease;
+cursor: pointer;
+}
+
+.pickle-color-dot:hover {
+transform: scale(1.3);
+}
+
+.pickle-color-more {
+font-size: 0.6rem;
+color: #999;
+}
+
+.pickle-quick-view-modal {
+position: fixed;
+inset: 0;
+background: rgba(0,0,0,0.7);
+backdrop-filter: blur(8px);
+z-index: 1000;
+display: flex;
+align-items: center;
+justify-content: center;
+animation: pickleModalFadeIn 0.3s ease;
+}
+
+@keyframes pickleModalFadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+
+.pickle-quick-view-content {
+background: #fff;
+border-radius: 16px;
+max-width: 900px;
+width: 90%;
+max-height: 90vh;
+overflow-y: auto;
+position: relative;
+animation: pickleModalSlideUp 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes pickleModalSlideUp {
+from { transform: translateY(30px) scale(0.95); opacity: 0; }
+to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.pickle-quick-view-close {
+position: absolute;
+top: 16px;
+right: 16px;
+width: 40px;
+height: 40px;
+border: none;
+border-radius: 50%;
+background: rgba(0,0,0,0.05);
+font-size: 1.2rem;
+cursor: pointer;
+transition: all 0.3s ease;
+z-index: 10;
+color: #333;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.pickle-quick-view-close:hover {
+background: rgba(0,0,0,0.1);
+transform: rotate(90deg);
+}
+
+.pickle-quick-view-body {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 2rem;
+padding: 2rem;
+}
+
+.pickle-quick-view-image {
+border-radius: 12px;
+overflow: hidden;
+background: #f5f5f5;
+}
+
+.pickle-quick-view-image img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+min-height: 400px;
+}
+
+.pickle-quick-view-details {
+display: flex;
+flex-direction: column;
+gap: 12px;
+}
+
+.pickle-quick-view-brand {
+font-size: 0.65rem;
+letter-spacing: 3px;
+text-transform: uppercase;
+color: #999;
+}
+
+.pickle-quick-view-title {
+font-size: 1.5rem;
+font-weight: 400;
+text-align: start;
+color: #1a1a1a;
 margin: 0;
 }
 
-.product_title {
-font-size: .9rem;
-line-height: 2.5em;
-margin-top: .5em;
-list-style: none;
-color: #333;
-text-align: center;
-cursor: pointer;
+.pickle-quick-view-price {
+display: flex;
+align-items: center;
+gap: 12px;
 }
 
-.review_text {
-font-size: 0.9rem;
-color: #231F20;
+.pickle-quick-view-current {
+font-size: 1.5rem;
+font-weight: 500;
+color: #1a1a1a;
 }
 
-.price_icon {
+.pickle-quick-view-original {
 font-size: 1rem;
-color: #444;
+color: #999;
+text-decoration: line-through;
 }
 
-.product_price {
-font-size: .9rem;
-color: #222;
+.pickle-quick-view-rating {
+display: flex;
+align-items: center;
+gap: 4px;
+color: #f5af19;
+font-size: 0.9rem;
 }
 
+.pickle-quick-view-rating span {
+color: #999;
+font-size: 0.8rem;
+margin-left: 4px;
+}
 
+.pickle-quick-view-desc {
+color: #666;
+font-size: 0.9rem;
+line-height: 1.6;
+margin: 4px 0;
+}
+
+.pickle-quick-view-colors {
+display: flex;
+align-items: center;
+gap: 12px;
+}
+
+.pickle-qv-color-label {
+font-size: 0.75rem;
+color: #666;
+letter-spacing: 0.5px;
+}
+
+.pickle-qv-color-dots {
+display: flex;
+gap: 8px;
+}
+
+.pickle-qv-color-dot {
+width: 24px;
+height: 24px;
+border-radius: 50%;
+border: 2px solid #e0e0e0;
+cursor: pointer;
+transition: all 0.3s ease;
+}
+
+.pickle-qv-color-dot:hover {
+transform: scale(1.1);
+border-color: #000;
+}
+
+.pickle-quick-view-actions {
+display: flex;
+gap: 12px;
+margin-top: 8px;
+}
+
+.pickle-qv-add-cart {
+flex: 1;
+padding: 14px 28px;
+background: #000;
+color: #fff;
+border: none;
+border-radius: 50px;
+font-size: 0.85rem;
+font-weight: 500;
+letter-spacing: 1px;
+cursor: pointer;
+transition: all 0.3s ease;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
+}
+
+.pickle-qv-add-cart:hover {
+background: #333;
+transform: translateY(-2px);
+}
+
+.pickle-qv-wishlist {
+width: 50px;
+height: 50px;
+min-width: 50px;
+border: 1.5px solid #000000;
+border-radius: 50%;
+background: rgba(255,255,255,0.95);
+color: #d4d4d4;
+font-size: 1.3rem;
+cursor: pointer;
+transition: all 0.3s ease;
+display: flex !important;
+align-items: center;
+justify-content: center;
+padding: 0;
+line-height: 1;
+}
+
+.pickle-qv-wishlist i {
+font-size: 1.3rem;
+color: black;
+line-height: 1;
+display: block;
+}
+
+.pickle-qv-wishlist:hover {
+border-color: #000;
+transform: scale(1.05);
+background: #fff;
+}
+
+.pickle-qv-wishlist.active {
+color: #000 !important;
+border-color: #000;
+background: rgba(255,77,122,0.05);
+}
+
+.pickle-qv-wishlist.active i {
+color: #000 !important;
+}
+
+.pickle-qv-view-details {
+display: inline-block;
+color: #666;
+font-size: 0.85rem;
+text-decoration: none;
+transition: color 0.3s ease;
+margin-top: 4px;
+}
+
+.pickle-qv-view-details:hover {
+color: #000;
+}
+
+/* ===== SKELETON ===== */
+.pickle-skeleton-card {
+background: #fff;
+border-radius: 12px;
+overflow: hidden;
+}
+
+.pickle-skeleton-image {
+padding-top: 125%;
+background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+background-size: 200% 100%;
+animation: pickleShimmer 1.5s infinite;
+}
+
+.pickle-skeleton-text {
+height: 14px;
+background: #f0f0f0;
+margin: 14px 16px 8px;
+border-radius: 4px;
+animation: pickleShimmer 1.5s infinite;
+}
+
+.pickle-skeleton-text.short {
+width: 50%;
+}
+
+@keyframes pickleShimmer {
+0% { background-position: -200% 0; }
+100% { background-position: 200% 0; }
+}
+
+.pickle-notification {
+position: fixed;
+bottom: 30px;
+right: 30px;
+padding: 14px 28px;
+background: rgba(0,0,0,0.92);
+backdrop-filter: blur(10px);
+color: #fff;
+border-radius: 10px;
+font-size: 0.85rem;
+z-index: 9999;
+box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+animation: pickleSlideUp 0.4s ease;
+font-family: 'Inter', sans-serif;
+}
+
+.pickle-notification.success {
+border-left: 3px solid #4CAF50;
+}
+
+.pickle-notification.info {
+border-left: 3px solid #2196F3;
+}
+
+.pickle-notification.fade-out {
+animation: pickleSlideDown 0.3s ease forwards;
+}
+
+@keyframes pickleSlideUp {
+from { transform: translateY(80px); opacity: 0; }
+to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pickleSlideDown {
+from { transform: translateY(0); opacity: 1; }
+to { transform: translateY(80px); opacity: 0; }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+.pickle-product-grid {
+grid-template-columns: repeat(4, 1fr);
+gap: 1.5rem;
+}
+}
+
+@media (max-width: 992px) {
+.pickle-product-grid {
+grid-template-columns: repeat(3, 1fr);
+gap: 1.2rem;
+}
+}
 
 @media (max-width: 768px) {
-
-.single_product_card {
-max-width: 100%;
-border-radius: 2px;
-padding: 0px;
-padding-bottom: 27px;
+.pickle-wrapper {
+padding-top: 10px;
 }
 
-.product_cards_wrapper .product_image{
-width: 100%;
+.pickle-category-strip {
+padding: 0.6rem 1rem;
 }
 
-.product_grid_container  {
-width: 98%;
+.pickle-category-pill {
+padding: 6px 14px;
+font-size: 0.7rem;
 }
 
-.product_cards_wrapper {
-max-width: 100%;
-justify-content: center;
-gap: 0.3em;
+.pickle-grid-container {
+padding: 0 0.8rem;
 }
 
-.single_product_card {
-width: 48%;
+.pickle-product-grid {
+grid-template-columns: repeat(2, 1fr);
+gap: 0.8rem;
 }
 
-.price_section{
-padding: 0px;
+.pickle-results-bar {
+padding: 0 0.8rem;
+margin: 1rem auto;
 }
 
-.product_title {
-font-size: .8rem;
+.pickle-product-info {
+padding: 10px 10px 14px;
 }
 
-.product_price {
-font-size: .8rem;
+.pickle-product-name {
+font-size: 0.75rem;
 }
 
-.wishlist_icon{
-padding: 0px;
-font-size: 1.2rem;
-margin-right: .7em;
-margin-top: 0em;
+.pickle-price-current {
+font-size: 0.9rem;
 }
 
-.fa-heart_Pickle {
-font-size: 1.1rem;
-margin-right: .7em;
-margin-top: .7em;    
+.pickle-wishlist-btn {
+width: 32px;
+height: 32px;
+font-size: 0.9rem;
+top: 8px;
+right: 8px;
 }
 
+.pickle-wishlist-tooltip {
+display: none;
 }
 
-
-
-@media (min-width: 769px) and (max-width: 968px)  {
-
-.product_grid_container  {
-width: 98%;
+.pickle-image-overlay {
+display: none;
 }
 
-.single_product_card {
-width: 30%;
+.pickle-notification {
+bottom: 20px;
+right: 20px;
+padding: 12px 20px;
+font-size: 0.75rem;
 }
 
-.product_cards_wrapper {
-gap: .8em;
+.pickle-quick-view-body {
+grid-template-columns: 1fr;
+padding: 1rem;
 }
 
+.pickle-quick-view-image img {
+min-height: 250px;
 }
 
-
-@media (max-width : 1516px) {
-
-.product_grid_container {
-transform: translateX(0%);
+.pickle-quick-view-content {
+width: 95%;
+max-height: 95vh;
+}
 }
 
+@media (max-width: 480px) {
+.pickle-product-grid {
+grid-template-columns: repeat(2, 1fr);
+gap: 0.6rem;
+}
+
+.pickle-product-info {
+padding: 8px 8px 10px;
+}
+
+.pickle-product-name {
+font-size: 0.7rem;
+}
+
+.pickle-price-current {
+font-size: 0.85rem;
+}
+
+.pickle-price-original {
+font-size: 0.65rem;
+}
+
+.pickle-color-dot {
+width: 10px;
+height: 10px;
+}
+
+.pickle-color-label {
+font-size: 0.55rem;
+}
 }

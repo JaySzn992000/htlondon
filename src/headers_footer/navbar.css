@@ -204,7 +204,7 @@ gap: 0.5rem;
 .flex_nav_ProfileSection {
 display: flex;
 align-items: center;
-gap: .7rem;
+gap: .5rem;
 }
 
 .flex_nav_ProfileSection .nav_profileSection {
@@ -263,6 +263,7 @@ transform: scale(1);
 display: flex;
 align-items: center;
 gap: 0.5rem;
+margin-left: -.4em;
 border-radius: 50px;
 transition: var(--transition-smooth);
 cursor: pointer;
@@ -332,7 +333,7 @@ box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
 cursor: pointer;
 width: 30px !important;
 height: 30px;
-margin-left: -3.7rem;
+margin-left: -3rem;
 transition: var(--transition-smooth);
 opacity: 0.6;
 }

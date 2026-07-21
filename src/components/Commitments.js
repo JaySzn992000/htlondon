@@ -16,46 +16,53 @@ const images = [
 'https://d2d5n4ft74bagm.cloudfront.net/media/banners/f60a0f10-ed69-47cb-b82d-6604c344666f/1775472640.jpeg?w=90',
 ];
 
-
 return (
 
-<div className="slider-container_Commitment">
+<div className="commitments_container">
 
+<div className="commitments_header">
+<span className="commitments_badge">✦ Curated Selection</span>
 <h1>MATCH THE MOOD</h1>
+<div className="commitments_line"></div>
+<p className="commitments_desc">Find your perfect aesthetic</p>
+</div>
 
+<div className="slider-wrapper_commitment">
 <Swiper
 modules={[Autoplay]}
 loop={true}
-spaceBetween={5}
+spaceBetween={20}
 slidesPerView={4}
-speed={2000}
-
+speed={3000}
 autoplay={{
-delay:0,
-disableOnInteraction:false
+delay: 0,
+disableOnInteraction: false,
 }}
-
 breakpoints={{
-320:{slidesPerView:2, spaceBetween:5},
-480:{slidesPerView:2, spaceBetween:5},
-768:{slidesPerView:3, spaceBetween:5},
-1024:{slidesPerView:4, spaceBetween:5}
+320: { slidesPerView: 2, spaceBetween: 12 },
+480: { slidesPerView: 2.5, spaceBetween: 15 },
+768: { slidesPerView: 3.5, spaceBetween: 18 },
+1024: { slidesPerView: 4.5, spaceBetween: 20 },
+1280: { slidesPerView: 5, spaceBetween: 24 },
 }}>
-
-{images.map((img,index)=>(
+{images.map((img, index) => (
 <SwiperSlide key={index}>
-<div className="slide-content_Commite">
-<img src={img} alt="" className="slide-image_Commite"/>
+<div className="slide-card_commitment">
+<div className="slide-image-wrapper">
+<img src={img} alt={`Mood ${index + 1}`} className="slide-image_commitment" />
+<div className="slide-overlay">
+<span className="slide-number">0{index + 1}</span>
+<div className="slide-hover-line"></div>
+</div>
+</div>
 </div>
 </SwiperSlide>
 ))}
-
 </Swiper>
-
+</div>
 </div>
 
 );
-
 };
 
 export default Commitments;
