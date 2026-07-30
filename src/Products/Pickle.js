@@ -83,7 +83,7 @@ const productIndex = wishlist.findIndex((item) => item.id === product.id);
 
 if (productIndex === -1) {
 wishlist.push(product);
-showNotification("Added to wishlist ❤️", "success");
+showNotification("Added to wishlist ♡", "success");
 } else {
 wishlist.splice(productIndex, 1);
 showNotification("Removed from wishlist", "info");
