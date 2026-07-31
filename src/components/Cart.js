@@ -1,11 +1,12 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import CartDeleteItem from "../Images_ToolsSymbols/Delete.jpg";
 import { useState, useEffect } from "react";
 import { removeFromCart } from "../action/action";
 import { connect } from "react-redux";
 import Navbar from "../headers_footer/navbar";
 import Header from "../headers_footer/header";
 import axios from "axios";
+import { FiX, FiMinus, FiPlus, FiShoppingBag, FiHeart } from "react-icons/fi";
+import { motion, AnimatePresence } from "framer-motion";
 import "./Cart.css";
 
 const Cart = ({ cart, removeFromCart }) => {
@@ -17,13 +18,10 @@ const location = useLocation();
 const navigate = useNavigate();
 
 useEffect(() => {
-const storedQuantities =
-JSON.parse(localStorage.getItem("quantities")) || [];
-const initialQuantities = cart.map(
-(_, index) => storedQuantities[index] || 1
-);
+const storedQuantities = JSON.parse(localStorage.getItem("quantities")) || [];
+const initialQuantities = cart.map((_, index) => storedQuantities[index] || 1);
 setQuantities(initialQuantities);
-}, [cart] );
+}, [cart]);
 
 useEffect(() => {
 const fetchProductData = async () => {
@@ -36,9 +34,8 @@ setProductData(response.data);
 console.log("Error fetching products:", error);
 }
 };
-
 fetchProductData();
-}, [] );
+}, []);
 
 const totalAmount = cart.reduce(
 (sum, item, index) => sum + item.price * quantities[index],
@@ -65,7 +62,9 @@ localStorage.setItem("quantities", JSON.stringify(newQuantities));
 
 const asyncProceed = () => {
 navigate("/Address", {
-state: { loggedInUser: location.state?.loggedInUser, totalAmount,
+state: {
+loggedInUser: location.state?.loggedInUser,
+totalAmount,
 quantities,
 },
 });
@@ -76,137 +75,165 @@ const product = productData.find((p) => p.id === productId);
 return product ? product.file_path : "";
 };
 
+const containerVariants = {
+hidden: { opacity: 0 },
+visible: {
+opacity: 1,
+transition: {
+staggerChildren: 0.06,
+},
+},
+};
+
+const itemVariants = {
+hidden: { opacity: 0, y: 20 },
+visible: {
+opacity: 1,
+y: 0,
+transition: {
+duration: 0.5,
+ease: [0.22, 1, 0.36, 1],
+},
+},
+exit: {
+opacity: 0,
+scale: 0.96,
+transition: { duration: 0.3 },
+},
+};
 
 return (
-
-<div>
-
+<div className="cart-container">
 <Navbar />
 
-<main id="cart_container">
-
+<main className="cart-wrapper">
 {cart && cart.length > 0 ? (
-
 <>
+<div className="cart-header">
+<div className="cart-title-section">
+<h2 className="cart-title">My Cart</h2>
+</div>
+<p className="cart-subtitle">Review your selections</p>
+</div>
 
-<h1 className="cart_items_h2">My cart</h1>
+<div className="cart-grid-header">
+<span>Product</span>
+<span>Price</span>
+<span>Qty</span>
+<span>Subtotal</span>
+<span></span>
+</div>
 
-<section className="flx_cart" role="list">
+<motion.div
+className="cart-items"
+variants={containerVariants}
+initial="hidden"
+animate="visible">
 
-<ul className="Cart_heads" aria-label="Cart Column Headers">
-
-<li>IMAGE</li>
-<li>PRODUCT NAME</li>
-<li>Size</li>
-<li>UNIT PRICE</li>
-<li>ACTION</li>
-<li>QTY</li>
-
-</ul>
-
+<AnimatePresence>
 {cart.map((item, index) => (
-<li
+<motion.div
 key={index}
-style={{ listStyle: "none" }}
-className="cart_flex" >
+variants={itemVariants}
+exit="exit"
+className="cart-item"
+layout>
 
-<article className="flex_about">
+<div className="cart-item-card">
+<button
+className="cart-remove-btn"
+onClick={() => handleRemove(index)}>
+<FiX />
+</button>
 
+<div className="cart-item-content">
+<div className="cart-product-image-wrapper">
 <img
-loading="lazy"
 src={getProductImagePath(item.id)}
-alt=''
-className="cart-item-image"
-/>
-
-</article>
-
-<div className="Produt_nCart">
-<span className="fontSizeSpn">In Stock</span> <br></br>
-<span className="fontSizeSpn">{item.name}</span>
+alt={item.name}
+className="cart-product-image"
+loading="lazy"/>
 </div>
 
-<div className="Produt_nCart">
-<span className="fontSizeSpn">{item.size}</span>
+<div className="cart-product-info">
+<div className="cart-product-name">{item.name}</div>
+<div className="cart-product-stock">
+<span className="stock-dot"></span>
+In Stock
+</div>
 </div>
 
-<div className="fontSizeSpn">
-₹ {item.price}
-</div>
+<div className="cart-product-price">₹{item.price}</div>
 
-<div className="remove_bntContainer">
-
-<img 
-onClick={() => handleRemove(index)}
-aria-label={`Remove ${item.name}`}
-loading="lazy"
-src={CartDeleteItem}
-alt=""
-style={{ width: "23px", marginTop: "0em", cursor : 'pointer' }}
-></img>
-
-</div>
-
-<div className="second_contain">
-<li className="fontSizeSpn">
-<span>₹ {item.price * quantities[index]}</span>
-</li>
-
-<div className="quantity_update" aria-label="Quantity Selector">
-<button onClick={() => handleQuantityChange(index, -1)} aria-label="Decrease quantity">
--
+<div className="cart-product-qty">
+<button
+className="qty-btn"
+onClick={() => handleQuantityChange(index, -1)}>
+<FiMinus />
 </button>
 <span>{quantities[index]}</span>
-<button onClick={() => handleQuantityChange(index, 1)} aria-label="Increase quantity">
-+
+<button
+className="qty-btn"
+onClick={() => handleQuantityChange(index, 1)}>
+<FiPlus />
 </button>
 </div>
-</div>
-</li>
 
+<div className="cart-product-total">
+₹{item.price * quantities[index]}
+</div>
+</div>
+</div>
+</motion.div>
 ))}
+</AnimatePresence>
+</motion.div>
 
-<section className="flex_amount">
+<div className="cart-summary">
+<div className="cart-summary-details">
+<div className="cart-summary-row">
 
-<h2>
-Total Products: <span>{totalProducts}</span> | Total Amount:
-Rs <span>{totalAmount}</span>
-</h2>
+<span>Total Products</span>
+<span>{totalProducts}</span>
 
-<button onClick={asyncProceed}>
-<i class="fas fa-shopping-cart" aria-hidden="true"></i>
-<h4>PLACE ORDER</h4>
+</div>
+
+<div className="cart-summary-row total">
+
+<span>Total Amount</span>
+<span>₹ {totalAmount}</span>
+
+</div>
+</div>
+<button className="cart-checkout-btn" onClick={asyncProceed}>
+<FiShoppingBag />
+Place Order
 </button>
-
-</section>
-
-</section>
-
+</div>
 </>
-
 ) : (
+<motion.div
+className="cart-empty"
+initial={{ opacity: 0 }}
+animate={{ opacity: 1 }}
+transition={{ duration: 0.6 }}>
 
-<section className="div_flex">
-
+<div className="cart-empty-content">
+<div className="empty-icon-wrapper">
+<FiShoppingBag className="cart-empty-icon" />
+</div>
 <h1>Your cart is empty</h1>
-
-<p>
-Your wishlist seems to be empty. <br /><br />
-Let's find something for you.
-</p>
-
-</section>
-
+<p>Looks like you haven't added anything yet.</p>
+<button className="cart-explore-btn">Start Shopping</button>
+</div>
+</motion.div>
 )}
-
 </main>
 
 <div className="header-ad">
-<Header></Header>
+<Header />
 </div>
-
 </div>
-
 );
 };
 
@@ -216,6 +243,6 @@ cart: state.cart,
 
 const mapDispatchToProps = (dispatch) => ({
 removeFromCart: (index) => dispatch(removeFromCart(index)),
-}) ;
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

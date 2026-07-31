@@ -234,10 +234,10 @@ object-fit: contain;
 .wishlist-count,
 .cart-count {
 position: absolute;
-top: -8px;
-right: -8px;
-min-width: 20px;
-height: 20px;
+top: -5px;
+right: -7px;
+min-width: 17px;
+height: 17px;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -267,7 +267,7 @@ margin-left: -.4em;
 border-radius: 50px;
 transition: var(--transition-smooth);
 cursor: pointer;
-box-shadow: 0 2px 12px rgba(201, 168, 76, 0.2);
+/* box-shadow: 0 2px 12px rgba(201, 168, 76, 0.2); */
 }
 
 .cart_bag .icon-wrapper {
@@ -284,9 +284,9 @@ top: 0px;
 right: -6px;
 min-width: 20px;
 height: 20px;
-font-size: 9px;
+font-size: 10px;
 background-color: #231f20;
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+box-shadow: 0 2px 8px rgba(201, 168, 76, 0.4);
 }
 
 .cart_bag h5 {
