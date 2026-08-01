@@ -1,10 +1,13 @@
-import { useNavigate, useParams } from "react-router-dom";import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { addToCart } from "../action/action";
 import Navbar from "../headers_footer/navbar";
 import Header from "../headers_footer/header";
 import Zoom from "react-medium-image-zoom";
 import Slider from "react-slick";
 import { connect } from "react-redux";
+import { FiHeart, FiShoppingBag, FiX, FiMinus, FiPlus } from "react-icons/fi";
+import { motion, AnimatePresence } from "framer-motion";
 import "./ProductDetails.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -12,90 +15,91 @@ import "react-medium-image-zoom/dist/styles.css";
 import axios from "axios";
 
 const ProductDetails = ({ addToCart, cart }) => {
-const { category, id } = useParams();
+
+const { slug, id } = useParams();
 const navigate = useNavigate();
-const [arrayStore, setArrayStore] = useState(null);
-const [cartCount, setCartCount] = useState(cart.length);
-const [mainImage, setMainImage] = useState("");
+
+const [product, setProduct] = useState(null);
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState(null);
 const [selectedSize, setSelectedSize] = useState(null);
+const [cartCount, setCartCount] = useState(cart.length);
+const [quantity, setQuantity] = useState(1);
+const [activeImage, setActiveImage] = useState(0);
+
+
+const API_BASE = process.env.REACT_APP_API_URL || "https://namasya.onrender.com";
 
 useEffect(() => {
 const fetchProduct = async () => {
+setLoading(true);
+setError(null);
 try {
-const response = await axios.get("https://namasya.onrender.com/fetchProductslist");
+const response = await axios.get(`${API_BASE}/fetchProductslist`);
 const data = response.data;
-const product = data.find((product) => product.id === parseInt(id));
-setArrayStore(product);
-setMainImage(product.file_path);
-} catch (error) {
-console.log("Error fetching product:", error);
+const foundProduct = data.find((p) => String(p.id) === String(id));
+if (foundProduct) {
+setProduct(foundProduct);
+} else {
+setError("Product not found");
+}
+} catch (err) {
+console.error("Error fetching product:", err);
+setError("Failed to load product");
+} finally {
+setLoading(false);
 }
 };
-fetchProduct();
+if (id) fetchProduct();
 }, [id]);
 
-const handleSizeChange = (size) => {
-setSelectedSize(size);
+const getImages = () => {
+if (!product) return [];
+return [
+product.file_path,
+product.file_path1,
+product.file_path2,
+product.file_path3,
+].filter(Boolean);
+};
+
+const images = getImages();
+
+const handleSizeChange = (size) => setSelectedSize(size);
+
+const handleQuantityChange = (change) => {
+setQuantity(Math.max(1, quantity + change));
 };
 
 const handleAddToCart = () => {
-
 if (!selectedSize) {
-alert("Please select size");
+alert("Please select a size");
 return;
 }
-
-if (arrayStore) {
+if (!product) return;
 
 const isProductInCart = cart.some(
-(item) =>
-item.id === arrayStore.id &&
-item.size === selectedSize
+(item) => item.id === product.id && item.size === selectedSize
 );
 
 if (isProductInCart) {
-
 alert("This product size is already in your cart.");
 return;
-
 }
 
 const productToAdd = {
-...arrayStore,
+...product,
 size: selectedSize,
-price: arrayStore.price,
-originalPrice: arrayStore.price,
+quantity: quantity,
 };
 
-addToCart(productToAdd, selectedSize);
-
-setCartCount(prev => prev + 1);
-
-localStorage.setItem(
-`cart-added-${id}-${selectedSize}`,
-JSON.stringify(true)
-);
-
+addToCart(productToAdd);
+setCartCount((prev) => prev + 1);
+localStorage.setItem(`cart-added-${product.id}-${selectedSize}`, JSON.stringify(true));
 alert("Product added to cart!");
-
-}
 };
 
-const handleGoToCart = () => {
-navigate("/ECart");
-};
-
-const handleThumbnailClick = (imagePath) => {
-setMainImage(imagePath);
-};
-
-if (!arrayStore) {
-return <div>Product not found</div>;
-}
-
-const sizes = arrayStore.sizes
-? arrayStore.sizes.split(",").map((size) => size.trim())
-: [];
+const handleGoToCart = () => navigate("/ECart");
 
 const sliderSettings = {
 dots: true,
@@ -104,129 +108,173 @@ speed: 500,
 slidesToShow: 1,
 slidesToScroll: 1,
 arrows: false,
+autoplay: false,
 };
 
-return (
+const sizes = product?.sizes
+? product.sizes.split(",").map((size) => size.trim())
+: [];
 
+if (loading) {
+return (
 <div>
 <Navbar cartCount={cartCount} />
+<div className="product-loading">
+<div className="loading-spinner"></div>
+<p>Loading...</p>
+</div>
+<Header />
+</div>
+);
+}
 
-<div className="product-details">
-<div className="mobile-slider">
+if (error || !product) {
+return (
+<div>
+<Navbar cartCount={cartCount} />
+<div className="product-not-found">
+<div className="not-found-content">
+<h1>Product Not Found</h1>
+<p>We couldn't find the product you're looking for.</p>
+<button onClick={() => navigate("/collections")}>
+Back to Collections
+</button>
+</div>
+</div>
+<Header />
+</div>
+);
+}
+
+return (
+<div className="product-detail-page">
+<Navbar cartCount={cartCount} />
+
+<div className="product-detail-container">
+<div className="mobile-slider-wrapper">
 <Slider {...sliderSettings}>
-<div>
-<img
-className="product_img mobile-slider-img"
-src={arrayStore.file_path}
-alt={`${arrayStore.name} - Image 1`}
-loading="lazy"
-/>
+{images.map((img, idx) => (
+<div key={idx} className="mobile-slide">
+<img src={img} alt={`${product.name} - ${idx + 1}`} loading="lazy" />
 </div>
-<div>
-<img
-className="product_img mobile-slider-img"
-src={arrayStore.file_path1}
-alt={`${arrayStore.name} - Image 2`}
-loading="lazy"
-/>
-</div>
-<div>
-<img
-className="product_img mobile-slider-img"
-src={arrayStore.file_path2}
-alt={`${arrayStore.name} - Image 3`}
-loading="lazy"
-/>
-</div>
-<div>
-<img
-className="product_img mobile-slider-img"
-src={arrayStore.file_path3}
-alt={`${arrayStore.name} - Image 4`}
-loading="lazy"
-/>
-</div>
+))}
 </Slider>
 </div>
 
-<div className="product-gallery-box">
+<div className="product-gallery">
+<div className="gallery-main">
 <Zoom>
-<img className="gallery-img" src={arrayStore.file_path} alt="" loading="lazy" />
-</Zoom>
-<Zoom>
-<img className="gallery-img" src={arrayStore.file_path1} alt="" loading="lazy" />
-</Zoom>
-<Zoom>
-<img className="gallery-img" src={arrayStore.file_path2} alt="" loading="lazy" />
-</Zoom>
-<Zoom>
-<img className="gallery-img" src={arrayStore.file_path3} alt="" loading="lazy" />
+<img src={images[activeImage] || images[0]} alt={product.name} />
 </Zoom>
 </div>
+<div className="gallery-thumbnails">
+{images.map((img, idx) => (
+<button
+key={idx}
+className={`thumbnail-btn ${activeImage === idx ? "active" : ""}`}
+onClick={() => setActiveImage(idx)}
+>
+<img src={img} alt={`Thumbnail ${idx + 1}`} />
+</button>
+))}
+</div>
+</div>
 
-<div className="second_div">
-<section>
-<h1>{arrayStore.name}</h1>
-<h2 className="Scnd_hTg">
-<span>₹ {arrayStore.price}</span>
-</h2>
-</section>
+<div className="product-info-section">
+<div className="product-breadcrumb">
+<span>Home</span> / <span>Clothing</span> / <span>{product.category || "Premium"}</span>
+</div>
 
-<p>SELECT A SIZE</p>
-<div className="size_chart">
+<h1 className="product-title">{product.name}</h1>
+
+<div className="product-rating">
+<div className="stars">
+<span>★</span>
+<span>★</span>
+<span>★</span>
+<span>★</span>
+<span>★</span>
+</div>
+<span className="rating-count">({product.review || "124"} reviews)</span>
+</div>
+
+<div className="product-price-section">
+<span className="product-current-price">₹{product.price}</span>
+{product.originalPrice && (
+<span className="product-original-price">₹{product.originalPrice}</span>
+)}
+{product.discount && (
+<span className="product-discount-badge">{product.discount}% OFF</span>
+)}
+</div>
+
+<div className="product-stock">
+<span className="stock-indicator-dot"></span>
+In Stock
+</div>
+
+<div className="product-description">
+<p>{product.description || "Premium quality product crafted with attention to every detail."}</p>
+</div>
+
+<div className="product-size-section">
+<div className="size-header">
+<span>Select Size</span>
+<button className="size-guide-btn">Size Guide</button>
+</div>
+<div className="size-options">
 {sizes.map((size) => (
 <button
 key={size}
-id="btnsize"
+className={`size-btn ${selectedSize === size ? "active" : ""}`}
 onClick={() => handleSizeChange(size)}
-className={selectedSize === size ? "selected" : ""}
 >
 {size}
 </button>
 ))}
 </div>
-
-<div className="review_Cntnr">
-<img
-id="Review_Img"
-src="https://cdn-icons-png.flaticon.com/128/15853/15853959.png"
-/>
-<li className="fa_Review">{arrayStore.review}</li>
 </div>
 
-<div className="flex_btnADD_CART">
-<button onClick={handleAddToCart} id="btn" className="add_crtK">
-
-<img
-className="iconDetails Cart_detail"
-src="https://cdn-icons-png.flaticon.com/128/6322/6322610.png"
-alt=""
-loading="lazy"
-/>
-
-<span>ADD TO CART</span>
+<div className="product-quantity-section">
+<span>Quantity</span>
+<div className="quantity-control">
+<button onClick={() => handleQuantityChange(-1)}>
+<FiMinus />
 </button>
-
-<button className="go-toCart" id="btn" onClick={handleGoToCart}>
-GO TO CART
+<span>{quantity}</span>
+<button onClick={() => handleQuantityChange(1)}>
+<FiPlus />
 </button>
 </div>
-<br/>
-
-</div>
 </div>
 
-<div className="descproduct">
-<h2>Description</h2>
-<p style={{ marginTop: "-1.5em" }} className="prdctDetails">
-<br />
-{arrayStore.description}
-</p>
+<div className="product-actions">
+<button className="add-to-cart-btn" onClick={handleAddToCart}>
+<FiShoppingBag />
+Add to Cart
+</button>
+</div>
+
+<div className="product-meta">
+<div className="meta-item">
+<span>Material</span>
+<span>{product.category || "Upper Material"}</span>
+</div>
+<div className="meta-item">
+<span>Fit</span>
+<span>{product.material || "Regular"}</span>
+</div>
+{/* <div className="meta-item">
+<span>Fit</span>
+<span>{product.fit || "Regular"}</span>
+</div> */}
+</div>
+</div>
 </div>
 
 <Header />
-</div>
 
+</div>
 );
 };
 
