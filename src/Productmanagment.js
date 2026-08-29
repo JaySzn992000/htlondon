@@ -8,7 +8,6 @@ import { useState, useEffect } from "react";
 
 function Productmanagment () {
 
-
 const [sidebarOpen, setSidebarOpen] = useState(true);
 const [navContainer,setnavContainer] = useState(false);
 
@@ -58,7 +57,6 @@ navContainer={navContainer}
 ></DashboardNav>
 <DashboardSlider sidebarOpen={sidebarOpen} />
 
-
 <AddProducts
 Product_relativeCon={Product_relativeCon}
 dashboard_containerCon={dashboard_containerCon}
@@ -71,7 +69,6 @@ update_containerCon={update_containerCon}
 <Deleteproduct Delete_relativeCon={Delete_relativeCon}
 Delete_formCon={Delete_formCon}
 ></Deleteproduct>
-
 
 </div>
 

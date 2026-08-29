@@ -1,8 +1,7 @@
 import { useState } from "react";
 import "./Deleteproduct.css";
 
-function Delete({ Delete_relativeCon, Delete_formCon }) {
-
+function DeleteProduct({ Delete_relativeCon, Delete_formCon }) {
 const [productName, setProductName] = useState("");
 const [message, setMessage] = useState("");
 
@@ -23,58 +22,76 @@ const data = await response.json();
 if (response.ok) {
 setMessage(data.message || "Product deleted successfully!");
 alert("Product deleted successfully!");
+setProductName("");
 } else {
 setMessage(data.error || "Failed to delete product.");
-alert("Product deleted successfully!");
+alert("Error: " + (data.error || "Failed to delete product."));
 }
 } catch (error) {
 setMessage("An error occurred while deleting the product.");
+alert("An error occurred while deleting the product.");
 }
-
 setProductName("");
 };
-
 
 return (
 
 <div>
-
 <div
-className={`Delete-relative ${
-Delete_relativeCon ? "Delete_relativeConinside" : ""
+className={`DP_Delete-relative ${
+Delete_relativeCon ? "DP_Delete_relativeConinside" : ""
 }`}
 >
 <div
-className={`Delete_form ${
-Delete_formCon ? "Delete_formConinside" : ""
+className={`DP_Delete_form ${
+Delete_formCon ? "DP_Delete_formConinside" : ""
 }`}
 >
-
-<form onSubmit={handleDelete}>
-
-<div className="Flx_IconPrct">
-<img 
-className="IconAddPrdctDlt"
-src="https://cdn-icons-png.flaticon.com/128/6713/6713666.png"></img>
-<h3 id="Addtag">DELETE PRODUCTS</h3>
+<div className="DP_header">
+<div className="DP_header-left">
+<div className="DP_header-icon">
+<i className="fas fa-trash-alt"></i>
+</div>
+<div>
+<h2>Delete Product</h2>
+<p>Permanently remove a product from your store</p>
+</div>
+</div>
 </div>
 
-<label>Delete Product Name :</label>
+<form onSubmit={handleDelete} className="DP_form">
+<div className="DP_form-group">
+<label>
+<i className="fas fa-box"></i> Product Name
+</label>
 <input
 type="text"
-placeholder="Enter Product Name"
+placeholder="Enter exact product name to delete"
 value={productName}
 onChange={(e) => setProductName(e.target.value)}
+required
 />
-<br></br>
-<button type="submit">Delete Product</button>
+</div>
+
+{message && (
+<div className={`DP_message ${message.includes("success") ? "DP_success" : "DP_error"}`}>
+{message}
+</div>
+)}
+
+<button type="submit" className="DP_submit-btn">
+<i className="fas fa-trash"></i> Delete Product
+</button>
+
+<p className="DP_warning">
+<i className="fas fa-exclamation-triangle"></i>
+This action cannot be undone. Please double-check the product name.
+</p>
 </form>
 </div>
 </div>
 </div>
-
 );
-
 }
 
-export default Delete;
+export default DeleteProduct;

@@ -36,7 +36,7 @@ data: [],
 useEffect(() => {
 const customerFetch = async () => {
 try {
-const response = await fetch("https://naturalbuti.onrender.com/fetchCutomerOrder");
+const response = await fetch("https://namasya.onrender.com/fetchCutomerOrder");
 const data = await response.json();
 
 // Month-wise 

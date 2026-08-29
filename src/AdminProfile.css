@@ -1,86 +1,546 @@
-.admin-profile-container {
+
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+body {
+font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+background: #f5f7fb;
+color: #1e293b;
+}
+
+.AP_RelativeDB_product {
+width: calc(100% - 310px);
+max-width: 1400px;
+margin-left: 297px;
+padding: 0 1.5rem 0 0.5rem;
+transition: margin-left 0.3s ease, width 0.3s ease;
+margin-top: 5.5rem;
+}
+
+.AP_RelativeDB_PRQuery-inside {
+margin-left: 20px;
+width: calc(100% - 40px);
+}
+
+.AP_DB_products_ {
+padding: 1.2rem 0 3rem 0;
+transition: all 0.3s ease;
+}
+
+.AP_DB_products_PRQuery-inside {
+margin-left: 0;
+}
+
+.AP_admin-profile-wrapper {
 display: flex;
+justify-content: center;
+align-items: flex-start;
 width: 100%;
-padding-top: 97px;
+}
+
+.AP_profile-card {
+width: 100%;
+max-width: 600px;
+background: #ffffff;
+border-radius: 24px;
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 8px 32px rgba(0, 0, 0, 0.04);
+padding: 2.2rem 2.5rem 2.5rem 2.5rem;
+border: 1px solid rgba(0, 0, 0, 0.04);
+transition: all 0.3s ease;
+}
+
+.AP_profile-card:hover {
+box-shadow: 0 12px 48px rgba(65, 105, 225, 0.06);
+}
+
+.AP_profile-header {
+display: flex;
 flex-direction: column;
 align-items: center;
 text-align: center;
-background-repeat: no-repeat;
-background-size: cover; 
-background-position: center;
 }
 
-.admin-avatar h2 {
-color: #000000;
-margin-bottom: .8em;
+.AP_avatar-wrapper {
+position: relative;
+margin-bottom: 0.8rem;
 }
 
-.circle-avatar {
-background-color: #f08080;
-width: 93px;
-height: 93px;
+.AP_avatar-circle {
+width: 112px;
+height: 112px;
 border-radius: 50%;
+background: linear-gradient(145deg, #4169E1, #1a4ab8);
 display: flex;
-justify-content: center;
 align-items: center;
-margin-bottom: 1.8em;
-margin-top: 1.7em;
+justify-content: center;
+box-shadow: 0 8px 28px rgba(65, 105, 225, 0.30);
+transition: transform 0.3s ease;
 }
 
-.circle-avatar h1 {
-color: #FFFFFF;
+.AP_avatar-circle:hover {
+transform: scale(1.03);
+}
+
+.AP_avatar-circle h1 {
+color: #ffffff;
+font-size: 2.8rem;
+font-weight: 700;
+letter-spacing: 1px;
+margin: 0;
+line-height: 1;
+}
+
+.AP_status-dot {
+position: absolute;
+bottom: 4px;
+right: 4px;
+width: 20px;
+height: 20px;
+background: #22c55e;
+border: 3px solid #ffffff;
+border-radius: 50%;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.AP_admin-name {
+font-size: 1.4rem;
+font-weight: 700;
+color: #0f172a;
+margin: 0.2rem 0 0.1rem;
+letter-spacing: -0.02em;
+}
+
+.AP_admin-role {
+font-size: 0.75rem;
+font-weight: 600;
+color: #4169E1;
+background: rgba(65, 105, 225, 0.08);
+padding: 0.15rem 1.2rem;
+border-radius: 40px;
+display: inline-block;
+margin-top: 0.2rem;
+}
+
+.AP_status-badge {
+display: inline-flex;
+align-items: center;
+gap: 0.4rem;
+font-size: 0.65rem;
+font-weight: 600;
+color: #22c55e;
+background: rgba(34, 197, 94, 0.08);
+padding: 0.15rem 1rem;
+border-radius: 40px;
+border: 1px solid rgba(34, 197, 94, 0.12);
+margin-top: 0.3rem;
+}
+
+.AP_dot-sm {
+display: inline-block;
+width: 6px;
+height: 6px;
+border-radius: 50%;
+background: #22c55e;
+animation: AP_pulse 2s infinite;
+}
+
+@keyframes AP_pulse {
+0% {
+opacity: 1;
+transform: scale(1);
+}
+50% {
+opacity: 0.4;
+transform: scale(1.2);
+}
+100% {
+opacity: 1;
+transform: scale(1);
+}
+}
+
+.AP_divider {
+width: 100%;
+height: 1px;
+background: rgba(0, 0, 0, 0.04);
+margin: 1.5rem 0 1.2rem;
+}
+
+.AP_contact-row {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 0.9rem;
+padding: 0.5rem 1rem;
+background: #f8fafc;
+border-radius: 12px;
+margin-bottom: 0.6rem;
+transition: all 0.2s ease;
+}
+
+.AP_contact-row:hover {
+background: rgba(65, 105, 225, 0.04);
+}
+
+.AP_contact-row i {
+color: #4169E1;
+font-size: 0.9rem;
+width: 20px;
+text-align: center;
+}
+
+.AP_contact-row span {
+font-size: 0.85rem;
+color: #1e293b;
+font-weight: 500;
+}
+
+.AP_password-dots {
+letter-spacing: 1.5px;
+font-weight: 500;
+}
+
+.AP_toggle-btn {
+background: none;
+border: none;
+color: #94a3b8;
+cursor: pointer;
+font-size: 0.9rem;
+padding: 0.1rem 0.3rem;
+border-radius: 6px;
+transition: all 0.2s ease;
+display: flex;
+align-items: center;
+}
+
+.AP_toggle-btn:hover {
+color: #4169E1;
+background: rgba(65, 105, 225, 0.06);
+}
+
+/* ===== STATS GRID ===== */
+.AP_stats-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 0.8rem;
+margin: 1.4rem 0 1.8rem;
+}
+
+.AP_stat-block {
+background: #f8fafc;
+border-radius: 14px;
+padding: 0.9rem 0.6rem;
+text-align: center;
+border: 1px solid rgba(0, 0, 0, 0.03);
+transition: all 0.3s ease;
+}
+
+.AP_stat-block:hover {
+background: rgba(65, 105, 225, 0.04);
+border-color: rgba(65, 105, 225, 0.12);
+transform: translateY(-3px);
+box-shadow: 0 4px 16px rgba(65, 105, 225, 0.06);
+}
+
+.AP_stat-block .AP_stat-number {
+display: block;
+font-size: 1.3rem;
+font-weight: 700;
+color: #0f172a;
+line-height: 1.2;
+}
+
+.AP_stat-block .AP_stat-label {
+font-size: 0.6rem;
+text-transform: uppercase;
+letter-spacing: 0.04em;
+color: #94a3b8;
+font-weight: 600;
+}
+
+.AP_stat-icon {
+font-size: 1.1rem;
+color: #4169E1;
+display: block;
+margin-bottom: 0.2rem;
+}
+
+.AP_action-grid {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+gap: 0.7rem;
+margin-top: 0.5rem;
+}
+
+.AP_action-btn {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 0.5rem;
+padding: 0.65rem 0.5rem;
+border-radius: 40px;
+font-weight: 600;
+font-size: 0.78rem;
+font-family: inherit;
+border: none;
+cursor: pointer;
+transition: all 0.25s ease;
+}
+
+.AP_action-btn i {
+font-size: 0.9rem;
+}
+
+.AP_action-btn.AP_primary {
+background: #4169E1;
+color: #ffffff;
+box-shadow: 0 4px 16px rgba(65, 105, 225, 0.25);
+}
+
+.AP_action-btn.AP_primary:hover {
+background: #365fd6;
+transform: translateY(-2px);
+box-shadow: 0 8px 28px rgba(65, 105, 225, 0.35);
+}
+
+.AP_action-btn.AP_outline {
+background: transparent;
+color: #4169E1;
+border: 1.5px solid #4169E1;
+}
+
+.AP_action-btn.AP_outline:hover {
+background: rgba(65, 105, 225, 0.06);
+transform: translateY(-2px);
+}
+
+.AP_action-btn.AP_danger-outline {
+background: transparent;
+color: #ef4444;
+border: 1.5px solid #ef4444;
+}
+
+.AP_action-btn.AP_danger-outline:hover {
+background: rgba(239, 68, 68, 0.06);
+transform: translateY(-2px);
+}
+
+.AP_action-btn:active {
+transform: scale(0.96);
+}
+
+@media (max-width: 769px) {
+
+.AP_RelativeDB_product {
+width: calc(100% - 310px);
+margin-left: 297px;
+margin-top: 5rem;
+padding: 0 1rem 0 0.5rem;
+}
+
+.AP_profile-card {
+max-width: 520px;
+padding: 2rem 1.8rem;
+}
+
+.AP_action-grid {
+grid-template-columns: 1fr 1fr;
+}
+
+.AP_avatar-circle {
+width: 96px;
+height: 96px;
+}
+
+.AP_avatar-circle h1 {
+font-size: 2.3rem;
+}
+}
+
+@media (max-width: 768px) {
+
+.AP_RelativeDB_product {
+width: calc(100% - 20px);
+margin-left: 10px;
+padding: 0 0.8rem;
+margin-top: 5em;
+}
+
+.AP_RelativeDB_PRQuery-inside {
+margin-left: 10px;
+width: calc(100% - 20px);
+}
+
+.AP_DB_products_ {
+padding: 0.5rem 0 2rem 0;
+}
+
+.AP_profile-card {
+padding: 1.5rem 1.2rem;
+border-radius: 18px;
+}
+
+.AP_avatar-circle {
+width: 80px;
+height: 80px;
+}
+
+.AP_avatar-circle h1 {
 font-size: 2rem;
 }
 
-.admin-info-box h2 {
-margin: 0.3em 0;
-font-weight: 600;
-color: #333;
-width: 100%;
-margin: auto;
-line-height: 1.9em;
+.AP_status-dot {
+width: 16px;
+height: 16px;
+}
+
+.AP_admin-name {
 font-size: 1.2rem;
-word-break: break-all;
-font-weight: normal;
 }
 
-.flx_adminPr {
-display: flex;
-justify-content: center;
-gap: 1.2em;
-line-height: 3.3em;
+.AP_stats-grid {
+grid-template-columns: 1fr 1fr 1fr;
+gap: 0.5rem;
 }
 
-.flx_adminPr li {
-color: #808080;
-cursor: pointer;
+.AP_stat-block {
+padding: 0.6rem 0.3rem;
+border-radius: 10px;
 }
 
-.flx_adminPr i {
-font-size: 1.3rem;
-color: #C1BCBC;
-line-height: 2.5em;
-cursor: pointer;
-}
-
-.password-section {
-display: flex;
-justify-content: center;
-align-items: center;
-gap: 0.7em;
-font-size: 1.1rem;
-margin: 1em 0;
-margin-top: 1.5em;
-}
-
-.password-section p {
+.AP_stat-block .AP_stat-number {
 font-size: 1rem;
 }
 
-.password-section span {
-cursor: pointer;
-color: #888;
-margin-top: .4em;
-margin-left: .5em;
+.AP_stat-block .AP_stat-label {
+font-size: 0.55rem;
 }
 
+.AP_action-grid {
+grid-template-columns: 1fr;
+gap: 0.5rem;
+}
+
+.AP_action-btn {
+padding: 0.55rem 0.5rem;
+font-size: 0.75rem;
+}
+
+.AP_contact-row {
+font-size: 0.8rem;
+padding: 0.4rem 0.8rem;
+}
+
+.AP_contact-row span {
+font-size: 0.8rem;
+}
+}
+
+@media (max-width: 480px) {
+
+.AP_RelativeDB_product {
+width: 100%;
+margin-left: 0;
+padding: 0 0.5rem;
+}
+
+.AP_RelativeDB_PRQuery-inside {
+margin-left: 0;
+width: 100%;
+}
+
+.AP_profile-card {
+padding: 1.2rem 0.8rem;
+border-radius: 14px;
+}
+
+.AP_avatar-circle {
+width: 68px;
+height: 68px;
+}
+
+.AP_avatar-circle h1 {
+font-size: 1.6rem;
+}
+
+.AP_status-dot {
+width: 14px;
+height: 14px;
+bottom: 2px;
+right: 2px;
+}
+
+.AP_admin-name {
+font-size: 1.1rem;
+}
+
+.AP_admin-role {
+font-size: 0.65rem;
+padding: 0.1rem 1rem;
+}
+
+.AP_stats-grid {
+grid-template-columns: 1fr 1fr 1fr;
+gap: 0.3rem;
+}
+
+.AP_stat-block .AP_stat-number {
+font-size: 0.85rem;
+}
+
+.AP_stat-block .AP_stat-label {
+font-size: 0.5rem;
+}
+
+.AP_stat-icon {
+font-size: 0.9rem;
+}
+
+.AP_action-btn {
+font-size: 0.7rem;
+padding: 0.45rem 0.4rem;
+border-radius: 30px;
+}
+
+.AP_action-btn i {
+font-size: 0.8rem;
+}
+
+.AP_contact-row {
+padding: 0.3rem 0.6rem;
+gap: 0.6rem;
+}
+
+.AP_contact-row span {
+font-size: 0.75rem;
+}
+
+.AP_contact-row i {
+font-size: 0.8rem;
+}
+
+.AP_toggle-btn {
+font-size: 0.8rem;
+}
+}
+
+::-webkit-scrollbar {
+height: 4px;
+width: 4px;
+}
+
+::-webkit-scrollbar-track {
+background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+background: #cbd5e1;
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: #94a3b8;
+}

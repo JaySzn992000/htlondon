@@ -1,122 +1,349 @@
 
-.dashboard-nav {
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+.DN_dashboard-nav {
 position: fixed;
-width: 100%;
-padding: 7px;
 top: 0;
-box-shadow: 0 4px 6px rgba(10, 8, 8, 0.052);
-color: #FFFFFF;
-background-color: #FFFFFF;
-z-index: 999;
+left: 0;
+width: 100%;
+height: 68px;
+background: #ffffff;
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.02);
+z-index: 1000;
+display: flex;
+align-items: center;
+border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 
-.nav_insidenav {
+.DN_nav-inside {
 display: flex;
 align-items: center;
 justify-content: space-between;
-padding-right: 21px;
-padding-left: 21px;
-width: calc(100% - 317px);
+width: calc(100% - 310px);
 margin-left: 297px;
-transition: 0.3s;
+padding: 0 1.8rem 0 1.2rem;
+transition: margin-left 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+height: 100%;
 }
 
-.navContainer-inside {
-width: calc(100% - 0px);
-margin-left: 0px;
+.DN_navContainer-inside {
+margin-left: 12px;
+width: calc(100% - 24px);
 }
 
-.nav_insidenav .liDashboard {
-margin-left: -.2em;
-}
-
-.nav_insidenav section div {
+.DN_left-section {
 display: flex;
 align-items: center;
-gap: 1.3em;
+gap: 0.8rem;
+flex-shrink: 0;
 }
 
-.dashboard-nav section img {
-width: 29px;
-cursor: pointer;
-}
-
-.nav_insidenav .dashboard_firstContainer .fa-bars {
-margin-right: 0.7em;
-cursor: pointer;
-filter: invert(0);
-}
-
-
-@media (max-width: 768px) {
-
-.nav_insidenav {
+.DN_menu-btn {
+background: none;
+border: none;
+width: 40px;
+height: 40px;
+border-radius: 10px;
 display: flex;
-justify-content: space-between;
-width: calc(100% - 0px);
-margin-left: 13px;
-padding-right: 41px;
-padding-left: 7px;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+transition: all 0.25s ease;
+color: #64748b;
+font-size: 1.15rem;
 }
 
-.nav_insidenav .liDashboard {
+.DN_menu-btn:hover {
+background: rgba(65, 105, 225, 0.06);
+color: #4169E1;
+}
+
+.DN_menu-btn:active {
+transform: scale(0.92);
+}
+
+.DN_menu-btn i {
+font-size: 1.25rem;
+}
+
+.DN_logo-wrapper {
+display: flex;
+align-items: center;
+gap: 0.6rem;
+cursor: pointer;
+transition: all 0.25s ease;
+padding: 0.2rem 0.8rem 0.2rem 0.2rem;
+border-radius: 10px;
+}
+
+.DN_logo-wrapper:hover {
+background: rgba(65, 105, 225, 0.04);
+}
+
+.DN_logo-icon {
+width: 36px;
+height: 36px;
+border-radius: 10px;
+background: linear-gradient(135deg, #4169E1, #6a8de7);
+display: flex;
+align-items: center;
+justify-content: center;
+color: #ffffff;
+font-size: 1rem;
+box-shadow: 0 2px 8px rgba(65, 105, 225, 0.20);
+transition: all 0.3s ease;
+}
+
+.DN_logo-wrapper:hover .DN_logo-icon {
+box-shadow: 0 4px 16px rgba(65, 105, 225, 0.30);
+transform: scale(1.02);
+}
+
+.DN_logo-text {
+font-size: 1.05rem;
+font-weight: 700;
+color: #0f172a;
+letter-spacing: -0.02em;
+}
+
+.DN_right-section {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+flex-shrink: 0;
+}
+
+.DN_user-profile {
+display: flex;
+align-items: center;
+gap: 0.7rem;
+cursor: pointer;
+padding: 0.2rem 1rem 0.2rem 0.4rem;
+border-radius: 40px;
+transition: all 0.25s ease;
+background: rgba(0, 0, 0, 0.01);
+border: 1px solid transparent;
+}
+
+.DN_user-profile:hover {
+background: rgba(65, 105, 225, 0.04);
+border-color: rgba(65, 105, 225, 0.08);
+}
+
+.DN_user-profile img {
+width: 38px;
+height: 38px;
+border-radius: 50%;
+object-fit: cover;
+border: 2px solid rgba(65, 105, 225, 0.12);
+transition: all 0.3s ease;
+}
+
+.DN_user-profile:hover img {
+border-color: #4169E1;
+}
+
+.DN_user-info {
+display: flex;
+flex-direction: column;
+line-height: 1.15;
+}
+
+.DN_user-name {
+font-size: 0.8rem;
+font-weight: 600;
+color: #0f172a;
+}
+
+.DN_user-role {
+font-size: 0.6rem;
+font-weight: 400;
+color: #94a3b8;
+}
+
+.DN_user-arrow {
+font-size: 0.6rem;
+color: #94a3b8;
+transition: all 0.3s ease;
+margin-left: 0.1rem;
+}
+
+.DN_user-profile:hover .DN_user-arrow {
+color: #4169E1;
+transform: rotate(180deg);
+}
+
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+.DN_dashboard-nav {
+height: 64px;
+}
+
+.DN_nav-inside {
+width: calc(100% - 310px);
+margin-left: 297px;
+padding: 0 1.2rem 0 1rem;
+}
+
+.DN_navContainer-inside {
+margin-left: 10px;
+width: calc(100% - 20px);
+}
+
+.DN_logo-text {
+font-size: 0.95rem;
+}
+
+.DN_menu-btn i {
+font-size: 1.25rem;
+}
+
+.DN_logo-icon {
+width: 32px;
+height: 32px;
+font-size: 0.9rem;
+}
+
+.DN_user-info .DN_user-role {
 display: none;
 }
 
+.DN_user-profile {
+padding: 0.2rem 0.6rem 0.2rem 0.2rem;
 }
 
-
-@media (min-width: 769px) and (max-width: 992px) {
-
-
-.nav_insidenav {
-display: flex;
-justify-content: space-between;
-width: calc(100% - 36.66vw);
-margin-left: 36.66vw;
-padding-right: 31px;
-padding-left: 21px;
 }
 
-.navContainer-inside {
-width: calc(100% - 0px);
-margin-left: 0px;
-}
-}
+@media (max-width: 768px) {
 
-
-@media (min-width: 992px) and (max-width: 1245px) {
-
-.nav_insidenav {
-display: flex;
-justify-content: space-between;
-width: calc(100% - 32.66vw);
-margin-left: 32.66vw;
-padding-right: 31px;
-padding-left: 21px;
+.DN_dashboard-nav {
+height: 58px;
 }
 
-.navContainer-inside {
-width: calc(100% - 0px);
-margin-left: 0px;
-}
-}
-
-
-@media (min-width: 1245px) and (max-width: 1519px) {
-
-.nav_insidenav {
-display: flex;
-justify-content: space-between;
-width: calc(100% - 29.66vw);
-margin-left: 29.66vw;
-padding-right: 31px;
-padding-left: 21px;
+.DN_nav-inside {
+margin-left: 8px;
+width: calc(100% - 16px);
+padding: 0 0.6rem 0 0.4rem;
 }
 
-.navContainer-inside {
-width: calc(100% - 0px);
-margin-left: 0px;
+.DN_navContainer-inside {
+margin-left: 4px;
+width: calc(100% - 8px);
 }
 
+.DN_logo-text {
+font-size: 0.9rem;
+}
+
+.DN_logo-icon {
+width: 32px;
+height: 32px;
+}
+
+.fa-cube{
+font-size: .9rem;
+}
+
+.DN_menu-btn {
+width: 34px;
+height: 34px;
+font-size: 1rem;
+}
+
+.DN_menu-btn i{
+font-size: 1.2rem;
+}
+
+.DN_user-profile img {
+width: 33px;
+height: 33px;
+}
+
+.DN_user-info {
+display: none;
+}
+
+.DN_user-profile {
+padding: 0.1rem 0.3rem 0.1rem 0.1rem;
+}
+
+.DN_user-arrow {
+display: none;
+}
+
+.DN_right-section {
+gap: 0.2rem;
+}
+
+}
+
+@media (max-width: 480px) {
+
+.DN_dashboard-nav {
+height: 52px;
+}
+
+.DN_nav-inside {
+margin-left: 4px;
+width: calc(100% - 8px);
+padding: 0 0.3rem 0 0.2rem;
+}
+
+/* .DN_logo-text {
+display: none;
+} */
+
+.DN_logo-icon {
+width: 32px;
+height: 32px;
+font-size: 0.7rem;
+}
+
+.fa-cube {
+font-size: .9rem;
+}
+
+/* .DN_menu-btn {
+width: 35px;
+height: 35px;
+font-size: 0.9rem;
+} */
+
+.DN_menu-btn i {
+font-size: 1.2rem;
+}
+
+.DN_user-profile img {
+width: 33px;
+height: 33px;
+}
+
+/* .DN_user-profile {
+padding: 0.1rem 0.2rem 0.1rem 0.1rem;
+} */
+
+}
+
+::-webkit-scrollbar {
+height: 4px;
+width: 4px;
+}
+
+::-webkit-scrollbar-track {
+background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+background: #cbd5e1;
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: #94a3b8;
 }

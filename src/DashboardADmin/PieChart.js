@@ -11,15 +11,12 @@ useEffect(() => {
 const fetchData = async () => {
 
 try {
-const response = await fetch("https://naturalbuti.onrender.com/fetchCutomerOrder");
+const response = await fetch("https://namasya.onrender.com/fetchCutomerOrder");
 const data = await response.json();
 
 if (!data.products || !Array.isArray(data.products)) {
 throw new Error("Invalid data format");
 }
-
-// Group earnings 
-// by month
 
 const monthlyEarnings = {};
 data.products.forEach(item => {
@@ -28,16 +25,9 @@ const month = dateObj.toLocaleString('default', { month: 'short', year: 'numeric
 monthlyEarnings[month] = (monthlyEarnings[month] || 0) + (item.amount || 0);
 });
 
-// Sort months 
-// chronologically
-
 const sortedMonths = Object.keys(monthlyEarnings).sort((a, b) => {
 return new Date(a) - new Date(b);
 });
-
-
-// Prepare data 
-// for the chart
 
 const calculatedSeries = sortedMonths.map(month => monthlyEarnings[month]);
 const calculatedLabels = sortedMonths.map(month => {
@@ -60,41 +50,41 @@ fetchData();
 
 
 const options = {
-    
-  chart: {
-    type: 'pie',
-  },
-  labels: labels,
-  tooltip: {
-    y: {
-      formatter: function (value) {
-        const num = parseFloat(value);
-        return `₹ ${Number.isInteger(num)
-          ? num.toLocaleString(undefined, { maximumFractionDigits: 0 })
-          : num.toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
-      }
-    }
-  },
-  legend: {
-    position: 'right',
-    formatter: function (seriesName, opts) {
-      const val = parseFloat(opts.w.globals.series[opts.seriesIndex]);
-      return `${seriesName}: ₹ ${Number.isInteger(val)
-        ? val.toLocaleString(undefined, { maximumFractionDigits: 0 })
-        : val.toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
-    }
-  },
-  responsive: [{
-    breakpoint: 480,
-    options: {
-      chart: {
-        width: 300
-      },
-      legend: {
-        position: 'bottom'
-      }
-    }
-  }]
+
+chart: {
+type: 'pie',
+},
+labels: labels,
+tooltip: {
+y: {
+formatter: function (value) {
+const num = parseFloat(value);
+return `₹ ${Number.isInteger(num)
+? num.toLocaleString(undefined, { maximumFractionDigits: 0 })
+: num.toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
+}
+}
+},
+legend: {
+position: 'right',
+formatter: function (seriesName, opts) {
+const val = parseFloat(opts.w.globals.series[opts.seriesIndex]);
+return `${seriesName}: ₹ ${Number.isInteger(val)
+? val.toLocaleString(undefined, { maximumFractionDigits: 0 })
+: val.toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
+}
+},
+responsive: [{
+breakpoint: 480,
+options: {
+chart: {
+width: 300
+},
+legend: {
+position: 'bottom'
+}
+}
+}]
 };
 
 if (loading) {
@@ -105,9 +95,7 @@ if (series.length === 0) {
 return <div>No data available for the chart.</div>;
 }
 
-
 return (
-
 
 <div className="PieChart-container">
 

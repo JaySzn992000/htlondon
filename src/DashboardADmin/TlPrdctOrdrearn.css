@@ -1,607 +1,665 @@
-/* Done */
 
-#PieChrt{
-margin-top: 3.7em;
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
 }
 
-
-.ChartsTg {
-margin: 1.7em 0em 1.3em 0em;
-font-size: 1.3rem;
+body {
+font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+background: #f5f7fb;
+color: #1e293b;
 }
 
-.chart-container {
-background-color: #ffffff;
-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.DH_Parent_relativeChart {
+margin-left: 297px;
+width: calc(100% - 310px);
+padding: 0 1.5rem 0 0.5rem;
+margin-top: 5em;
+transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+.DH_ChartParentContainer-inside {
+margin-left: 20px;
+width: calc(100% - 40px);
+}
+
+.DH_all_divChart {
+width: 100%;
+max-width: 1400px;
+margin: 0 auto;
+}
+
+.DH_ChartContainer-inside {
+width: 100%;
+}
+
+.DH_Parent_relative {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 1.2rem;
+margin-left: 297px;
+width: calc(100% - 310px);
+padding: 0 1.5rem 1.5rem 0.5rem;
+transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+.DH_DashParentContainer-inside {
+margin-left: 20px;
+width: calc(100% - 40px);
+}
+
+.DH_charts_wrapper {
+margin-left: 297px;
+width: calc(100% - 310px);
+padding: 0 1.5rem 3rem 0.5rem;
+}
+
+.DH_charts_wrapper.DH_ChartParentContainer-inside {
+margin-left: 20px;
+width: calc(100% - 40px);
+}
+
+.DH_Dashboard_continer {
+padding: 1.2rem 0 0.5rem 0;
+}
+
+.DH_header-section {
+display: flex;
+align-items: center;
+justify-content: space-between;
+flex-wrap: wrap;
+gap: 1rem;
+margin-bottom: 1.5rem;
+}
+
+.DH_title-area h2 {
+font-size: 1.6rem;
+font-weight: 700;
+color: #0f172a;
+letter-spacing: -0.02em;
+}
+
+.DH_title-area .DH_subtitle {
+font-size: 0.85rem;
+color: #94a3b8;
+margin-top: 0.1rem;
+}
+
+.DH_filter-container {
+display: flex;
+align-items: center;
+gap: 0.6rem;
+flex-wrap: wrap;
+background: #ffffff;
+padding: 0.3rem 0.8rem 0.3rem 1rem;
+border-radius: 40px;
+border: 1px solid rgba(0, 0, 0, 0.04);
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.DH_filter-container label {
+font-size: 0.75rem;
+font-weight: 600;
+color: #64748b;
+display: flex;
+align-items: center;
+gap: 0.4rem;
+white-space: nowrap;
+}
+
+.DH_filter-container label i {
+color: #4f46e5;
+}
+
+.DH_filter-container input[type="date"] {
+padding: 0.4rem 0.7rem;
+border: 1px solid rgba(0, 0, 0, 0.06);
+border-radius: 30px;
+font-size: 0.78rem;
+font-family: inherit;
+background: #f8fafc;
+color: #1e293b;
+outline: none;
+transition: all 0.3s ease;
+min-width: 140px;
+}
+
+.DH_filter-container input[type="date"]:focus {
+border-color: #4f46e5;
+background: #ffffff;
+box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.06);
+}
+
+.DH_btn-filter {
+padding: 0.4rem 1.2rem;
+border-radius: 30px;
+font-size: 0.72rem;
+font-weight: 500;
+font-family: inherit;
 cursor: pointer;
-margin-top: 3.7em;
-margin-right: 1.3em;
+transition: all 0.2s ease;
+border: none;
+background: #4f46e5;
+color: #fff;
+box-shadow: 0 2px 8px rgba(79, 70, 229, 0.15);
 }
 
+.DH_btn-filter:hover {
+background: #4338ca;
+box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
+transform: translateY(-1px);
+}
 
-.linechart-container {
-background-color: #ffffff;
-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-margin-right: 1.3em;
+.DH_btn-clear {
+padding: 0.4rem 0.7rem;
+border-radius: 30px;
+font-size: 0.7rem;
+font-family: inherit;
 cursor: pointer;
+transition: all 0.2s ease;
+border: 1px solid rgba(0, 0, 0, 0.06);
+background: transparent;
+color: #94a3b8;
 }
 
-
-.PieChart-container{
-background-color: #ffffff;
-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-margin-right: 1.3em;
-cursor: pointer;
-height: 497px;
-margin-top: 3.7em;
+.DH_btn-clear:hover {
+background: rgba(0, 0, 0, 0.04);
+color: #475569;
 }
 
-
-.Dashboard_continer {
-margin-top: 5.3em;
-}
-
-
-.filter-container {
+.DH_all_div {
 display: flex;
 align-items: center;
 gap: 1rem;
-border-radius: 8px;
-max-width: 500px;
-margin-top: 1.7em;
-}
-
-
-.filter-container label {
-font-weight: 600;
-color: #333;
-font-size: 1rem;
-margin-left: -.9em;
-}
-
-
-.filter-container input[type="date"] {
-padding: 0.5rem;
-border: 1px solid #ccc;
-border-radius: 4px;
-}
-
-
-.filter-container button {
-padding: 13px;
-width: 107px;
-background-color: #007bff;
-color: #fff;
-border: none;
-border-radius: 4px;
-cursor: pointer;
-}
-
-
-.filter-container button:hover {
-background-color: #0056b3;
-}
-
-
-/*  */
-
-.tagh3{
-margin-top: -2.7em;
-margin-right: -6.7em;
-font-size: 1.3rem;
-}
-
-
-.Parent_relative {
-display: flex;
-justify-content: end;
-flex-wrap: wrap;
-text-align: start;
-width: 100%;
-padding: 23px;
-gap: 1.2em;
-margin-left: -1vw;
-margin-top: -.9em;
-transition: 0.5s;
-cursor: pointer;
-}
-
-
-.Parent_relative .all_div {
-display: flex;
-align-items: center;
-line-height: 2.1em;
-gap: 1.1em;
-width: 273px;
-height: 93px;
-height: auto;
-padding: 8px;
-border-radius: 7px;
-transition: 0.5s;
-}
-
-
-.Parent_relative .DashContainer-inside {
-width: 23%;
-}
-
-
-/* Duplicate 
-for Chart's */
-
-
-.Parent_relativeChart {
-display: flex;
-justify-content: end;
-flex-wrap: wrap;
-text-align: start;
-max-width: 100%;
-margin-top: 2.1em;
-margin-left: 2vw;
-transition: 0.5s;
+background: #ffffff;
+border-radius: 16px;
+padding: 1.2rem 1.4rem;
+border: 1px solid rgba(0, 0, 0, 0.04);
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+transition: all 0.3s ease;
+position: relative;
 overflow: hidden;
 }
 
+.DH_all_div::before {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+height: 3px;
+border-radius: 16px 16px 0 0;
+}
 
-.Parent_relativeChart .ChartParentContainer-inside {
+.DH_div_total_customer::before {
+background: linear-gradient(90deg, #4f46e5, #818cf8);
+}
+.DH_div_earning::before {
+background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+.DH_div_amounts::before {
+background: linear-gradient(90deg, #22c55e, #4ade80);
+}
+.DH_div_users::before {
+background: linear-gradient(90deg, #ec4899, #f472b6);
+}
+
+.DH_all_div:hover {
+box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+transform: translateY(-3px);
+}
+
+.DH_card-icon {
+width: 48px;
+height: 48px;
+border-radius: 12px;
 display: flex;
-justify-content: end;
-flex-wrap: wrap;
-text-align: start;
-width: 100%;
-padding: 27px;
-gap: 1.3em;
-transition: 0.5s;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
 }
 
-
-.Parent_relativeChart .all_divChart {
-width: 80%;
+.DH_icon-orders {
+background: rgba(79, 70, 229, 0.08);
+}
+.DH_icon-earning {
+background: rgba(245, 158, 11, 0.08);
+}
+.DH_icon-products {
+background: rgba(34, 197, 94, 0.08);
+}
+.DH_icon-users {
+background: rgba(236, 72, 153, 0.08);
 }
 
-
-.Parent_relativeChart .ChartContainer-inside {
-width: 98%;
+.DH_card-icon img {
+width: 28px;
+height: 28px;
+object-fit: contain;
 }
 
-
-
-/*  */
-
-
-.Parent_relative .div_total_customer {
-background-color: #4169E1;
+.DH_card-info {
+flex: 1;
+min-width: 0;
 }
 
-
-.Parent_relative .div_earning {
-background-color: #bc8f8f;
+.DH_card-info h4 {
+font-size: 0.7rem;
+font-weight: 600;
+text-transform: uppercase;
+letter-spacing: 0.04em;
+color: #94a3b8;
+margin-bottom: 0.1rem;
 }
 
-.Parent_relative .div_amounts {
-background-color: #2F4F4F;
+.DH_card-info h2 {
+font-size: 1.4rem;
+font-weight: 700;
+color: #0f172a;
+line-height: 1.3;
 }
 
-.Parent_relative .div_users {
-background-color: #483d8b;
+.DH_card-trend {
+font-size: 0.65rem;
+font-weight: 500;
+display: inline-flex;
+align-items: center;
+gap: 0.2rem;
+padding: 0.05rem 0.5rem;
+border-radius: 20px;
+margin-top: 0.2rem;
 }
 
-.Parent_relative .all_div div h2,
-.Parent_relative .all_div div h4 {
-color: #FFFFFF;
-text-align: start;
+.DH_trend-up {
+color: #22c55e;
+background: rgba(34, 197, 94, 0.08);
 }
 
-
-.Parent_relative div img {
-width: 51px;
-border-radius: 17px;
+.DH_trend-down {
+color: #ef4444;
+background: rgba(239, 68, 68, 0.08);
 }
 
-
-.filter-container {
-margin-left: .9em;
-margin-bottom: 1.3em;
+.DH_trend-up i,
+.DH_trend-down i {
+font-size: 0.5rem;
 }
 
-
-
-@media (max-width: 575px) {
-
-.PieChart {
-height: 403px;
-margin-left: 2.3vw;
-}
-
-.linechart-container {
-margin-left: 2.3vw;
-}
-
-.PieChart-container {
-margin-left: 2.3vw;
-height: 537px;
-}
-
-.chart-container {
-margin-left: 2.5vw;
-}
-
-
-.Parent_relative {
+.DH_charts-grid {
 display: grid;
-grid-template-columns: repeat(1, 1fr);
+grid-template-columns: 1fr 1fr;
+gap: 1.5rem;
+padding: 0.5rem 0 0 0;
 }
 
-.Parent_relative .all_div {
-width: 100%;
-margin-left: 0em;
-}
-
-.tagh3{
-margin-right: 0em;
-margin-left: .3em;
-font-size: 1.3rem;
-}
-
-.Parent_relativeChart .all_divChart {
-width: 100%;
-}
-
-
-.Parent_relativeChart .ChartContainer-inside {
-width: 100%;
-}
-
-
-.filter-container {
+.DH_chart-card {
+background: #ffffff;
+border-radius: 16px;
+border: 1px solid rgba(0, 0, 0, 0.04);
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+overflow: hidden;
+transition: all 0.3s ease;
+display: flex;
 flex-direction: column;
+min-height: 380px;
 }
 
-.Dashboard_continer h2 {
-line-height: 1.17em;
-font-size: 1.3rem;
+.DH_chart-card:hover {
+box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
 }
 
-
-.ChartsTg {
-line-height: 1.7em;
+.DH_chart-line {
+grid-column: 1 / 2;
+grid-row: 1 / 2;
 }
 
-.chart-container {
-margin-bottom: 2.7em;
+.DH_chart-bar {
+grid-column: 2 / 3;
+grid-row: 1 / 2;
 }
 
+.DH_chart-pie {
+grid-column: 1 / 3;
+grid-row: 2 / 3;
+max-width: 100%;
+justify-self: stretch;
 }
 
+.DH_chart-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 1rem 1.4rem 0.2rem 1.4rem;
+flex-shrink: 0;
+}
 
+.DH_chart-header h3 {
+font-size: 0.9rem;
+font-weight: 600;
+color: #0f172a;
+}
 
+.DH_chart-badge {
+font-size: 0.6rem;
+font-weight: 500;
+color: #4f46e5;
+background: rgba(79, 70, 229, 0.08);
+padding: 0.15rem 0.7rem;
+border-radius: 40px;
+}
 
-/* for Filter ..  */
+.DH_chart-body {
+flex: 1;
+padding: 0.5rem 1rem 1rem 1rem;
+display: flex;
+align-items: center;
+justify-content: center;
+min-height: 220px;
+}
 
+.DH_chart-body > * {
+width: 100%;
+height: 100%;
+min-height: 200px;
+}
+
+.DH_pie-body {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.DH_pie-body > * {
+width: 100%;
+max-width: 420px;
+height: 100%;
+min-height: 200px;
+}
+
+@media (max-width: 769px) {
+
+.DH_Parent_relative {
+grid-template-columns: repeat(2, 1fr);
+margin-left: 297px;
+width: calc(100% - 310px);
+padding: 0 1rem 1rem 0.5rem;
+}
+
+.DH_Parent_relativeChart {
+margin-left: 297px;
+width: calc(100% - 310px);
+padding: 0 1rem 0 0.5rem;
+}
+
+.DH_charts_wrapper {
+margin-left: 297px;
+width: calc(100% - 310px);
+padding: 0 1rem 2.5rem 0.5rem;
+}
+
+.DH_charts-grid {
+grid-template-columns: 1fr 1fr;
+gap: 1rem;
+}
+
+.DH_chart-pie {
+grid-column: 1 / 3;
+min-height: 340px;
+}
+
+.DH_chart-line,
+.DH_chart-bar {
+min-height: 340px;
+}
+
+.DH_chart-card {
+min-height: 340px;
+}
+
+.DH_header-section {
+flex-direction: column;
+align-items: flex-start;
+}
+
+.DH_filter-container {
+width: 100%;
+border-radius: 16px;
+padding: 0.8rem 1rem;
+}
+}
 
 @media (max-width: 768px) {
 
-.Dashboard_continer {
-text-align: start;
-margin-bottom: 2.3em;
+.DH_Parent_relative {
+grid-template-columns: 1fr 1fr;
+gap: 0.8rem;
+margin-left: 10px;
+width: calc(100% - 20px);
+padding: 0 0.8rem 1rem 0.8rem;
 }
 
+.DH_Parent_relativeChart {
+margin-left: 10px;
+width: calc(100% - 20px);
+margin-top: 3.5em;
+padding: 0 0.8rem 0 0.8rem;
+}
 
-.Dashboard_continer h2 {
-font-size: 1.4rem;
-text-align: start;
-margin-left: .5em;
-}   
+.DH_charts_wrapper {
+margin-left: 10px;
+width: calc(100% - 20px);
+padding: 0 0.8rem 2rem 0.8rem;
+}
 
+.DH_DashParentContainer-inside {
+margin-left: 10px;
+width: calc(100% - 20px);
+}
 
-.filter-container {
+.DH_ChartParentContainer-inside {
+margin-left: 10px;
+width: calc(100% - 20px);
+}
+
+.DH_all_div {
+padding: 0.9rem 1rem;
+}
+
+.DH_card-icon {
+width: 40px;
+height: 40px;
+}
+
+.DH_card-icon img {
+width: 22px;
+height: 22px;
+}
+
+.DH_card-info h2 {
+font-size: 1.1rem;
+}
+
+.DH_card-info h4 {
+font-size: 0.6rem;
+}
+
+.DH_header-section {
 flex-direction: column;
 align-items: flex-start;
-margin-left: .9em;
+gap: 0.8rem;
 }
 
-
-.filter-container label {
-font-weight: 600;
-color: #333;
-margin-left: 0em;
+.DH_title-area h2 {
+font-size: 1.2rem;
 }
 
-
-.filter-container button {
-margin-top: .8em;
+.DH_title-area .DH_subtitle {
+font-size: 0.75rem;
 }
 
-}  
-
-
-@media (min-width: 575px) and (max-width: 768px) {
-
-.Parent_relative {
-display: grid;
-grid-template-columns: repeat(2, 1fr);
-}
-
-.Parent_relative .all_div {
+.DH_filter-container {
 width: 100%;
-}
-
-
-.Parent_relativeChart .all_divChart {
-width: 100%;
-}
-
-.Parent_relativeChart .ChartContainer-inside {
-width: 100%;
-}
-
-.tagh3{
-margin-top: -2.9em;
-margin-right: 0em;
-margin-left: .3em;
-position: absolute;
-}
-
-
-.filter-container {
-flex-direction: column;
-}
-
-}
-
-
-
-@media (min-width: 769px) and (max-width: 992px) {
-
-
-.Dashboard_continer h2 {
-text-align: start;
-}  
-
-.Parent_relative {
-position: relative;
-right: 0;
-display: grid;
-grid-template-columns: repeat(2, 1fr);
-max-width: 62%;
-margin-left: 37vw;
-}
-
-.Parent_relative.DashParentContainer-inside {
-max-width: 100%;
-margin-left: -.2vw;
-}
-
-.Parent_relative .all_div {
-width: 100%;
-margin-left: .2vw;
-}
-
-.Parent_relative .DashContainer-inside {
-width: 100%;
-}
-
-.Parent_relative .all_div h4 {
-line-height: 1.5em;
-margin-top: 0.4em;
-}
-
-.Parent_relative div img {
-width: 57px;
-}
-
-.tagh3{
-margin-top: -1.7em;
-margin-right: 0em;
-margin-left: 1.7em;
-position: absolute;
-}
-
-
-.Parent_relativeChart .ChartParentContainer-inside {
-display: flex;
-justify-content: end;
+border-radius: 14px;
+padding: 0.6rem 0.8rem;
 flex-wrap: wrap;
-text-align: start;
-width: 100%;
-gap: 1.3em;
 }
 
-
-.Parent_relativeChart .all_divChart {
-width: 61%;
+.DH_filter-container input[type="date"] {
+flex: 1;
+min-width: 100px;
+font-size: 0.7rem;
 }
 
-
-.Parent_relativeChart .ChartContainer-inside {
-width: 98%;
+.DH_charts-grid {
+grid-template-columns: 1fr;
+gap: 1rem;
 }
 
-
-
+.DH_chart-line {
+grid-column: 1 / 2;
+grid-row: auto;
 }
 
-@media (min-width: 992px) and (max-width: 1245px) {
-
-.Dashboard_continer {
-text-align: start;
-margin-bottom: 2.3em;
+.DH_chart-bar {
+grid-column: 1 / 2;
+grid-row: auto;
 }
 
-.Dashboard_continer h2 {
-font-size: 1.4rem;
-text-align: start;
-margin-left: .7em;
-}   
-
-.filter-container label {
-font-weight: 600;
-color: #333;
-margin-left: -1.5vw;
-}
-
-.Parent_relative {
-position: relative;
-display: grid;
-gap: 0.5em;
-grid-template-columns: repeat(4, minmax(0px, 1fr));
-max-width: 72.5%;
-margin-right: 1.5vw;
-margin-left: 25.5vw;
-}
-
-.Parent_relative.DashParentContainer-inside {
+.DH_chart-pie {
+grid-column: 1 / 2;
+grid-row: auto;
 max-width: 100%;
-margin-left: -1.5vw;
 }
 
-.Parent_relative .all_div {
-width: 100%;
-margin-left: 2.7vw;
+.DH_chart-card {
+min-height: 320px;
 }
 
-
-.filter-container {
-margin-left: 3vw;
+.DH_chart-header {
+padding: 0.8rem 1rem 0.1rem 1rem;
 }
 
-
-/*  */
-
-.Parent_relativeChart .ChartParentContainer-inside {
-display: flex;
-justify-content: end;
-flex-wrap: wrap;
-text-align: start;
-width: 100%;
-gap: 1.3em;
+.DH_chart-header h3 {
+font-size: 0.8rem;
 }
 
-
-.Parent_relativeChart .all_divChart {
-width: 72%;
+.DH_chart-body {
+padding: 0.3rem 0.6rem 0.8rem 0.6rem;
+min-height: 180px;
 }
 
-
-.Parent_relativeChart .ChartContainer-inside {
-width: 98%;
+.DH_chart-body > * {
+min-height: 160px;
 }
 
-
-/*  */
-
-.Parent_relative .all_div h4 {
-line-height: 1.5em;
-margin-top: 0.4em;
+.DH_pie-body > * {
+max-width: 400px;
+min-height: 160px;
 }
-
-.Parent_relative div img {
-width: 47px;
-}
-
-.tagh3{
-margin-top: -1.7em;
-margin-right: 0em;
-margin-left: 5.8vw;
-position: absolute;
-}
-
-.chart-container {
-margin-left: 1.5vw;
-}
-
-.linechart-container {
-margin-left: 1.5vw;
-}
-
-.PieChart-container{
-margin-left: 1.5vw;
-}
-
 
 }
 
+@media (max-width: 480px) {
 
-
-@media (min-width: 1245px) and (max-width: 1519px) {
-
-    
-.Dashboard_continer {
-text-align: start;
-margin-bottom: 2.3em;
+.DH_Parent_relative {
+grid-template-columns: 1fr 1fr;
+gap: 0.6rem;
+margin-left: 5px;
+width: calc(100% - 10px);
+padding: 0 0.5rem 0.8rem 0.5rem;
 }
 
-
-.Dashboard_continer h2 {
-font-size: 1.4rem;
-text-align: start;
-margin-left: 0em;
-}   
-
-
-.filter-container {
-margin-left: 2.1vw;
+.DH_Parent_relativeChart {
+margin-left: 5px;
+width: calc(100% - 10px);
+padding: 0 0.5rem 0 0.5rem;
 }
 
-.filter-container label {
-font-weight: 600;
-color: #333;
-margin-left: -2.1vw;
+.DH_charts_wrapper {
+margin-left: 5px;
+width: calc(100% - 10px);
+padding: 0 0.5rem 1.5rem 0.5rem;
 }
 
-
-.Parent_relative {
-position: relative;
-right: 0;
-display: grid;
-gap: 0.5em;
-grid-template-columns: repeat(4, 1fr);
-max-width: 75%;
-margin-left: 22vw;
+.DH_all_div {
+padding: 0.7rem 0.8rem;
+gap: 0.7rem;
 }
 
-.Parent_relative.DashParentContainer-inside {
-max-width: 100%;
-margin-left: -.3vw;
+.DH_card-icon {
+width: 34px;
+height: 34px;
 }
 
-.Parent_relative .all_div {
-width: 100%;
-margin-left: .3vw;
+.DH_card-icon img {
+width: 18px;
+height: 18px;
 }
 
-
-.Parent_relative div img {
-width: 51px;
+.DH_card-info h2 {
+font-size: 0.95rem;
 }
 
-
-.tagh3{
-margin-top: -1.7em;
-margin-right: 0em;
-margin-left: 1.7em;
-position: absolute;
+.DH_card-info h4 {
+font-size: 0.55rem;
 }
 
-
-.Parent_relativeChart .ChartParentContainer-inside {
-display: flex;
-justify-content: end;
-flex-wrap: wrap;
-text-align: start;
-width: 100%;
-gap: 1.3em;
+.DH_card-trend {
+font-size: 0.55rem;
+padding: 0.05rem 0.4rem;
 }
 
-
-.Parent_relativeChart .all_divChart {
-width: 77%;
+.DH_filter-container input[type="date"] {
+min-width: 80px;
+font-size: 0.65rem;
+padding: 0.3rem 0.5rem;
 }
 
-
-.Parent_relativeChart .ChartContainer-inside {
-width: 98%;
+.DH_btn-filter {
+padding: 0.3rem 0.8rem;
+font-size: 0.65rem;
 }
 
+.DH_btn-clear {
+padding: 0.3rem 0.5rem;
+}
 
+.DH_chart-card {
+min-height: 280px;
+}
+
+.DH_chart-body {
+min-height: 150px;
+padding: 0.2rem 0.4rem 0.6rem 0.4rem;
+}
+
+.DH_chart-body > * {
+min-height: 130px;
+}
+
+.DH_pie-body > * {
+max-width: 400px;
+min-height: 130px;
+}
+
+}
+
+::-webkit-scrollbar {
+height: 6px;
+width: 6px;
+}
+
+::-webkit-scrollbar-track {
+background: #f1f5f9;
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+background: #cbd5e1;
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: #94a3b8;
 }

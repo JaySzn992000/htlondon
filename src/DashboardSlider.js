@@ -1,128 +1,162 @@
+// DashboardSlider.js – Premium Sidebar Navigation
 import { useNavigate } from "react-router";
 import "./DashboardSlider.css";
 
-
 function DashboardSlider({ sidebarOpen }) {
-
 const navigate = useNavigate();
+
+// Navigation handlers
 const Productshandler = () => {
 sessionStorage.setItem("uiClick", "true");
 navigate("/DBProducts");
 };
 
-const naviDashi = useNavigate();
 const navigateSlider = () => {
-naviDashi("/DashboardcomXKPbcadafcddcfadacbPKXproductlistsearchdashboard");
+navigate("/DashboardcomXKPbcadafcddcfadacbPKXproductlistsearchdashboard");
 };
 
-const naviOrdersCust = useNavigate();
 const orderNavi = () => {
-naviOrdersCust("/Custorders");
+navigate("/Custorders");
 };
-
-const naviManagmentProduct = useNavigate();
 
 const pdmanagmenthandler = () => {
-naviManagmentProduct("/Productmanagment");
+navigate("/Productmanagment");
 };
 
-const naviAdmin = useNavigate()
 const adminNavi = () => {
-naviAdmin('/AdminUsers')
-}
+navigate("/AdminUsers");
+};
 
-const NaviUsers = useNavigate()
 const userNavi = () => {
-NaviUsers('/UsersDetails')
-}
+navigate("/UsersDetails");
+};
 
-const adminProfileNavi = useNavigate()
 const adminProfile = () => {
-adminProfileNavi('/AdminProfile')
-}
-
+navigate("/AdminProfile");
+};
 
 return (
-
-<div>
-
-<div
-className={`slider_Dash ${sidebarOpen ? "slider-in" : "slider-out"}`}
->
-
+<div className={`DS_slider ${sidebarOpen ? "DS_slider-in" : "DS_slider-out"}`}>
+{/* ===== LOGO ===== */}
+<div className="DS_logo-section">
 <img
-className="Img_DashLogo"
-alt=""
+className="DS_logo"
+alt="Logo"
 loading="lazy"
 src="https://cdn-icons-png.flaticon.com/128/1828/1828673.png"
-></img>
-
-
-<div>
-<li onClick={adminProfile}>APPS</li>
+/>
+<span className="DS_logo-text">Admin</span>
 </div>
 
-<section>
-<div>
-<i className="fa fa-tachometer"></i>
-<li onClick={navigateSlider}>Dashboard</li>
-<i className="fa fa-angle-down"></i>
+{/* ===== APPS ===== */}
+<div className="DS_apps-label">
+<span>APPS</span>
 </div>
 
-<div>
-<i class="fa-brands fa-product-hunt"></i>
-<li onClick={Productshandler}>Products</li>
-<i className="fa fa-angle-down"></i>
+{/* ===== NAVIGATION ===== */}
+<nav className="DS_nav">
+{/* Dashboard */}
+<div className="DS_nav-item" onClick={navigateSlider}>
+<span className="DS_icon">
+<i className="fas fa-th-large"></i>
+</span>
+<span className="DS_label">Dashboard</span>
+<span className="DS_arrow">
+<i className="fas fa-chevron-right"></i>
+</span>
 </div>
 
-<div>
-<i className="fa fa-list-alt"></i>
-<li className="prodctMngmt" onClick={pdmanagmenthandler}>Product Management</li>
-<i className="fa fa-angle-down"></i>
+{/* Products */}
+<div className="DS_nav-item" onClick={Productshandler}>
+<span className="DS_icon">
+<i className="fas fa-box"></i>
+</span>
+<span className="DS_label">Products</span>
+<span className="DS_arrow">
+<i className="fas fa-chevron-right"></i>
+</span>
 </div>
 
-<div>
-<i class="fa-solid fa-bag-shopping"></i>
-<li onClick={orderNavi}>Orders</li>
-<i className="fa fa-angle-down"></i>
+{/* Product Management */}
+<div className="DS_nav-item" onClick={pdmanagmenthandler}>
+<span className="DS_icon">
+<i className="fas fa-list-alt"></i>
+</span>
+<span className="DS_label">Product Management</span>
+<span className="DS_arrow">
+<i className="fas fa-chevron-right"></i>
+</span>
 </div>
 
-
-<div style={{lineHeight : '2.1em'}}>
-<li onClick={adminProfile}>Profile & Data Protection</li>
+{/* Orders */}
+<div className="DS_nav-item" onClick={orderNavi}>
+<span className="DS_icon">
+<i className="fas fa-shopping-bag"></i>
+</span>
+<span className="DS_label">Orders</span>
+<span className="DS_arrow">
+<i className="fas fa-chevron-right"></i>
+</span>
 </div>
 
-
-<div>
-<i className="fa fa-user"></i>
-<li onClick={adminProfile}>My Profile</li>
-<i className="fa fa-angle-down"></i>
+{/* Profile & Data Protection */}
+<div className="DS_nav-item DS_nav-item-special">
+{/* onClick={adminProfile} */}
+<span className="DS_icon">
+{/* <i className="fas fa-shield-alt"></i> */}
+</span>
+<span className="DS_label">Profile & Data Protection</span>
+<span className="DS_arrow">
+{/* <i className="fas fa-chevron-right"></i> */}
+</span>
 </div>
 
-
-<div>
-<i class="fas fa-database"></i>
-<li onClick={adminNavi}>Admin Data</li>
-<i className="fa fa-angle-down"></i>
+{/* My Profile */}
+<div className="DS_nav-item" onClick={adminProfile}>
+<span className="DS_icon">
+<i className="fas fa-user"></i>
+</span>
+<span className="DS_label">My Profile</span>
+<span className="DS_arrow">
+<i className="fas fa-chevron-right"></i>
+</span>
 </div>
 
-<div>
-<i class="fas fa-shield"></i>  
-<li onClick={userNavi}>User Data</li>
-<i className="fa fa-angle-down"></i>
+{/* Admin Data */}
+<div className="DS_nav-item" onClick={adminNavi}>
+<span className="DS_icon">
+<i className="fas fa-database"></i>
+</span>
+<span className="DS_label">Admin Data</span>
+<span className="DS_arrow">
+<i className="fas fa-chevron-right"></i>
+</span>
 </div>
 
-</section>
+{/* User Data */}
+<div className="DS_nav-item" onClick={userNavi}>
+<span className="DS_icon">
+<i className="fas fa-users"></i>
+</span>
+<span className="DS_label">User Data</span>
+<span className="DS_arrow">
+<i className="fas fa-chevron-right"></i>
+</span>
+</div>
+</nav>
 
-{/*  */}
-
-<section></section>
-
+{/* ===== BOTTOM SECTION ===== */}
+<div className="DS_footer">
+<div className="DS_user-info">
+<div className="DS_avatar">A</div>
+<div className="DS_user-details">
+<span className="DS_user-name">Admin</span>
+<span className="DS_user-role">Super Admin</span>
 </div>
 </div>
-
+</div>
+</div>
 );
-
 }
 
 export default DashboardSlider;

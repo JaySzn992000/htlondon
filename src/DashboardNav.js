@@ -9,66 +9,46 @@ const Dashboardnav = () => {
 naviDashboard("/DashboardcomXKPbcadafcddcfadacbPKXproductlistsearchdashboard");
 };
 
-const AdminProfileNavi = useNavigate()
+const AdminProfileNavi = useNavigate();
 const AdminProfile = () => {
-AdminProfileNavi('/AdminProfile')
-}
-
+AdminProfileNavi("/AdminProfile");
+};
 
 return (
 
-<div>
+<nav className="DN_dashboard-nav">
 
-{/*  */}
+<div className={`DN_nav-inside ${navContainer ? "DN_navContainer-inside" : ""}`}>
 
-<nav className="dashboard-nav">
-
-<div
-className={`nav_insidenav ${
-navContainer ? "navContainer-inside" : ""
-}`}
->
-
-<section className="dashboard_firstContainer">
-<div>
-
-<img
-className="fa fa-bars"
-onClick={toggleSidebar}
-src="https://cdn-icons-png.flaticon.com/128/5259/5259008.png"
-alt=""
-loading="lazy"
-></img>
-
-<img src="https://cdn-icons-png.flaticon.com/128/4675/4675164.png"
-alt=""
-loading="lazy"
-></img>
-<li className="liDashboard" onClick={Dashboardnav}>
-Dashboard
-</li>
+<div className="DN_left-section">
+<button className="DN_menu-btn" onClick={toggleSidebar} aria-label="Toggle Sidebar">
+<i className="fas fa-bars"></i>
+</button>
+<div className="DN_logo-wrapper" onClick={Dashboardnav}>
+<div className="DN_logo-icon">
+<i className="fas fa-cube"></i>
 </div>
-</section>
+<span className="DN_logo-text">Dashboard</span>
+</div>
+</div>
 
-{/*  */}
+<div className="DN_right-section">
+<div className="DN_user-profile" onClick={AdminProfile}>
 
-<section>
-
-<div onClick={AdminProfile} >
 <img
-style={{ width: "47px"}}
 src={DashboarUserIcon}
-alt=""
-loading="lazy"
-></img>
-<li className="liDashboard">Users</li>
-</div>
-</section>
-</div>
+alt="User Avatar"
+loading="lazy"/>
 
+<div className="DN_user-info">
+<span className="DN_user-name">Admin</span>
+<span className="DN_user-role">Super Admin</span>
+</div>
+<i className="fas fa-chevron-down DN_user-arrow"></i>
+</div>
+</div>
+</div>
 </nav>
-
-</div>
 
 );
 

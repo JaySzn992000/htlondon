@@ -4,24 +4,25 @@ box-sizing: border-box;
 margin: 0;
 padding: 0;
 }
+
 body {
 font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 background: #f5f7fb;
 color: #1e293b;
 }
 
-.UD_RelativeDB_product {
+.AU_RelativeDB_product {
 width: 75%;
 margin: auto;
 margin-top: 5.5em;
 transition: width 0.3s ease, margin 0.3s ease;
 }
 
-.UD_RelativeDB_PRQuery-inside {
+.AU_RelativeDB_PRQuery-inside {
 width: 90%;
 }
 
-.UD_DB_products_ {
+.AU_DB_products_ {
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -30,18 +31,18 @@ padding-bottom: 77px;
 margin: 3.7em 0 0 8.7em;
 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
 }
-.UD_DB_products_PRQuery-inside {
+.AU_DB_products_PRQuery-inside {
 margin-left: 0;
 }
 
-.UD_stats-row {
+.AU_stats-row {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 gap: 1.2rem;
 width: 100%;
 margin-bottom: 1.8rem;
 }
-.UD_stat-card {
+.AU_stat-card {
 background: #ffffff;
 border-radius: 16px;
 padding: 1.2rem 1.4rem;
@@ -49,28 +50,31 @@ border: 1px solid rgba(0, 0, 0, 0.04);
 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 transition: all 0.3s ease;
 }
-.UD_stat-card:hover {
+
+.AU_stat-card:hover {
 box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 transform: translateY(-3px);
 }
-.UD_stat-card .UD_stat-label {
+
+.AU_stat-card .AU_stat-label {
 font-size: 0.75rem;
 font-weight: 600;
 text-transform: uppercase;
 letter-spacing: 0.04em;
 color: #94a3b8;
 }
-.UD_stat-card .UD_stat-value {
+
+.AU_stat-card .AU_stat-value {
 font-size: 1.6rem;
 font-weight: 700;
 color: #0f172a;
 margin-top: 0.2rem;
 }
-.UD_stat-card .UD_stat-value i {
+.AU_stat-card .AU_stat-value i {
 font-size: 1.3rem;
 margin-right: 0.3rem;
 }
-.UD_stat-card .UD_stat-change {
+.AU_stat-card .AU_stat-change {
 font-size: 0.75rem;
 font-weight: 500;
 color: #22c55e;
@@ -83,7 +87,7 @@ padding: 0.1rem 0.6rem;
 border-radius: 20px;
 }
 
-.UD_table-header-actions {
+.AU_table-header-actions {
 display: flex;
 align-items: center;
 justify-content: space-between;
@@ -92,11 +96,11 @@ margin-bottom: 1.5rem;
 flex-wrap: wrap;
 gap: 1rem;
 }
-.UD_search-wrap {
+.AU_search-wrap {
 position: relative;
 flex: 1 1 240px;
 }
-.UD_search-wrap i {
+.AU_search-wrap i {
 position: absolute;
 left: 1rem;
 top: 50%;
@@ -104,7 +108,7 @@ transform: translateY(-50%);
 color: #94a3b8;
 font-size: 0.9rem;
 }
-.UD_search-wrap input {
+.AU_search-wrap input {
 width: 100%;
 padding: 0.5rem 1rem 0.5rem 2.6rem;
 border: 1px solid rgba(0, 0, 0, 0.06);
@@ -117,19 +121,17 @@ outline: none;
 transition: all 0.3s ease;
 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
-.UD_search-wrap input:focus {
+.AU_search-wrap input:focus {
 border-color: #4f46e5;
 box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.08);
 }
-
-.UD_action-buttons {
+.AU_action-buttons {
 display: flex;
 gap: 0.6rem;
 flex-wrap: wrap;
 }
-
-.UD_btn-outline,
-.UD_btn-primary {
+.AU_btn-outline,
+.AU_btn-primary {
 padding: 0.4rem 1.2rem;
 border-radius: 40px;
 font-size: 0.75rem;
@@ -142,32 +144,28 @@ display: inline-flex;
 align-items: center;
 gap: 0.4rem;
 }
-
-.UD_btn-outline {
+.AU_btn-outline {
 background: transparent;
 border: 1px solid rgba(0, 0, 0, 0.06);
 color: #64748b;
 }
-
-.UD_btn-outline:hover {
+.AU_btn-outline:hover {
 background: rgba(0, 0, 0, 0.02);
 border-color: rgba(0, 0, 0, 0.1);
 color: #0f172a;
 }
-
-.UD_btn-primary {
+.AU_btn-primary {
 background: #4f46e5;
 color: #fff;
 box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2);
 }
-
-.UD_btn-primary:hover {
+.AU_btn-primary:hover {
 background: #4338ca;
 box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
 transform: translateY(-1px);
 }
 
-.UD_table-wrapper {
+.AU_table-wrapper {
 width: 100%;
 overflow-x: auto;
 border-radius: 16px;
@@ -175,17 +173,15 @@ background: #ffffff;
 border: 1px solid rgba(0, 0, 0, 0.04);
 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
-
-.UD_product-table {
+.AU_product-table {
 width: 100%;
 border-collapse: collapse;
 font-size: 0.85rem;
 }
-
-.UD_product-table thead {
+.AU_product-table thead {
 background: #f8fafc;
 }
-.UD_product-table thead th {
+.AU_product-table thead th {
 text-align: left;
 padding: 0.9rem 1.2rem;
 font-weight: 600;
@@ -195,17 +191,17 @@ letter-spacing: 0.05em;
 color: #64748b;
 border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
-.UD_product-table tbody tr {
+.AU_product-table tbody tr {
 border-bottom: 1px solid rgba(0, 0, 0, 0.03);
 transition: background 0.15s ease;
 }
-.UD_product-table tbody tr:last-child {
+.AU_product-table tbody tr:last-child {
 border-bottom: none;
 }
-.UD_product-table tbody tr:hover {
+.AU_product-table tbody tr:hover {
 background: rgba(79, 70, 229, 0.02);
 }
-.UD_product-table tbody td {
+.AU_product-table tbody td {
 padding: 0.9rem 1.2rem;
 vertical-align: middle;
 color: #334155;
@@ -213,12 +209,12 @@ font-size: 0.82rem;
 line-height: 1.5;
 }
 
-.UD_user-cell {
+.AU_user-cell {
 display: flex;
 align-items: center;
 gap: 0.9rem;
 }
-.UD_avatar {
+.AU_avatar {
 width: 42px;
 height: 42px;
 border-radius: 12px;
@@ -229,24 +225,18 @@ font-weight: 600;
 font-size: 1rem;
 flex-shrink: 0;
 }
-.UD_info .UD_name {
+.AU_info .AU_name {
 font-weight: 500;
 color: #0f172a;
 font-size: 0.85rem;
 }
-.UD_info .UD_sub {
+.AU_info .AU_sub {
 font-size: 0.7rem;
 color: #94a3b8;
 margin-top: 0.05rem;
 }
 
-.UD_email {
-color: #4f46e5;
-font-weight: 500;
-font-size: 0.82rem;
-}
-
-.UD_password-badge {
+.AU_password-badge {
 display: inline-block;
 padding: 0.2rem 0.9rem;
 border-radius: 6px;
@@ -259,54 +249,42 @@ min-width: 60px;
 text-align: center;
 }
 
-.UD_mobile {
-display: inline-flex;
-align-items: center;
-gap: 0.4rem;
-color: #334155;
-font-weight: 500;
-}
-.UD_mobile i {
-color: #94a3b8;
-font-size: 0.8rem;
-}
-
 @media (max-width: 768px) {
 
-.UD_RelativeDB_product {
+.AU_RelativeDB_product {
 width: 80%;
 transition: all 0.3s ease;
 }
-.UD_DB_products_ {
+.AU_DB_products_ {
 margin-left: 0;
 width: 100%;
 box-shadow: none;
 margin-top: 1.5em;
 }
-.UD_stats-row {
+.AU_stats-row {
 grid-template-columns: 1fr 1fr;
 gap: 0.8rem;
 }
-.UD_stat-card {
+.AU_stat-card {
 padding: 1rem 1.2rem;
 }
-.UD_stat-card .UD_stat-value {
+.AU_stat-card .AU_stat-value {
 font-size: 1.3rem;
 }
-.UD_table-header-actions {
+.AU_table-header-actions {
 flex-direction: column;
 align-items: stretch;
 }
-.UD_search-wrap {
+.AU_search-wrap {
 flex: 1 1 auto;
 }
-.UD_action-buttons {
+.AU_action-buttons {
 justify-content: flex-start;
 }
-.UD_product-table thead {
+.AU_product-table thead {
 display: none;
 }
-.UD_product-table tbody tr {
+.AU_product-table tbody tr {
 display: block;
 margin-bottom: 1rem;
 border-radius: 12px;
@@ -314,7 +292,7 @@ background: #ffffff;
 border: 1px solid rgba(0, 0, 0, 0.04);
 padding: 0.5rem 0;
 }
-.UD_product-table tbody td {
+.AU_product-table tbody td {
 display: flex;
 padding: 0.4rem 1rem;
 border: none;
@@ -323,10 +301,10 @@ align-items: center;
 gap: 0.5rem;
 font-size: 0.8rem;
 }
-.UD_product-table tbody td:last-child {
+.AU_product-table tbody td:last-child {
 border-bottom: none;
 }
-.UD_product-table tbody td::before {
+.AU_product-table tbody td::before {
 content: attr(data-label);
 font-weight: 600;
 color: #94a3b8;
@@ -336,37 +314,29 @@ letter-spacing: 0.04em;
 min-width: 80px;
 flex-shrink: 0;
 }
-.UD_avatar {
+.AU_avatar {
 width: 36px;
 height: 36px;
 font-size: 0.85rem;
 }
-.UD_user-cell {
+.AU_user-cell {
 flex: 1;
 }
-.UD_password-badge {
+.AU_password-badge {
 font-size: 0.7rem;
 padding: 0.15rem 0.7rem;
-}
-.UD_email {
-font-size: 0.78rem;
-word-break: break-all;
-}
-.UD_mobile {
-font-size: 0.78rem;
 }
 }
 
 @media (max-width: 480px) {
-
-.UD_stats-row {
+.AU_stats-row {
 grid-template-columns: 1fr;
 }
-.UD_btn-outline span,
-.UD_btn-primary span {
+.AU_btn-outline span,
+.AU_btn-primary span {
 display: none;
 }
-.UD_product-table tbody td::before {
+.AU_product-table tbody td::before {
 min-width: 60px;
 font-size: 0.65rem;
 }
