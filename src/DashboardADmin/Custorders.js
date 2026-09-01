@@ -274,7 +274,7 @@ return (
 <td data-label="Product">
 {CusDB.file_path ? (
 <img
-src={`https://namasya.onrender.com${CusDB.file_path}`}
+src={CusDB.file_path}
 alt={CusDB.name}
 className="CO_product-img"
 />
