@@ -179,7 +179,7 @@ filteredProducts.map((product, index) => (
 <td data-label="Product">
 {product.file_path ? (
 <img
-src={`https://namasya.onrender.com${product.file_path}`}
+src={product.file_path}
 alt={product.name}
 className="product-img"
 />
