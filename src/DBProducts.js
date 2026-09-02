@@ -94,7 +94,7 @@ DB_products_PRQuery ? "DB_products_PRQuery-inside" : ""
 <div className="stat-value">{filteredProducts.length}</div>
 </div>
 <div className="stat-change" style={{ color: "#4f46e5", background: "rgba(79,70,229,0.08)" }}>
-<i className="fas fa-circle" style={{ fontSize: "0.4rem" }}></i> In stock
+<i className="fas fa-circle" style={{ fontSize: "0.4rem"}}></i> In stock
 </div>
 </div>
 <div className="stat-card">
