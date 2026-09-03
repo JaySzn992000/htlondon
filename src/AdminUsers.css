@@ -12,36 +12,36 @@ color: #1e293b;
 }
 
 .AU_RelativeDB_product {
-width: 75%;
-margin: auto;
+width: calc(100% - 310px);
+max-width: 1400px;
+margin-left: 297px;
+padding: 0 1.5rem 0 0.5rem;
 margin-top: 5.5em;
-transition: width 0.3s ease, margin 0.3s ease;
+transition: margin-left 0.3s ease, width 0.3s ease;
 }
 
 .AU_RelativeDB_PRQuery-inside {
-width: 90%;
+margin-left: 20px;
+width: calc(100% - 40px);
 }
 
 .AU_DB_products_ {
-display: flex;
-flex-direction: column;
-align-items: center;
-width: 100%;
-padding-bottom: 77px;
-margin: 3.7em 0 0 8.7em;
-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+padding: 1.2rem 0 3rem 0;
+transition: all 0.3s ease;
 }
+
 .AU_DB_products_PRQuery-inside {
 margin-left: 0;
 }
 
 .AU_stats-row {
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-gap: 1.2rem;
+grid-template-columns: repeat(4, 1fr);
+gap: 1rem;
 width: 100%;
 margin-bottom: 1.8rem;
 }
+
 .AU_stat-card {
 background: #ffffff;
 border-radius: 16px;
@@ -49,10 +49,35 @@ padding: 1.2rem 1.4rem;
 border: 1px solid rgba(0, 0, 0, 0.04);
 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 transition: all 0.3s ease;
+position: relative;
+overflow: hidden;
+}
+
+.AU_stat-card::before {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+height: 3px;
+border-radius: 16px 16px 0 0;
+}
+
+.AU_stat-card:nth-child(1)::before {
+background: linear-gradient(90deg, #4169E1, #6a8de7);
+}
+.AU_stat-card:nth-child(2)::before {
+background: linear-gradient(90deg, #3b82f6, #60a5fa);
+}
+.AU_stat-card:nth-child(3)::before {
+background: linear-gradient(90deg, #22c55e, #4ade80);
+}
+.AU_stat-card:nth-child(4)::before {
+background: linear-gradient(90deg, #f59e0b, #fbbf24);
 }
 
 .AU_stat-card:hover {
-box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+box-shadow: 0 8px 24px rgba(65, 105, 225, 0.06);
 transform: translateY(-3px);
 }
 
@@ -70,10 +95,12 @@ font-weight: 700;
 color: #0f172a;
 margin-top: 0.2rem;
 }
+
 .AU_stat-card .AU_stat-value i {
 font-size: 1.3rem;
 margin-right: 0.3rem;
 }
+
 .AU_stat-card .AU_stat-change {
 font-size: 0.75rem;
 font-weight: 500;
@@ -96,10 +123,12 @@ margin-bottom: 1.5rem;
 flex-wrap: wrap;
 gap: 1rem;
 }
+
 .AU_search-wrap {
 position: relative;
 flex: 1 1 240px;
 }
+
 .AU_search-wrap i {
 position: absolute;
 left: 1rem;
@@ -108,6 +137,7 @@ transform: translateY(-50%);
 color: #94a3b8;
 font-size: 0.9rem;
 }
+
 .AU_search-wrap input {
 width: 100%;
 padding: 0.5rem 1rem 0.5rem 2.6rem;
@@ -121,15 +151,18 @@ outline: none;
 transition: all 0.3s ease;
 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
+
 .AU_search-wrap input:focus {
-border-color: #4f46e5;
-box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.08);
+border-color: #4169E1;
+box-shadow: 0 0 0 4px rgba(65, 105, 225, 0.08);
 }
+
 .AU_action-buttons {
 display: flex;
 gap: 0.6rem;
 flex-wrap: wrap;
 }
+
 .AU_btn-outline,
 .AU_btn-primary {
 padding: 0.4rem 1.2rem;
@@ -144,24 +177,28 @@ display: inline-flex;
 align-items: center;
 gap: 0.4rem;
 }
+
 .AU_btn-outline {
 background: transparent;
 border: 1px solid rgba(0, 0, 0, 0.06);
 color: #64748b;
 }
+
 .AU_btn-outline:hover {
 background: rgba(0, 0, 0, 0.02);
 border-color: rgba(0, 0, 0, 0.1);
 color: #0f172a;
 }
+
 .AU_btn-primary {
-background: #4f46e5;
+background: #4169E1;
 color: #fff;
-box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2);
+box-shadow: 0 2px 8px rgba(65, 105, 225, 0.2);
 }
+
 .AU_btn-primary:hover {
-background: #4338ca;
-box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+background: #365fd6;
+box-shadow: 0 4px 14px rgba(65, 105, 225, 0.3);
 transform: translateY(-1px);
 }
 
@@ -173,14 +210,17 @@ background: #ffffff;
 border: 1px solid rgba(0, 0, 0, 0.04);
 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
+
 .AU_product-table {
 width: 100%;
 border-collapse: collapse;
 font-size: 0.85rem;
 }
+
 .AU_product-table thead {
 background: #f8fafc;
 }
+
 .AU_product-table thead th {
 text-align: left;
 padding: 0.9rem 1.2rem;
@@ -191,16 +231,20 @@ letter-spacing: 0.05em;
 color: #64748b;
 border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
+
 .AU_product-table tbody tr {
 border-bottom: 1px solid rgba(0, 0, 0, 0.03);
 transition: background 0.15s ease;
 }
+
 .AU_product-table tbody tr:last-child {
 border-bottom: none;
 }
+
 .AU_product-table tbody tr:hover {
-background: rgba(79, 70, 229, 0.02);
+background: rgba(65, 105, 225, 0.02);
 }
+
 .AU_product-table tbody td {
 padding: 0.9rem 1.2rem;
 vertical-align: middle;
@@ -214,6 +258,7 @@ display: flex;
 align-items: center;
 gap: 0.9rem;
 }
+
 .AU_avatar {
 width: 42px;
 height: 42px;
@@ -225,11 +270,13 @@ font-weight: 600;
 font-size: 1rem;
 flex-shrink: 0;
 }
+
 .AU_info .AU_name {
 font-weight: 500;
 color: #0f172a;
 font-size: 0.85rem;
 }
+
 .AU_info .AU_sub {
 font-size: 0.7rem;
 color: #94a3b8;
@@ -249,41 +296,107 @@ min-width: 60px;
 text-align: center;
 }
 
+@media (min-width: 769px) and (max-width: 1024px) {
+
+.AU_RelativeDB_product {
+width: calc(100% - 295px);
+margin-left: 275px;
+padding: 0 0rem 0 0.5rem;
+margin-top: 5em;
+}
+
+.AU_RelativeDB_PRQuery-inside {
+margin-left: 20px;
+width: calc(100% - 40px);
+}
+
+.AU_stats-row {
+grid-template-columns: repeat(2, 1fr);
+gap: 0.8rem;
+}
+
+.AU_stat-card {
+padding: 1rem 1.2rem;
+}
+
+.AU_stat-card .AU_stat-value {
+font-size: 1.3rem;
+}
+
+.AU_product-table {
+font-size: 0.8rem;
+}
+
+.AU_product-table thead th {
+padding: 0.7rem 0.9rem;
+font-size: 0.65rem;
+}
+
+.AU_product-table tbody td {
+padding: 0.7rem 0.9rem;
+font-size: 0.78rem;
+}
+
+.AU_avatar {
+width: 36px;
+height: 36px;
+font-size: 0.85rem;
+}
+
+.AU_password-badge {
+font-size: 0.7rem;
+padding: 0.15rem 0.7rem;
+}
+}
+
 @media (max-width: 768px) {
 
 .AU_RelativeDB_product {
-width: 80%;
-transition: all 0.3s ease;
+width: calc(100% - 20px);
+margin-left: 10px;
+padding: 0 0.8rem;
+margin-top: 5em;
 }
+
+.AU_RelativeDB_PRQuery-inside {
+margin-left: 10px;
+width: calc(100% - 20px);
+}
+
 .AU_DB_products_ {
-margin-left: 0;
-width: 100%;
-box-shadow: none;
-margin-top: 1.5em;
+padding: 0.5rem 0 2rem 0;
 }
+
 .AU_stats-row {
 grid-template-columns: 1fr 1fr;
 gap: 0.8rem;
 }
+
 .AU_stat-card {
 padding: 1rem 1.2rem;
 }
+
 .AU_stat-card .AU_stat-value {
 font-size: 1.3rem;
 }
+
 .AU_table-header-actions {
 flex-direction: column;
 align-items: stretch;
 }
+
 .AU_search-wrap {
 flex: 1 1 auto;
 }
+
 .AU_action-buttons {
 justify-content: flex-start;
 }
+
 .AU_product-table thead {
 display: none;
 }
+
 .AU_product-table tbody tr {
 display: block;
 margin-bottom: 1rem;
@@ -292,6 +405,7 @@ background: #ffffff;
 border: 1px solid rgba(0, 0, 0, 0.04);
 padding: 0.5rem 0;
 }
+
 .AU_product-table tbody td {
 display: flex;
 padding: 0.4rem 1rem;
@@ -301,9 +415,11 @@ align-items: center;
 gap: 0.5rem;
 font-size: 0.8rem;
 }
+
 .AU_product-table tbody td:last-child {
 border-bottom: none;
 }
+
 .AU_product-table tbody td::before {
 content: attr(data-label);
 font-weight: 600;
@@ -314,31 +430,121 @@ letter-spacing: 0.04em;
 min-width: 80px;
 flex-shrink: 0;
 }
+
 .AU_avatar {
 width: 36px;
 height: 36px;
 font-size: 0.85rem;
 }
+
 .AU_user-cell {
 flex: 1;
 }
+
 .AU_password-badge {
 font-size: 0.7rem;
 padding: 0.15rem 0.7rem;
 }
+
+.AU_btn-outline,
+.AU_btn-primary {
+padding: 0.3rem 0.8rem;
+font-size: 0.7rem;
+}
 }
 
 @media (max-width: 480px) {
+
+.AU_RelativeDB_product {
+width: 100%;
+margin-left: 0;
+padding: 0 0.5rem;
+margin-top: 5em;
+}
+
+.AU_RelativeDB_PRQuery-inside {
+margin-left: 0;
+width: 100%;
+}
+
 .AU_stats-row {
 grid-template-columns: 1fr;
+gap: 0.6rem;
 }
+
+.AU_stat-card {
+padding: 0.8rem 1rem;
+}
+
+.AU_stat-card .AU_stat-value {
+font-size: 1.1rem;
+}
+
+.AU_stat-card .AU_stat-label {
+font-size: 0.65rem;
+}
+
 .AU_btn-outline span,
 .AU_btn-primary span {
 display: none;
 }
+
 .AU_product-table tbody td::before {
 min-width: 60px;
 font-size: 0.65rem;
 }
 
+.AU_product-table tbody td {
+font-size: 0.75rem;
+padding: 0.3rem 0.8rem;
+}
+
+.AU_avatar {
+width: 32px;
+height: 32px;
+font-size: 0.75rem;
+}
+
+.AU_info .AU_name {
+font-size: 0.78rem;
+}
+
+.AU_info .AU_sub {
+font-size: 0.6rem;
+}
+
+.AU_password-badge {
+font-size: 0.65rem;
+padding: 0.1rem 0.6rem;
+min-width: 50px;
+}
+
+.AU_search-wrap input {
+font-size: 0.78rem;
+padding: 0.4rem 1rem 0.4rem 2.2rem;
+}
+
+.AU_btn-outline,
+.AU_btn-primary {
+padding: 0.25rem 0.6rem;
+font-size: 0.65rem;
+}
+}
+
+::-webkit-scrollbar {
+height: 4px;
+width: 4px;
+}
+
+::-webkit-scrollbar-track {
+background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+background: #cbd5e1;
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: #94a3b8;
 }
