@@ -12,16 +12,18 @@ color: #1e293b;
 }
 
 .DH_Parent_relativeChart {
-margin-left: 297px;
-width: calc(100% - 310px);
-padding: 0 1.5rem 0 0.5rem;
+width: calc(100% - 280px);
+margin-left: 280px;
+padding: 0 1.5rem 0 1rem;
 margin-top: 5em;
-transition: margin-left 0.3s ease, width 0.3s ease;
+transition: width 0.3s ease, margin-left 0.3s ease;
+box-sizing: border-box;
 }
 
 .DH_ChartParentContainer-inside {
-margin-left: 20px;
-width: calc(100% - 40px);
+width: 100%;
+margin-left: 0;
+padding: 0 1.5rem;
 }
 
 .DH_all_divChart {
@@ -38,26 +40,31 @@ width: 100%;
 display: grid;
 grid-template-columns: repeat(4, 1fr);
 gap: 1.2rem;
-margin-left: 297px;
-width: calc(100% - 310px);
-padding: 0 1.5rem 1.5rem 0.5rem;
-transition: margin-left 0.3s ease, width 0.3s ease;
+width: calc(100% - 280px);
+margin-left: 280px;
+padding: 0.5rem 1.5rem 1.5rem 1rem;
+transition: width 0.3s ease, margin-left 0.3s ease;
+box-sizing: border-box;
 }
 
 .DH_DashParentContainer-inside {
-margin-left: 20px;
-width: calc(100% - 40px);
+width: 100%;
+margin-left: 0;
+padding: 0.5rem 1.5rem 1.5rem 1.5rem;
 }
 
 .DH_charts_wrapper {
-margin-left: 297px;
-width: calc(100% - 310px);
-padding: 0 1.5rem 3rem 0.5rem;
+width: calc(100% - 280px);
+margin-left: 280px;
+padding: 0.5rem 1.5rem 3rem 1rem;
+transition: width 0.3s ease, margin-left 0.3s ease;
+box-sizing: border-box;
 }
 
 .DH_charts_wrapper.DH_ChartParentContainer-inside {
-margin-left: 20px;
-width: calc(100% - 40px);
+width: 100%;
+margin-left: 0;
+padding: 0.5rem 1.5rem 3rem 1.5rem;
 }
 
 .DH_Dashboard_continer {
@@ -258,6 +265,7 @@ font-size: 1.4rem;
 font-weight: 700;
 color: #0f172a;
 line-height: 1.3;
+word-break: break-word;
 }
 
 .DH_card-trend {
@@ -377,25 +385,29 @@ height: 100%;
 min-height: 200px;
 }
 
-@media (max-width: 769px) {
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+.DH_Parent_relativeChart,
+.DH_Parent_relative,
+.DH_charts_wrapper {
+width: calc(100% - 250px);
+margin-left: 255px;
+padding-left: 1rem;
+padding-right: 1rem;
+}
+
+.DH_ChartParentContainer-inside,
+.DH_DashParentContainer-inside {
+width: 100%;
+margin-left: 0;
+padding-left: 1rem;
+padding-right: 1rem;
+}
 
 .DH_Parent_relative {
 grid-template-columns: repeat(2, 1fr);
-margin-left: 297px;
-width: calc(100% - 310px);
-padding: 0 1rem 1rem 0.5rem;
-}
-
-.DH_Parent_relativeChart {
-margin-left: 297px;
-width: calc(100% - 310px);
-padding: 0 1rem 0 0.5rem;
-}
-
-.DH_charts_wrapper {
-margin-left: 297px;
-width: calc(100% - 310px);
-padding: 0 1rem 2.5rem 0.5rem;
+gap: 1rem;
 }
 
 .DH_charts-grid {
@@ -405,61 +417,43 @@ gap: 1rem;
 
 .DH_chart-pie {
 grid-column: 1 / 3;
-min-height: 340px;
-}
-
-.DH_chart-line,
-.DH_chart-bar {
-min-height: 340px;
 }
 
 .DH_chart-card {
 min-height: 340px;
 }
-
-.DH_header-section {
-flex-direction: column;
-align-items: flex-start;
 }
 
-.DH_filter-container {
-width: 100%;
-border-radius: 16px;
-padding: 0.8rem 1rem;
-}
-}
 
 @media (max-width: 768px) {
+
+.DH_Parent_relativeChart,
+.DH_Parent_relative,
+.DH_charts_wrapper {
+width: 100%;
+margin-left: 0;
+padding: 0 1rem;
+}
+
+.DH_Parent_relativeChart {
+margin-top: 4.5em;
+}
 
 .DH_Parent_relative {
 grid-template-columns: 1fr 1fr;
 gap: 0.8rem;
-margin-left: 10px;
-width: calc(100% - 20px);
-padding: 0 0.8rem 1rem 0.8rem;
-}
-
-.DH_Parent_relativeChart {
-margin-left: 10px;
-width: calc(100% - 20px);
-margin-top: 3.5em;
-padding: 0 0.8rem 0 0.8rem;
+padding: 0.5rem 1rem 1rem 1rem;
 }
 
 .DH_charts_wrapper {
-margin-left: 10px;
-width: calc(100% - 20px);
-padding: 0 0.8rem 2rem 0.8rem;
+padding: 0.5rem 1rem 2rem 1rem;
 }
 
+.DH_ChartParentContainer-inside,
 .DH_DashParentContainer-inside {
-margin-left: 10px;
-width: calc(100% - 20px);
-}
-
-.DH_ChartParentContainer-inside {
-margin-left: 10px;
-width: calc(100% - 20px);
+width: 100%;
+margin-left: 0;
+padding: 0 1rem;
 }
 
 .DH_all_div {
@@ -503,6 +497,7 @@ width: 100%;
 border-radius: 14px;
 padding: 0.6rem 0.8rem;
 flex-wrap: wrap;
+justify-content: flex-start;
 }
 
 .DH_filter-container input[type="date"] {
@@ -516,20 +511,11 @@ grid-template-columns: 1fr;
 gap: 1rem;
 }
 
-.DH_chart-line {
-grid-column: 1 / 2;
-grid-row: auto;
-}
-
-.DH_chart-bar {
-grid-column: 1 / 2;
-grid-row: auto;
-}
-
+.DH_chart-line,
+.DH_chart-bar,
 .DH_chart-pie {
 grid-column: 1 / 2;
 grid-row: auto;
-max-width: 100%;
 }
 
 .DH_chart-card {
@@ -557,29 +543,30 @@ min-height: 160px;
 max-width: 400px;
 min-height: 160px;
 }
-
 }
 
+
 @media (max-width: 480px) {
+
+.DH_Parent_relativeChart,
+.DH_Parent_relative,
+.DH_charts_wrapper {
+padding: 0 0.5rem;
+}
 
 .DH_Parent_relative {
 grid-template-columns: 1fr 1fr;
 gap: 0.6rem;
-margin-left: 5px;
-width: calc(100% - 10px);
-padding: 0 0.5rem 0.8rem 0.5rem;
-}
-
-.DH_Parent_relativeChart {
-margin-left: 5px;
-width: calc(100% - 10px);
-padding: 0 0.5rem 0 0.5rem;
+padding: 0.5rem 0.5rem 0.8rem 0.5rem;
 }
 
 .DH_charts_wrapper {
-margin-left: 5px;
-width: calc(100% - 10px);
-padding: 0 0.5rem 1.5rem 0.5rem;
+padding: 0.5rem 0.5rem 1.5rem 0.5rem;
+}
+
+.DH_ChartParentContainer-inside,
+.DH_DashParentContainer-inside {
+padding: 0 0.5rem;
 }
 
 .DH_all_div {
@@ -642,8 +629,8 @@ min-height: 130px;
 max-width: 400px;
 min-height: 130px;
 }
-
 }
+
 
 ::-webkit-scrollbar {
 height: 6px;

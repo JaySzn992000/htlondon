@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import "./DashboardSlider.css";
 
 function DashboardSlider({ sidebarOpen }) {
+
 const navigate = useNavigate();
 
 // Navigation handlers
@@ -36,6 +37,7 @@ navigate("/AdminProfile");
 };
 
 return (
+
 <div className={`DS_slider ${sidebarOpen ? "DS_slider-in" : "DS_slider-out"}`}>
 {/* ===== LOGO ===== */}
 <div className="DS_logo-section">
