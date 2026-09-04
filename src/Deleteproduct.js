@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Deleteproduct.css";
 
 function DeleteProduct({ Delete_relativeCon, Delete_formCon }) {
+
 const [productName, setProductName] = useState("");
 const [message, setMessage] = useState("");
 
@@ -91,6 +92,7 @@ This action cannot be undone. Please double-check the product name.
 </div>
 </div>
 </div>
+
 );
 }
 
