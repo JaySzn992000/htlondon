@@ -131,9 +131,9 @@ aria-label="Toggle password"
 <button className="AP_action-btn AP_primary" onClick={updateProfile}>
 <FaEdit /> Edit Profile
 </button>
-<button className="AP_action-btn AP_outline" onClick={changePassword}>
+{/* <button className="AP_action-btn AP_outline" onClick={changePassword}>
 <FaKey /> Change Password
-</button>
+</button> */}
 <button className="AP_action-btn AP_danger-outline" onClick={logoutHandler}>
 <FaSignOutAlt /> Sign Out
 </button>

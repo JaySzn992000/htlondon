@@ -224,7 +224,7 @@ background: rgba(65, 105, 225, 0.06);
 
 .AP_action-grid {
 display: grid;
-grid-template-columns: 1fr 1fr 1fr;
+/* grid-template-columns: 1fr 1fr 1fr; */
 gap: 0.7rem;
 margin-top: 0.5rem;
 }
