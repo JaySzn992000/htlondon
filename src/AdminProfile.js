@@ -82,13 +82,11 @@ return (
 <DashboardNav
 toggleSidebar={toggleSidebar}
 sidebarOpen={sidebarOpen}
-navContainer={navContainer}
-/>
+navContainer={navContainer}/>
 <DashboardSlider sidebarOpen={sidebarOpen} />
 
 <div
-className={`AP_RelativeDB_product ${relativeClass ? "AP_RelativeDB_PRQuery-inside" : ""}`}
->
+className={`AP_RelativeDB_product ${relativeClass ? "AP_RelativeDB_PRQuery-inside" : ""}`}>
 <div
 className={`AP_DB_products_ ${productClass ? "AP_DB_products_PRQuery-inside" : ""}`}
 >
@@ -127,24 +125,6 @@ aria-label="Toggle password"
 >
 {showPassword ? <FaEyeSlash /> : <FaEye />}
 </button>
-</div>
-
-<div className="AP_stats-grid">
-<div className="AP_stat-block">
-<FaBox className="AP_stat-icon" />
-<span className="AP_stat-number">{stats.products}</span>
-<span className="AP_stat-label">Products</span>
-</div>
-<div className="AP_stat-block">
-<FaShoppingCart className="AP_stat-icon" />
-<span className="AP_stat-number">{stats.orders}</span>
-<span className="AP_stat-label">Orders</span>
-</div>
-<div className="AP_stat-block">
-<FaDollarSign className="AP_stat-icon" />
-<span className="AP_stat-number">{stats.revenue}</span>
-<span className="AP_stat-label">Revenue</span>
-</div>
 </div>
 
 <div className="AP_action-grid">

@@ -58,6 +58,7 @@ box-shadow: 0 12px 48px rgba(65, 105, 225, 0.06);
 
 .AP_profile-header {
 display: flex;
+line-height: 2em;
 flex-direction: column;
 align-items: center;
 text-align: center;
@@ -221,53 +222,6 @@ color: #4169E1;
 background: rgba(65, 105, 225, 0.06);
 }
 
-/* ===== STATS GRID ===== */
-.AP_stats-grid {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 0.8rem;
-margin: 1.4rem 0 1.8rem;
-}
-
-.AP_stat-block {
-background: #f8fafc;
-border-radius: 14px;
-padding: 0.9rem 0.6rem;
-text-align: center;
-border: 1px solid rgba(0, 0, 0, 0.03);
-transition: all 0.3s ease;
-}
-
-.AP_stat-block:hover {
-background: rgba(65, 105, 225, 0.04);
-border-color: rgba(65, 105, 225, 0.12);
-transform: translateY(-3px);
-box-shadow: 0 4px 16px rgba(65, 105, 225, 0.06);
-}
-
-.AP_stat-block .AP_stat-number {
-display: block;
-font-size: 1.3rem;
-font-weight: 700;
-color: #0f172a;
-line-height: 1.2;
-}
-
-.AP_stat-block .AP_stat-label {
-font-size: 0.6rem;
-text-transform: uppercase;
-letter-spacing: 0.04em;
-color: #94a3b8;
-font-weight: 600;
-}
-
-.AP_stat-icon {
-font-size: 1.1rem;
-color: #4169E1;
-display: block;
-margin-bottom: 0.2rem;
-}
-
 .AP_action-grid {
 display: grid;
 grid-template-columns: 1fr 1fr 1fr;
@@ -401,24 +355,6 @@ height: 16px;
 font-size: 1.2rem;
 }
 
-.AP_stats-grid {
-grid-template-columns: 1fr 1fr 1fr;
-gap: 0.5rem;
-}
-
-.AP_stat-block {
-padding: 0.6rem 0.3rem;
-border-radius: 10px;
-}
-
-.AP_stat-block .AP_stat-number {
-font-size: 1rem;
-}
-
-.AP_stat-block .AP_stat-label {
-font-size: 0.55rem;
-}
-
 .AP_action-grid {
 grid-template-columns: 1fr;
 gap: 0.5rem;
@@ -480,23 +416,6 @@ font-size: 1.1rem;
 .AP_admin-role {
 font-size: 0.65rem;
 padding: 0.1rem 1rem;
-}
-
-.AP_stats-grid {
-grid-template-columns: 1fr 1fr 1fr;
-gap: 0.3rem;
-}
-
-.AP_stat-block .AP_stat-number {
-font-size: 0.85rem;
-}
-
-.AP_stat-block .AP_stat-label {
-font-size: 0.5rem;
-}
-
-.AP_stat-icon {
-font-size: 0.9rem;
 }
 
 .AP_action-btn {
