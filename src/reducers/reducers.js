@@ -1,68 +1,68 @@
-// src/reducers/rootReducer.js
 
 const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
 const storedQuantities = JSON.parse(localStorage.getItem("quantities")) || [];
 
 const initialState = {
-  cart: storedCart,
+cart: storedCart,
 };
 
 const rootReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "ADD_TO_CART": {
-      const payload = action.payload;
 
-      // Agar payload mein size nahi hai toh 'OS' (One Size) daal do
-      const size = payload.size || "OS";
-      const id = payload.id;
+switch (action.type) {
+case "ADD_TO_CART": {
+const payload = action.payload;
 
-      // 🔥 CHECK: Kya same product ki same size pehle se cart mein hai?
-      const existingProductIndex = state.cart.findIndex(
-        (item) => item.id === id && item.size === size
-      );
+const size = payload.size || "OS";
+const id = payload.id;
 
-      let updatedCartAdd;
+const existingProductIndex = state.cart.findIndex(
+(item) => item.id === id && item.size === size
+);
 
-      if (existingProductIndex >= 0) {
-        // Agar same size pehle se hai, toh sirf quantity +1 karo
-        updatedCartAdd = state.cart.map((item, index) =>
-          index === existingProductIndex
-            ? { ...item, quantity: (item.quantity || 1) + 1 }
-            : item
-        );
-      } else {
-        // Agar naya size hai, toh naya item add karo (S, M, L alag-alag)
-        const newItem = { ...payload, size, quantity: payload.quantity || 1 };
-        updatedCartAdd = [...state.cart, newItem];
-      }
+let updatedCartAdd;
 
-      localStorage.setItem("cart", JSON.stringify(updatedCartAdd));
-      return {
-        ...state,
-        cart: updatedCartAdd,
-      };
-    }
+if (existingProductIndex >= 0) {
 
-    case "REMOVE_FROM_CART": {
-      const updatedCartRemove = state.cart.filter(
-        (_, index) => index !== action.payload
-      );
-      const updatedQuantitiesRemove = storedQuantities.filter(
-        (_, index) => index !== action.payload
-      );
+updatedCartAdd = state.cart.map((item, index) =>
+index === existingProductIndex
+? { ...item, quantity: (item.quantity || 1) + 1 }
+: item
+);
+} else {
 
-      localStorage.setItem("cart", JSON.stringify(updatedCartRemove));
-      localStorage.setItem("quantities", JSON.stringify(updatedQuantitiesRemove));
+const newItem = { ...payload, size, quantity: payload.quantity || 1 };
+updatedCartAdd = [...state.cart, newItem];
+}
 
-      return {
-        ...state,
-        cart: updatedCartRemove,
-      };
-    }
+localStorage.setItem("cart", JSON.stringify(updatedCartAdd));
+return {
+...state,
+cart: updatedCartAdd,
+};
+}
 
-    default:
-      return state;
-  }
+case "REMOVE_FROM_CART": {
+
+const updatedCartRemove = state.cart.filter(
+(_, index) => index !== action.payload
+);
+const updatedQuantitiesRemove = storedQuantities.filter(
+(_, index) => index !== action.payload
+);
+
+localStorage.setItem("cart", JSON.stringify(updatedCartRemove));
+localStorage.setItem("quantities", JSON.stringify(updatedQuantitiesRemove));
+
+return {
+...state,
+cart: updatedCartRemove,
+};
+}
+
+default:
+return state;
+}
+
 };
 
 export default rootReducer;
