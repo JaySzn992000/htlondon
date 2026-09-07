@@ -26,7 +26,7 @@ const [selectedSize, setSelectedSize] = useState(null);
 const [quantity, setQuantity] = useState(1);
 const [activeImage, setActiveImage] = useState(0);
 
-const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:3001";
+const API_BASE = process.env.REACT_APP_API_URL || "https://namasya.onrender.com";
 
 useEffect(() => {
 const fetchProduct = async () => {
