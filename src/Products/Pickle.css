@@ -24,7 +24,8 @@ z-index: 50;
 
 .pickle-category-scroll {
 display: flex;
-gap: 0.5rem;
+flex-wrap: wrap;
+gap: 0.7rem;
 overflow-x: auto;
 justify-content: center;
 padding: 0.3rem 0;
@@ -778,6 +779,7 @@ max-height: 95vh;
 }
 
 @media (max-width: 480px) {
+
 .pickle-product-grid {
 grid-template-columns: repeat(2, 1fr);
 gap: 0.6rem;
@@ -807,4 +809,5 @@ height: 10px;
 .pickle-color-label {
 font-size: 0.55rem;
 }
+
 }
