@@ -1,9 +1,8 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import "./Filters.css";
 
 const Filters = ({ allProducts, onFilterUpdate }) => {
-
 const [selectedNames, setSelectedNames] = useState([]);
 const [minPrice, setMinPrice] = useState(0);
 const [maxPrice, setMaxPrice] = useState(10000);
@@ -23,32 +22,41 @@ const categories = [
 { name: "Shorts", icon: "🩳" },
 ];
 
+// Sync selectedNames with URL query
 useEffect(() => {
 if (query) {
-const names = query.split(",").filter(n => n.trim());
+const names = query.split(",").filter((n) => n.trim());
 setSelectedNames(names);
 } else {
 setSelectedNames([]);
 }
 }, [query]);
 
-useEffect(() => {
+// ----- FILTER LOGIC using useMemo -----
+const filteredProducts = useMemo(() => {
 let filtered = [...allProducts];
 
+// Category filter
 if (selectedNames.length > 0) {
 filtered = filtered.filter((product) => {
 return selectedNames.some((name) => {
-const searchTerm = name.toLowerCase();
-
+const searchTerm = name.toLowerCase().trim();
+// Check in multiple fields
 const category = (product.category || "").toLowerCase();
 const img = (product.img || "").toLowerCase();
-const nameField = (product.name || "").toLowerCase();
-return category.includes(searchTerm) || img.includes(searchTerm) || nameField.includes(searchTerm);
+const productName = (product.name || "").toLowerCase();
+
+// Match if any field contains the search term
+return (
+category.includes(searchTerm) ||
+img.includes(searchTerm) ||
+productName.includes(searchTerm)
+);
 });
 });
 }
 
-
+// Price filter
 if (isPriceChanged || minPrice > 0 || maxPrice < 10000) {
 filtered = filtered.filter((product) => {
 const price = Number(product.price) || 0;
@@ -56,10 +64,14 @@ return price >= minPrice && price <= maxPrice;
 });
 }
 
-onFilterUpdate(filtered);
+console.log("Filtered products:", filtered.length); // Debug
+return filtered;
+}, [allProducts, selectedNames, minPrice, maxPrice, isPriceChanged]);
 
-console.log("Filtered products:", filtered.length);
-}, [minPrice, maxPrice, isPriceChanged, selectedNames, allProducts, onFilterUpdate]);
+// Update parent whenever filteredProducts change
+useEffect(() => {
+onFilterUpdate(filteredProducts);
+}, [filteredProducts, onFilterUpdate]);
 
 const handlePriceChange = () => setIsPriceChanged(true);
 
@@ -77,7 +89,8 @@ newNames = prev.filter((n) => n !== categoryName);
 } else {
 newNames = [...prev, categoryName];
 }
-const newQuery = newNames.length > 0
+const newQuery =
+newNames.length > 0
 ? `?search=${encodeURIComponent(newNames.join(","))}`
 : "";
 navigate(newQuery);
@@ -89,9 +102,9 @@ const ClickFilter = () => setfilters_div(true);
 const FilterClose = () => setfilters_div(false);
 
 const formatPrice = (price) => {
-return new Intl.NumberFormat('en-IN', {
-style: 'currency',
-currency: 'INR',
+return new Intl.NumberFormat("en-IN", {
+style: "currency",
+currency: "INR",
 minimumFractionDigits: 0,
 maximumFractionDigits: 0,
 }).format(price);
@@ -110,7 +123,14 @@ return (
 <div className="content_sticky">
 <div id="div_filter">
 <button onClick={ClickFilter} className="filter-trigger-btn">
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+<svg
+width="24"
+height="24"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+strokeWidth="2"
+>
 <line x1="4" y1="6" x2="20" y2="6" />
 <line x1="6" y1="12" x2="18" y2="12" />
 <line x1="8" y1="18" x2="16" y2="18" />
@@ -127,14 +147,23 @@ return (
 
 <div className={`filters ${filters_div ? "filters_AfContainer" : ""}`}>
 <button className="filter-close-btn" onClick={FilterClose}>
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+<svg
+width="24"
+height="24"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+strokeWidth="2"
+>
 <line x1="18" y1="6" x2="6" y2="18" />
 <line x1="6" y1="6" x2="18" y2="18" />
 </svg>
 </button>
 
 <div className="filter-header">
-<h2 className="filter-title">Refine's Your <span>Style</span></h2>
+<h2 className="filter-title">
+Refine's Your <span>Style</span>
+</h2>
 <p className="filter-subtitle">Find exactly what you're looking for</p>
 </div>
 
@@ -154,8 +183,9 @@ return (
 className="slider-fill"
 style={{
 left: `${(minPrice / 10000) * 100}%`,
-right: `${100 - (maxPrice / 10000) * 100}%`
-}} />
+right: `${100 - (maxPrice / 10000) * 100}%`,
+}}
+/>
 </div>
 <input
 type="range"
@@ -170,7 +200,8 @@ setMinPrice(val);
 handlePriceChange();
 }
 }}
-className="price-slider price-slider-min" />
+className="price-slider price-slider-min"
+/>
 <input
 type="range"
 min="0"
@@ -184,7 +215,8 @@ setMaxPrice(val);
 handlePriceChange();
 }
 }}
-className="price-slider price-slider-max" />
+className="price-slider price-slider-max"
+/>
 </div>
 </div>
 
@@ -195,14 +227,16 @@ className="price-slider price-slider-max" />
 </div>
 <div className="category-grid">
 {categories.map((category) => {
-const isActive = category.name === "All"
+const isActive =
+category.name === "All"
 ? selectedNames.length === 0
 : selectedNames.includes(category.name);
 return (
 <button
 key={category.name}
-className={`category-chip ${isActive ? 'active' : ''}`}
-onClick={() => handleCategoryClick(category.name)}>
+className={`category-chip ${isActive ? "active" : ""}`}
+onClick={() => handleCategoryClick(category.name)}
+>
 <span className="chip-icon">{category.icon}</span>
 <span className="chip-name">{category.name}</span>
 {isActive && <span className="chip-check">✓</span>}
@@ -221,7 +255,8 @@ onClick={() => handleCategoryClick(category.name)}>
 {name}
 <button
 className="tag-remove"
-onClick={() => handleCategoryClick(name)}>
+onClick={() => handleCategoryClick(name)}
+>
 ×
 </button>
 </span>
@@ -235,14 +270,20 @@ Clear All
 
 <button className="apply-filters-btn" onClick={FilterClose}>
 Apply Filters
-<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+<svg
+width="20"
+height="20"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+strokeWidth="2"
+>
 <path d="M5 12h14M12 5l7 7-7 7" />
 </svg>
 </button>
 </div>
 </div>
 </div>
-
 );
 };
 
