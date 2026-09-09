@@ -45,6 +45,7 @@ const img = (product.img || "").toLowerCase();
 const productName = (product.name || "").toLowerCase();
 
 return (
+
 category.includes(searchTerm) ||
 img.includes(searchTerm) ||
 productName.includes(searchTerm)
@@ -60,7 +61,6 @@ return price >= minPrice && price <= maxPrice;
 });
 }
 
-console.log("Filtered products count:", filtered.length);
 return filtered;
 }, [allProducts, selectedNames, minPrice, maxPrice, isPriceChanged]);
 
@@ -146,7 +146,7 @@ return (
 </button>
 
 <div className="filter-header">
-<h2 className="filter-title">Refine Your <span>Style</span></h2>
+<h2 className="filter-title">Refine'ss Your <span>Style</span></h2>
 <p className="filter-subtitle">Find exactly what you're looking for</p>
 </div>
 
@@ -260,7 +260,6 @@ Apply Filters
 </div>
 </div>
 </div>
-
 );
 };
 
