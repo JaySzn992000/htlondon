@@ -1,8 +1,9 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import "./Filters.css";
 
 const Filters = ({ allProducts, onFilterUpdate }) => {
+
 const [selectedNames, setSelectedNames] = useState([]);
 const [minPrice, setMinPrice] = useState(0);
 const [maxPrice, setMaxPrice] = useState(10000);
@@ -22,7 +23,6 @@ const categories = [
 { name: "Shorts", icon: "🩳" },
 ];
 
-// Sync selectedNames with URL query
 useEffect(() => {
 if (query) {
 const names = query.split(",").filter((n) => n.trim());
@@ -32,22 +32,20 @@ setSelectedNames([]);
 }
 }, [query]);
 
-// ----- FILTER LOGIC using useMemo -----
 const filteredProducts = useMemo(() => {
 let filtered = [...allProducts];
 
-// Category filter
 if (selectedNames.length > 0) {
 filtered = filtered.filter((product) => {
 return selectedNames.some((name) => {
 const searchTerm = name.toLowerCase().trim();
-// Check in multiple fields
+
 const category = (product.category || "").toLowerCase();
 const img = (product.img || "").toLowerCase();
 const productName = (product.name || "").toLowerCase();
 
-// Match if any field contains the search term
 return (
+
 category.includes(searchTerm) ||
 img.includes(searchTerm) ||
 productName.includes(searchTerm)
@@ -56,7 +54,6 @@ productName.includes(searchTerm)
 });
 }
 
-// Price filter
 if (isPriceChanged || minPrice > 0 || maxPrice < 10000) {
 filtered = filtered.filter((product) => {
 const price = Number(product.price) || 0;
@@ -64,14 +61,18 @@ return price >= minPrice && price <= maxPrice;
 });
 }
 
-console.log("Filtered products:", filtered.length); // Debug
+console.log("Filtered products count:", filtered.length);
 return filtered;
 }, [allProducts, selectedNames, minPrice, maxPrice, isPriceChanged]);
 
-// Update parent whenever filteredProducts change
-useEffect(() => {
+
+const updateParent = useCallback(() => {
 onFilterUpdate(filteredProducts);
 }, [filteredProducts, onFilterUpdate]);
+
+useEffect(() => {
+updateParent();
+}, [updateParent]);
 
 const handlePriceChange = () => setIsPriceChanged(true);
 
@@ -123,14 +124,7 @@ return (
 <div className="content_sticky">
 <div id="div_filter">
 <button onClick={ClickFilter} className="filter-trigger-btn">
-<svg
-width="24"
-height="24"
-viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-strokeWidth="2"
->
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
 <line x1="4" y1="6" x2="20" y2="6" />
 <line x1="6" y1="12" x2="18" y2="12" />
 <line x1="8" y1="18" x2="16" y2="18" />
@@ -147,23 +141,14 @@ strokeWidth="2"
 
 <div className={`filters ${filters_div ? "filters_AfContainer" : ""}`}>
 <button className="filter-close-btn" onClick={FilterClose}>
-<svg
-width="24"
-height="24"
-viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-strokeWidth="2"
->
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
 <line x1="18" y1="6" x2="6" y2="18" />
 <line x1="6" y1="6" x2="18" y2="18" />
 </svg>
 </button>
 
 <div className="filter-header">
-<h2 className="filter-title">
-Refine's Your <span>Style</span>
-</h2>
+<h2 className="filter-title">Refine Your <span>Style</span></h2>
 <p className="filter-subtitle">Find exactly what you're looking for</p>
 </div>
 
@@ -270,14 +255,7 @@ Clear All
 
 <button className="apply-filters-btn" onClick={FilterClose}>
 Apply Filters
-<svg
-width="20"
-height="20"
-viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-strokeWidth="2"
->
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
 <path d="M5 12h14M12 5l7 7-7 7" />
 </svg>
 </button>
