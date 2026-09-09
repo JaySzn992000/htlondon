@@ -15,14 +15,12 @@ const location = useLocation();
 const query = new URLSearchParams(location.search).get("search");
 
 const categories = [
-
 { name: "All", icon: "✦" },
 { name: "T-Shirts", icon: "👕" },
 { name: "Shirts", icon: "👔" },
 { name: "Jeans", icon: "👖" },
 { name: "Trousers", icon: "👗" },
 { name: "Shorts", icon: "🩳" },
-
 ];
 
 useEffect(() => {
@@ -30,7 +28,7 @@ if (query) {
 const names = query.split(",").filter(n => n.trim());
 setSelectedNames(names);
 } else {
-setSelectedNames([]); 
+setSelectedNames([]);
 }
 }, [query]);
 
@@ -40,12 +38,16 @@ let filtered = [...allProducts];
 if (selectedNames.length > 0) {
 filtered = filtered.filter((product) => {
 return selectedNames.some((name) => {
-const productName = product.img?.toLowerCase() || "";
-const categoryName = name.toLowerCase();
-return productName.includes(categoryName);
+const searchTerm = name.toLowerCase();
+
+const category = (product.category || "").toLowerCase();
+const img = (product.img || "").toLowerCase();
+const nameField = (product.name || "").toLowerCase();
+return category.includes(searchTerm) || img.includes(searchTerm) || nameField.includes(searchTerm);
 });
 });
 }
+
 
 if (isPriceChanged || minPrice > 0 || maxPrice < 10000) {
 filtered = filtered.filter((product) => {
@@ -55,15 +57,16 @@ return price >= minPrice && price <= maxPrice;
 }
 
 onFilterUpdate(filtered);
+
+console.log("Filtered products:", filtered.length);
 }, [minPrice, maxPrice, isPriceChanged, selectedNames, allProducts, onFilterUpdate]);
 
 const handlePriceChange = () => setIsPriceChanged(true);
 
 const handleCategoryClick = (categoryName) => {
-
 if (categoryName === "All") {
 setSelectedNames([]);
-navigate(""); 
+navigate("");
 return;
 }
 
@@ -74,8 +77,7 @@ newNames = prev.filter((n) => n !== categoryName);
 } else {
 newNames = [...prev, categoryName];
 }
-
-const newQuery = newNames.length > 0 
+const newQuery = newNames.length > 0
 ? `?search=${encodeURIComponent(newNames.join(","))}`
 : "";
 navigate(newQuery);
@@ -104,11 +106,8 @@ navigate("");
 };
 
 return (
-
 <div>
-
 <div className="content_sticky">
-
 <div id="div_filter">
 <button onClick={ClickFilter} className="filter-trigger-btn">
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -127,7 +126,6 @@ return (
 </div>
 
 <div className={`filters ${filters_div ? "filters_AfContainer" : ""}`}>
-
 <button className="filter-close-btn" onClick={FilterClose}>
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
 <line x1="18" y1="6" x2="6" y2="18" />
@@ -136,7 +134,7 @@ return (
 </button>
 
 <div className="filter-header">
-<h2 className="filter-title">Refine Your <span>Style</span></h2>
+<h2 className="filter-title">Refine's Your <span>Style</span></h2>
 <p className="filter-subtitle">Find exactly what you're looking for</p>
 </div>
 
@@ -145,16 +143,14 @@ return (
 <span className="section-icon">💰</span>
 <h4 className="section-title">Price Range</h4>
 </div>
-
 <div className="price-display">
 <span className="price-min">{formatPrice(minPrice)}</span>
 <span className="price-separator">—</span>
 <span className="price-max">{formatPrice(maxPrice)}</span>
 </div>
-
 <div className="price-sliders">
 <div className="slider-track">
-<div 
+<div
 className="slider-fill"
 style={{
 left: `${(minPrice / 10000) * 100}%`,
@@ -174,7 +170,7 @@ setMinPrice(val);
 handlePriceChange();
 }
 }}
-className="price-slider price-slider-min"/>
+className="price-slider price-slider-min" />
 <input
 type="range"
 min="0"
@@ -188,7 +184,7 @@ setMaxPrice(val);
 handlePriceChange();
 }
 }}
-className="price-slider price-slider-max"/>
+className="price-slider price-slider-max" />
 </div>
 </div>
 
@@ -197,19 +193,16 @@ className="price-slider price-slider-max"/>
 <span className="section-icon">🏷️</span>
 <h4 className="section-title">Collections</h4>
 </div>
-
 <div className="category-grid">
 {categories.map((category) => {
-const isActive = category.name === "All" 
-? selectedNames.length === 0 
+const isActive = category.name === "All"
+? selectedNames.length === 0
 : selectedNames.includes(category.name);
-
 return (
-
 <button
 key={category.name}
 className={`category-chip ${isActive ? 'active' : ''}`}
-onClick={() => handleCategoryClick(category.name)} >
+onClick={() => handleCategoryClick(category.name)}>
 <span className="chip-icon">{category.icon}</span>
 <span className="chip-name">{category.name}</span>
 {isActive && <span className="chip-check">✓</span>}
@@ -226,7 +219,7 @@ onClick={() => handleCategoryClick(category.name)} >
 {selectedNames.map((name) => (
 <span key={name} className="active-tag">
 {name}
-<button 
+<button
 className="tag-remove"
 onClick={() => handleCategoryClick(name)}>
 ×
@@ -249,6 +242,7 @@ Apply Filters
 </div>
 </div>
 </div>
+
 );
 };
 
