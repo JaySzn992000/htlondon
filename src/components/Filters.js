@@ -182,7 +182,7 @@ strokeWidth="2"
 
 <div className="filter-header">
 <h2 className="filter-title">
-Refine'ss Your <span>Style</span>
+Refine's Your <span>Style</span>
 </h2>
 <p className="filter-subtitle">
 Find exactly what you're looking for
