@@ -9,16 +9,8 @@ String(value)
 .replace(/[^a-z0-9]/g, "")
 .replace(/s$/, "");
 
-const getImgTokens = (img = "") =>
-String(img)
-.toLowerCase()
-.trim()
-.split(/\s+/)
-.map(normalizeToken)
-.filter(Boolean);
-
-const getNameTokens = (name = "") =>
-String(name)
+const getTokens = (value = "") =>
+String(value)
 .toLowerCase()
 .trim()
 .split(/\s+/)
@@ -27,18 +19,13 @@ String(name)
 
 const categoryMatchesProduct = (categoryName, product) => {
 const categoryToken = normalizeToken(categoryName);
-
-const imgTokens = getImgTokens(product.img);
-if (imgTokens.length > 0) {
-return imgTokens.includes(categoryToken);
-}
-
-const nameTokens = getNameTokens(product.name);
+const imgTokens = getTokens(product.img);
+if (imgTokens.length > 0) return imgTokens.includes(categoryToken);
+const nameTokens = getTokens(product.name);
 return nameTokens.includes(categoryToken);
 };
 
 const Filters = ({ allProducts, onFilterUpdate }) => {
-const [selectedNames, setSelectedNames] = useState([]);
 const [minPrice, setMinPrice] = useState(0);
 const [maxPrice, setMaxPrice] = useState(10000);
 const [isPriceChanged, setIsPriceChanged] = useState(false);
@@ -46,7 +33,14 @@ const [filters_div, setfilters_div] = useState(false);
 
 const navigate = useNavigate();
 const location = useLocation();
+
+// URL = single source of truth for selected categories
 const query = new URLSearchParams(location.search).get("search");
+
+const selectedNames = useMemo(() => {
+if (!query) return [];
+return query.split(",").map((n) => n.trim()).filter(Boolean);
+}, [query]);
 
 const categories = [
 { name: "All", icon: "✦" },
@@ -55,19 +49,8 @@ const categories = [
 { name: "Jeans", icon: "👖" },
 { name: "Trousers", icon: "👗" },
 { name: "Shorts", icon: "🩳" },
+{ name: "Shoes", icon: "👟" },
 ];
-
-useEffect(() => {
-if (query) {
-const names = query
-.split(",")
-.map((n) => n.trim())
-.filter(Boolean);
-setSelectedNames(names);
-} else {
-setSelectedNames([]);
-}
-}, [query]);
 
 const filteredProducts = useMemo(() => {
 let filtered = [...allProducts];
@@ -100,7 +83,6 @@ const handlePriceChange = () => setIsPriceChanged(true);
 
 const handleCategoryClick = (categoryName) => {
 if (categoryName === "All") {
-setSelectedNames([]);
 navigate({ search: "" });
 return;
 }
@@ -108,8 +90,6 @@ return;
 const newNames = selectedNames.includes(categoryName)
 ? selectedNames.filter((n) => n !== categoryName)
 : [...selectedNames, categoryName];
-
-setSelectedNames(newNames);
 
 navigate({
 search: newNames.length
@@ -121,17 +101,15 @@ search: newNames.length
 const ClickFilter = () => setfilters_div(true);
 const FilterClose = () => setfilters_div(false);
 
-const formatPrice = (price) => {
-return new Intl.NumberFormat("en-IN", {
+const formatPrice = (price) =>
+new Intl.NumberFormat("en-IN", {
 style: "currency",
 currency: "INR",
 minimumFractionDigits: 0,
 maximumFractionDigits: 0,
 }).format(price);
-};
 
 const clearAllFilters = () => {
-setSelectedNames([]);
 setMinPrice(0);
 setMaxPrice(10000);
 setIsPriceChanged(false);
@@ -143,14 +121,7 @@ return (
 <div className="content_sticky">
 <div id="div_filter">
 <button onClick={ClickFilter} className="filter-trigger-btn">
-<svg
-width="24"
-height="24"
-viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-strokeWidth="2"
->
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
 <line x1="4" y1="6" x2="20" y2="6" />
 <line x1="6" y1="12" x2="18" y2="12" />
 <line x1="8" y1="18" x2="16" y2="18" />
@@ -159,22 +130,13 @@ strokeWidth="2"
 <circle cx="12" cy="18" r="2" />
 </svg>
 <span>Filter</span>
-<span className="filter-badge">
-{selectedNames.length > 0 ? selectedNames.length : 0}
-</span>
+<span className="filter-badge">{selectedNames.length || 0}</span>
 </button>
 </div>
 
 <div className={`filters ${filters_div ? "filters_AfContainer" : ""}`}>
 <button className="filter-close-btn" onClick={FilterClose}>
-<svg
-width="24"
-height="24"
-viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-strokeWidth="2"
->
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
 <line x1="18" y1="6" x2="6" y2="18" />
 <line x1="6" y1="6" x2="18" y2="18" />
 </svg>
@@ -182,11 +144,9 @@ strokeWidth="2"
 
 <div className="filter-header">
 <h2 className="filter-title">
-Refine's Your <span>Style</span>
+Refine' Your <span>Style</span>
 </h2>
-<p className="filter-subtitle">
-Find exactly what you're looking for
-</p>
+<p className="filter-subtitle">Find exactly what you're looking for</p>
 </div>
 
 <div className="filter-section">
@@ -210,32 +170,18 @@ right: `${100 - (maxPrice / 10000) * 100}%`,
 />
 </div>
 <input
-type="range"
-min="0"
-max="10000"
-step="100"
-value={minPrice}
+type="range" min="0" max="10000" step="100" value={minPrice}
 onChange={(e) => {
 const val = Number(e.target.value);
-if (val <= maxPrice) {
-setMinPrice(val);
-handlePriceChange();
-}
+if (val <= maxPrice) { setMinPrice(val); handlePriceChange(); }
 }}
 className="price-slider price-slider-min"
 />
 <input
-type="range"
-min="0"
-max="10000"
-step="100"
-value={maxPrice}
+type="range" min="0" max="10000" step="100" value={maxPrice}
 onChange={(e) => {
 const val = Number(e.target.value);
-if (val >= minPrice) {
-setMaxPrice(val);
-handlePriceChange();
-}
+if (val >= minPrice) { setMaxPrice(val); handlePriceChange(); }
 }}
 className="price-slider price-slider-max"
 />
@@ -253,7 +199,6 @@ const isActive =
 category.name === "All"
 ? selectedNames.length === 0
 : selectedNames.includes(category.name);
-
 return (
 <button
 key={category.name}
@@ -276,38 +221,23 @@ onClick={() => handleCategoryClick(category.name)}
 {selectedNames.map((name) => (
 <span key={name} className="active-tag">
 {name}
-<button
-className="tag-remove"
-onClick={() => handleCategoryClick(name)}
->
-×
-</button>
+<button className="tag-remove" onClick={() => handleCategoryClick(name)}>×</button>
 </span>
 ))}
-<button className="clear-all" onClick={clearAllFilters}>
-Clear All
-</button>
+<button className="clear-all" onClick={clearAllFilters}>Clear All</button>
 </div>
 </div>
 )}
 
 <button className="apply-filters-btn" onClick={FilterClose}>
 Apply Filters
-<svg
-width="20"
-height="20"
-viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-strokeWidth="2"
->
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
 <path d="M5 12h14M12 5l7 7-7 7" />
 </svg>
 </button>
 </div>
 </div>
 </div>
-
 );
 };
 
