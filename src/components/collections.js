@@ -120,9 +120,8 @@ setWishlistCount(wishlist.length);
 
 const handleFilterUpdate = (filtered) => {
 setFilteredProducts(filtered);
-setVisibleCount(10);   
+setVisibleCount((prev) => Math.min(prev, Math.max(10, filtered.length)));
 };
-
 
 const handleLoadMore = () => {
 setVisibleCount((prev) => prev + PRODUCTS_PER_LOAD);
