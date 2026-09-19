@@ -2,49 +2,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect, useMemo, useCallback } from "react";
 import "./Filters.css";
 
-const normalizeToken = (value = "") =>
-String(value)
-.toLowerCase()
-.trim()
-.replace(/[^a-z0-9]/g, "")
-.replace(/s$/, "");
-
-const getTokens = (value = "") =>
-String(value)
-.toLowerCase()
-.trim()
-.split(/\s+/)
-.map(normalizeToken)
-.filter(Boolean);
-
-const categoryMatchesProduct = (categoryName, product) => {
-const cat = String(categoryName).toLowerCase().trim();
-const img = String(product.img || "").toLowerCase().trim();
-
-if (cat === "t-shirts") {
-return img.includes("t-shirts") || img.includes("tshirts");
-}
-if (cat === "shirts") {
-
-if (img.includes("t-shirts") || img.includes("tshirts")) return false;
-return img.includes("shirts");
-}
-if (cat === "jeans") {
-return img.includes("jeans");
-}
-if (cat === "trousers") {
-return img.includes("trousers") || img.includes("trouser");
-}
-if (cat === "shorts") {
-return img.includes("shorts");
-}
-if (cat === "shoes") {
-return img.includes("shoes") || img.includes("sneakers");
-}
-return false;
-};
-
 const Filters = ({ allProducts, onFilterUpdate }) => {
+
 const [minPrice, setMinPrice] = useState(0);
 const [maxPrice, setMaxPrice] = useState(10000);
 const [isPriceChanged, setIsPriceChanged] = useState(false);
@@ -53,7 +12,6 @@ const [filters_div, setfilters_div] = useState(false);
 const navigate = useNavigate();
 const location = useLocation();
 
-// URL = single source of truth for selected categories
 const query = new URLSearchParams(location.search).get("search");
 
 const selectedNames = useMemo(() => {
@@ -72,12 +30,27 @@ const categories = [
 ];
 
 const filteredProducts = useMemo(() => {
+if (!Array.isArray(allProducts)) return [];
 let filtered = [...allProducts];
 
 if (selectedNames.length > 0) {
-filtered = filtered.filter((product) =>
-selectedNames.some((name) => categoryMatchesProduct(name, product))
-);
+filtered = filtered.filter((product) => {
+const img = (product.img || "").toLowerCase();
+return selectedNames.some((name) => {
+const cat = name.toLowerCase();
+
+if (cat === "t-shirts") {
+return img.includes("t-shirts") || img.includes("tshirts");
+}
+
+if (cat === "shirts") {
+if (img.includes("t-shirts") || img.includes("tshirts")) return false;
+return img.includes("shirts");
+}
+
+return img.includes(cat);
+});
+});
 }
 
 if (isPriceChanged || minPrice > 0 || maxPrice < 10000) {
@@ -91,7 +64,9 @@ return filtered;
 }, [allProducts, selectedNames, minPrice, maxPrice, isPriceChanged]);
 
 const updateParent = useCallback(() => {
+if (typeof onFilterUpdate === "function") {
 onFilterUpdate(filteredProducts);
+}
 }, [filteredProducts, onFilterUpdate]);
 
 useEffect(() => {
@@ -136,6 +111,7 @@ navigate({ search: "" });
 };
 
 return (
+
 <div>
 <div className="content_sticky">
 <div id="div_filter">
@@ -257,6 +233,7 @@ Apply Filters
 </div>
 </div>
 </div>
+
 );
 };
 
