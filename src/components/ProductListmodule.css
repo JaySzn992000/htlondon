@@ -924,6 +924,133 @@ background: #000;
 color: #fff;
 }
 
+.load-more-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 50px 20px 60px;
+gap: 16px;
+width: 100%;
+}
+
+.load-more-btn {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 12px;
+padding: 16px 48px;
+background: #000;
+color: #fff;
+border: none;
+border-radius: 50px;
+font-family: 'Inter', sans-serif;
+font-size: 0.9rem;
+font-weight: 500;
+letter-spacing: 1.5px;
+text-transform: uppercase;
+cursor: pointer;
+transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+position: relative;
+overflow: hidden;
+}
+
+.load-more-btn::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(
+90deg,
+transparent,
+rgba(255, 255, 255, 0.15),
+transparent
+);
+transition: left 0.6s ease;
+}
+
+.load-more-btn:hover::before {
+left: 100%;
+}
+
+.load-more-btn:hover {
+background: #1a1a1a;
+transform: translateY(-3px);
+box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.load-more-btn:active {
+transform: translateY(-1px);
+}
+
+.load-more-btn i {
+font-size: 0.85rem;
+transition: transform 0.3s ease;
+}
+
+.load-more-btn:hover i {
+transform: translateY(3px);
+}
+
+.load-more-info {
+font-family: 'Inter', sans-serif;
+font-size: 0.75rem;
+color: #999;
+letter-spacing: 1px;
+text-transform: uppercase;
+margin: 0;
+font-weight: 400;
+}
+
+.load-more-end {
+font-family: 'Playfair Display', serif;
+font-size: 1rem;
+color: #999;
+letter-spacing: 2px;
+text-align: center;
+margin: 0;
+font-style: italic;
+position: relative;
+padding: 0 40px;
+}
+
+.load-more-end::before,
+.load-more-end::after {
+content: '';
+position: absolute;
+top: 50%;
+width: 30px;
+height: 1px;
+background: #ddd;
+}
+
+.load-more-end::before {
+left: 0;
+}
+
+.load-more-end::after {
+right: 0;
+}
+
+@media (max-width: 480px) {
+.load-more-btn {
+padding: 14px 32px;
+font-size: 0.8rem;
+letter-spacing: 1px;
+}
+
+.load-more-container {
+padding: 40px 16px 50px;
+}
+
+.load-more-info {
+font-size: 0.7rem;
+}
+}
+
 @media (max-width: 1200px) {
 .flex_productlist {
 grid-template-columns: repeat(4, 1fr);

@@ -3,6 +3,7 @@ import { useState, useEffect, useMemo, useCallback } from "react";
 import "./Filters.css";
 
 const categoryMatchesProduct = (categoryName, product) => {
+
 const cat = String(categoryName).toLowerCase().trim();
 const img = String(product.img || "").toLowerCase().trim();
 
