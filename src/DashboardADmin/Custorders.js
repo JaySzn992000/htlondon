@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router";
 import "./Custorders.css";
 
-function Custorders() {
+function Custorders () {
 
 const [customerOrder, setcustomerOrder] = useState([]);
 const [totalcustProducts, settotalcustProducts] = useState(0);

@@ -40,12 +40,10 @@ syncWishlistStatus();
 return () => window.removeEventListener("storage", syncWishlistStatus);
 }, []);
 
-
 useEffect(() => {
 const cart = JSON.parse(localStorage.getItem("cart")) || [];
 setCartCount(cart.length);
 }, []);
-
 
 useEffect(() => {
 setIsLoading(true);

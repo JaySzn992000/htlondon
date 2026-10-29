@@ -9,7 +9,8 @@ const fs = require("fs");
 const cloudinary = require("cloudinary").v2;
 const app = express(); 
 
-
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const pool = require("./config");
 
@@ -689,6 +690,53 @@ res.status(500).json({ message: "Fetch error", error: err.message });
 });
 
 
+app.post("/fetchlogin", async (req, res) => {
+
+const { email, password } = req.body;
+
+if (!email || !password) {
+return res.status(400).json({ message: "Email and password are required" });
+}
+
+try {
+const fetchQuery = "SELECT * FROM _registeration WHERE email = $1";
+const result = await pool.query(fetchQuery, [email]);
+if (result.rows.length === 0) {
+return res.status(401).json({ message: "Invalid email or password" });
+}
+const user = result.rows[0];
+let isMatch = false;
+if (user.password.startsWith("$2b$") || user.password.startsWith("$2a$")) {
+isMatch = await bcrypt.compare(password, user.password);
+} else {
+isMatch = password === user.password;
+if (isMatch) {
+const hashed = await bcrypt.hash(password, 10);
+await pool.query(
+"UPDATE _registeration SET password = $1 WHERE id = $2",
+[hashed, user.id]
+);
+console.log(`Password migrated to hash for: ${user.email}`);
+}
+}
+if (!isMatch) {
+return res.status(401).json({ message: "Invalid email or password" });
+}
+
+const token = jwt.sign(
+{ id: user.id, email: user.email, name: user.name },
+process.env.JWT_SECRET,
+{ expiresIn: "7d" }
+);
+
+res.status(200).json({ token });
+} catch (err) {
+console.error("Login error:", err.message);
+res.status(500).json({ message: "Server error", error: err.message });
+}
+
+});
+
 // app.post("/fetchlogin", (req, res) => {
 // const FetchQuery = "SELECT * FROM registeration";
 // db.query(FetchQuery, (err, result) => {
@@ -703,18 +751,20 @@ res.status(500).json({ message: "Fetch error", error: err.message });
 // });
 
 
-app.post("/fetchlogin", async (req, res) => {
-const fetchQuery = "SELECT * FROM _registeration";
 
-try {
-const result = await pool.query(fetchQuery);
-console.log(result.rows);
-res.status(200).json(result.rows);
-} catch (err) {
-console.error("Error fetched:", err.message);
-res.status(500).json({ message: "Error fetched", error: err.message });
-}
-});
+
+// app.post("/fetchlogin", async (req, res) => {
+// const fetchQuery = "SELECT * FROM _registeration";
+
+// try {
+// const result = await pool.query(fetchQuery);
+// console.log(result.rows);
+// res.status(200).json(result.rows);
+// } catch (err) {
+// console.error("Error fetched:", err.message);
+// res.status(500).json({ message: "Error fetched", error: err.message });
+// }
+// });
 
 
 // Forget Pass Login ,,
