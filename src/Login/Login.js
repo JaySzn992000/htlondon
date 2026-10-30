@@ -16,7 +16,7 @@ password: "",
 useEffect(() => {
 const token = localStorage.getItem("token");
 if (token) {
-navigate("/collections", { replace: true });
+navigate("/profile", { replace: true });
 }
 }, [navigate]);
 
