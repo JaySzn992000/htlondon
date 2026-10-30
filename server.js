@@ -219,11 +219,77 @@ res.status(500).json({ message: "Error fetched", error: err.message });
 
 //
 
+// app.post("/registerationPost", async (req, res) => {
+// const { name, email, password, mobileno } = req.body;
+
+// try {
+
+// const checkMobileQuery = `
+// SELECT mobileno FROM _registeration WHERE mobileno = $1 LIMIT 1
+// `;
+// const mobileResult = await pool.query(checkMobileQuery, [mobileno]);
+
+// if (mobileResult.rows.length > 0) {
+// return res.status(200).json({
+// success: false,
+// message: "Mobile number already registered",
+// });
+// }
+
+
+// const checkEmailQuery = `
+// SELECT email FROM _registeration WHERE email = $1 LIMIT 1
+// `;
+// const emailResult = await pool.query(checkEmailQuery, [email]);
+
+// if (emailResult.rows.length > 0) {
+// return res.status(200).json({
+// success: false,
+// message: "Email address already registered",
+// });
+// }
+
+
+// const insertQuery = `
+// INSERT INTO _registeration (name, email, password, mobileno)
+// VALUES ($1, $2, $3, $4)
+// `;
+// await pool.query(insertQuery, [name, email, password, mobileno]);
+
+// return res.status(200).json({
+// success: true,
+// message: "Registered successfully",
+// });
+
+// } catch (err) {
+// console.error("❌ Registration error:", err.message);
+// return res.status(500).json({
+// success: false,
+// message: "System error. Please try later.",
+// });
+// }
+
+// });
+
+const verifyToken = (req, res, next) => {
+const authHeader = req.headers.authorization;
+if (!authHeader || !authHeader.startsWith("Bearer ")) {
+return res.status(401).json({ message: "Token missing. Please login." });
+}
+const token = authHeader.split(" ")[1];
+try {
+const decoded = jwt.verify(token, process.env.JWT_SECRET);
+req.user = decoded;
+next();
+} catch (err) {
+return res.status(401).json({ message: "Invalid or expired token" });
+}
+};
+
 app.post("/registerationPost", async (req, res) => {
 const { name, email, password, mobileno } = req.body;
 
 try {
-
 const checkMobileQuery = `
 SELECT mobileno FROM _registeration WHERE mobileno = $1 LIMIT 1
 `;
@@ -235,7 +301,6 @@ success: false,
 message: "Mobile number already registered",
 });
 }
-
 
 const checkEmailQuery = `
 SELECT email FROM _registeration WHERE email = $1 LIMIT 1
@@ -249,16 +314,25 @@ message: "Email address already registered",
 });
 }
 
+const hashedPassword = await bcrypt.hash(password, 10);
 
 const insertQuery = `
 INSERT INTO _registeration (name, email, password, mobileno)
 VALUES ($1, $2, $3, $4)
+RETURNING id, name, email
 `;
-await pool.query(insertQuery, [name, email, password, mobileno]);
+const newUser = await pool.query(insertQuery, [name, email, hashedPassword, mobileno]);
+
+const token = jwt.sign(
+{ id: newUser.rows[0].id, email: newUser.rows[0].email, name: newUser.rows[0].name },
+process.env.JWT_SECRET,
+{ expiresIn: "7d" }
+);
 
 return res.status(200).json({
 success: true,
 message: "Registered successfully",
+token: token
 });
 
 } catch (err) {
@@ -268,9 +342,7 @@ success: false,
 message: "System error. Please try later.",
 });
 }
-
 });
-
 
 
 // app.get("/fetchCartGet", (req, res) => {
@@ -602,21 +674,6 @@ res.status(500).json({ error: "Database query failed" });
 
 // });
 
-
-const verifyToken = (req, res, next) => {
-const authHeader = req.headers.authorization;
-if (!authHeader || !authHeader.startsWith("Bearer ")) {
-return res.status(401).json({ message: "Token missing. Please login." });
-}
-const token = authHeader.split(" ")[1];
-try {
-const decoded = jwt.verify(token, process.env.JWT_SECRET);
-req.user = decoded;
-next();
-} catch (err) {
-return res.status(401).json({ message: "Invalid or expired token" });
-}
-};
 
 
 // app.get("/fetchProductslist", verifyToken, async (req, res) => {
