@@ -603,11 +603,33 @@ res.status(500).json({ error: "Database query failed" });
 // });
 
 
-app.get("/fetchProductslist", async (req, res) => {
+const verifyToken = (req, res, next) => {
+const authHeader = req.headers.authorization;
+if (!authHeader || !authHeader.startsWith("Bearer ")) {
+return res.status(401).json({ message: "Token missing. Please login." });
+}
+const token = authHeader.split(" ")[1];
+try {
+const decoded = jwt.verify(token, process.env.JWT_SECRET);
+req.user = decoded;
+next();
+} catch (err) {
+return res.status(401).json({ message: "Invalid or expired token" });
+}
+};
+
+
+app.get("/fetchProductslist", verifyToken, async (req, res) => {
 const searchQuery = req.query.search || "";
-const keywords = searchQuery.toLowerCase().split(/\s+/);
+const keywords = searchQuery.toLowerCase().split(/\s+/).filter(Boolean);
 
 try {
+
+if (keywords.length === 0) {
+const allProducts = await pool.query("SELECT * FROM _imgproduct");
+return res.json(allProducts.rows);
+}
+
 const conditions = keywords.map((_, index) => `LOWER(name) ILIKE $${index + 1}`).join(" AND ");
 const values = keywords.map((keyword) => `%${keyword}%`);
 
@@ -633,8 +655,42 @@ res.json(exactResult.rows);
 console.error("❌ Database query failed:", err.message);
 res.status(500).json({ error: "Database query failed" });
 }
-
 });
+
+
+
+// app.get("/fetchProductslist", async (req, res) => {
+// const searchQuery = req.query.search || "";
+// const keywords = searchQuery.toLowerCase().split(/\s+/);
+
+// try {
+// const conditions = keywords.map((_, index) => `LOWER(name) ILIKE $${index + 1}`).join(" AND ");
+// const values = keywords.map((keyword) => `%${keyword}%`);
+
+// const query = `
+// SELECT * FROM _imgproduct
+// WHERE ${conditions}
+// `;
+
+// const result = await pool.query(query, values);
+
+// if (result.rows.length > 0) {
+// return res.json(result.rows);
+// }
+
+// const exactMatchQuery = `
+// SELECT * FROM _imgproduct
+// WHERE LOWER(img) = LOWER($1)
+// `;
+// const exactResult = await pool.query(exactMatchQuery, [searchQuery]);
+
+// res.json(exactResult.rows);
+// } catch (err) {
+// console.error("❌ Database query failed:", err.message);
+// res.status(500).json({ error: "Database query failed" });
+// }
+
+// });
 
 
 // app.get("/fetchProductslist", (req, res) => {
