@@ -207,14 +207,14 @@
 
 // export default Registeration;
 
-import { useState, useEffect } from "react";
+
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import Navbar from "../headers_footer/navbar";
 import Header from "../headers_footer/header";
 import "./Registeration.css";
 
 const Registeration = () => {
-const navigate = useNavigate();
 
 const [formdata, setformdata] = useState({
 name: "",
@@ -223,14 +223,7 @@ password: "",
 mobileno: "",
 });
 
-useEffect(() => {
-const token = localStorage.getItem("token");
-if (token) {
-navigate("/profile", { replace: true });
-}
-}, [navigate]);
-
-const validate = () => {
+const onsubmit = () => {
 if (!formdata.name.trim()) {
 alert("Please enter your full name.");
 return false;
@@ -277,42 +270,36 @@ return false;
 }
 
 return true;
-
 };
 
 const registerhanlder = (e) => {
+setformdata({ ...formdata, [e.target.name]: e.target.value });
 
 let { name, value } = e.target;
-
 if (name === "email" || name === "password") {
 value = value.replace(/\s/g, "");
-} else if (name === "mobileno") {
-value = value.replace(/\D/g, "");
 } else {
 value = value.replace(/^\s+/, "");
 }
-
-setformdata((prev) => ({ ...prev, [name]: value }));
-
+setformdata(prev => ({ ...prev, [name]: value }));
 };
+
+const navigate = useNavigate();
 
 const registeration = async (e) => {
 e.preventDefault();
 
-const isValid = validate();
+const isValid = onsubmit();
 if (!isValid) return;
 
 try {
-const response = await fetch(
-"https://namasya.onrender.com/registerationPost",
-{
+const response = await fetch("https://namasya.onrender.com/registerationPost", {
 method: "POST",
 headers: {
 "Content-Type": "application/json",
 },
 body: JSON.stringify(formdata),
-}
-);
+});
 
 const data = await response.json();
 
@@ -320,9 +307,15 @@ alert(data.message);
 
 if (data.success) {
 localStorage.setItem("token", data.token);
-setformdata({ name: "", email: "", password: "", mobileno: "" });
-navigate("/collections", { replace: true });
+setformdata({
+name: '',
+email: '',
+password: '',
+mobileno: ''
+});
+navigate("/collections");
 }
+
 } catch (error) {
 console.error("Error:", error);
 alert("Network error. Please try again.");
@@ -335,7 +328,7 @@ navigate("/Login");
 
 return (
 <div>
-<Navbar />
+<Navbar></Navbar>
 <div className="flex_regis_Container">
 <form onSubmit={registeration} className="register_form">
 <h1>Create your account</h1>
@@ -343,60 +336,55 @@ return (
 <div>
 <div>
 <h3>Name</h3>
-<input
-required
+<input required
 placeholder="Full name"
 name="name"
 value={formdata.name}
 onChange={registerhanlder}
 maxLength={30}
-/>
+></input>
 </div>
 <div>
 <h3>Email</h3>
-<input
-required
+<input required
 placeholder="Email"
 name="email"
 value={formdata.email}
 onChange={registerhanlder}
 maxLength={50}
-/>
+></input>
 </div>
 </div>
 <div>
 <div>
 <h3>Password</h3>
-<input
-required
-type="password"
+<input required
 placeholder="Password"
 name="password"
 value={formdata.password}
 onChange={registerhanlder}
 maxLength={15}
-/>
+></input>
 </div>
 <div>
 <h3>Mobile</h3>
-<input
-required
+<input required
 placeholder="Mobile no"
 name="mobileno"
 value={formdata.mobileno}
 onChange={registerhanlder}
 maxLength={10}
-/>
+></input>
 </div>
 </div>
 </section>
-<button type="submit">Sign Up</button>
+<button onClick={onsubmit} type="submit">Sing Up</button>
 <h3>
-Already have an account? <span onClick={Signin}>Login</span>
+Already have an account ? <span onClick={Signin}>Login</span>
 </h3>
 </form>
 </div>
-<Header />
+<Header></Header>
 </div>
 );
 };
