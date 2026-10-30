@@ -1,126 +1,103 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import Navbar from "../headers_footer/navbar";
 import Header from "../headers_footer/header";
-import { FaEye, FaEyeSlash } from "react-icons/fa"; 
 import "./Login.css";
 
 const Login = () => {
+
+const navigate = useNavigate();
 
 const [formdata, setformdata] = useState({
 email: "",
 password: "",
 });
 
-const [showPassword, setShowPassword] = useState(false); 
-const naviGate = useNavigate();
+useEffect(() => {
+const token = localStorage.getItem("token");
+if (token) {
+navigate("/collections", { replace: true });
+}
+}, [navigate]);
 
-const inputgetHanlder = (e) => {
-setformdata({ ...formdata, [e.target.name]: e.target.value });
-
+const handleChange = (e) => {
 let { name, value } = e.target;
 if (name === "email" || name === "password") {
 value = value.replace(/\s/g, "");
-} else {
-value = value.replace(/^\s+/, "");
 }
-setformdata(prev => ({ ...prev, [name]: value }));
+setformdata((prev) => ({ ...prev, [name]: value }));
 };
 
-const loginHanlder = async (e) => {
+const loginHandler = async (e) => {
 e.preventDefault();
 
-if (!formdata.email.trim()) {
-alert("Please enter your email.");
-return;
-} else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formdata.email)) {
-alert("Please enter a valid email address.");
-return;
-}
-
-if (!formdata.password.trim()) {
-alert("Please enter your password.");
-return;
-} else if (formdata.password.length < 6) {
-alert("Password must be at least 6 characters long.");
+if (!formdata.email.trim() || !formdata.password.trim()) {
+alert("Please enter email and password.");
 return;
 }
 
 try {
-const response = await fetch("https://namasya.onrender.com/fetchlogin", {
+const response = await fetch("https://namasya.onrender.com/login", {
 method: "POST",
-headers: {
-"Content-type": "application/json",
-},
+headers: { "Content-Type": "application/json" },
 body: JSON.stringify(formdata),
 });
 
 const data = await response.json();
+alert(data.message);
 
-if (!response.ok) {
-alert(data.message || "Invalid email or password.");
-return;
-}
-
+if (data.success) {
 localStorage.setItem("token", data.token);
-
-naviGate("/collections");
-
+setformdata({ email: "", password: "" });
+navigate("/collections", { replace: true });
+}
 } catch (error) {
-console.log("Error", error);
-alert("Something went wrong. Please try again later.");
+console.error("Error:", error);
+alert("Network error. Please try again.");
 }
 };
 
-const clickHandler = () => {
-naviGate("/ForgetPass");
-};
+const goToRegister = () => navigate("/registeration");
 
 return (
 <div>
 <Navbar />
-
-<form onSubmit={loginHanlder} className="logged_formFlex" id="logged_form">
-<div id="logged_Container">
-<h2>Log in</h2>
-
-<h4>Email Address</h4>
+<div className="flex_regis_Container">
+<form onSubmit={loginHandler} className="register_form">
+<h1>Login</h1>
+<section className="flex_form">
+<div>
+<div>
+<h3>Email</h3>
 <input
-placeholder="Email Address"
+required
+placeholder="Email"
 name="email"
-onChange={inputgetHanlder}
 value={formdata.email}
+onChange={handleChange}
 maxLength={50}
-required 
 />
-
-<h4>Password</h4>
-<div className="password-wrapper">
+</div>
+<div>
+<h3>Password</h3>
 <input
+required
+type="password"
 placeholder="Password"
 name="password"
-onChange={inputgetHanlder}
 value={formdata.password}
-type={showPassword ? "text" : "password"}
-required
-maxLength={15} 
+onChange={handleChange}
+maxLength={15}
 />
-
-<span
-className="eye-icon"
-onClick={() => setShowPassword(!showPassword)}
->
-{showPassword ? <FaEyeSlash /> : <FaEye />}
-</span>
 </div>
-
-<h4 id="fg_pass" onClick={clickHandler}>
-Forgot Password ?
-</h4>
+</div>
+</section>
 <button type="submit">Login</button>
-</div>
+<h3>
+Don't have an account? <span onClick={goToRegister}>Register</span>
+</h3>
 </form>
-
+</div>
 <Header />
 </div>
 );

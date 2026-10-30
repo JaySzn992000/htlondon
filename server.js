@@ -271,20 +271,31 @@ res.status(500).json({ message: "Error fetched", error: err.message });
 
 // });
 
+
 const verifyToken = (req, res, next) => {
 const authHeader = req.headers.authorization;
+
 if (!authHeader || !authHeader.startsWith("Bearer ")) {
-return res.status(401).json({ message: "Token missing. Please login." });
+return res.status(401).json({
+success: false,
+message: "No token provided. Please login.",
+});
 }
+
 const token = authHeader.split(" ")[1];
+
 try {
 const decoded = jwt.verify(token, process.env.JWT_SECRET);
 req.user = decoded;
 next();
 } catch (err) {
-return res.status(401).json({ message: "Invalid or expired token" });
+return res.status(401).json({
+success: false,
+message: "Invalid or expired token. Please login again.",
+});
 }
 };
+
 
 app.post("/registerationPost", async (req, res) => {
 const { name, email, password, mobileno } = req.body;
@@ -342,6 +353,25 @@ success: false,
 message: "System error. Please try later.",
 });
 }
+});
+
+
+app.get("/collections", verifyToken, async (req, res) => {
+
+try {
+return res.status(200).json({
+success: true,
+message: `Welcome ${req.user.name}`,
+user: req.user,
+});
+} catch (err) {
+console.error("❌ Collections error:", err.message);
+return res.status(500).json({
+success: false,
+message: "System error. Please try later.",
+});
+}
+
 });
 
 
