@@ -619,51 +619,17 @@ return res.status(401).json({ message: "Invalid or expired token" });
 };
 
 
-app.get("/fetchProductslist", verifyToken, async (req, res) => {
-const searchQuery = req.query.search || "";
-const keywords = searchQuery.toLowerCase().split(/\s+/).filter(Boolean);
-
-try {
-
-if (keywords.length === 0) {
-const allProducts = await pool.query("SELECT * FROM _imgproduct");
-return res.json(allProducts.rows);
-}
-
-const conditions = keywords.map((_, index) => `LOWER(name) ILIKE $${index + 1}`).join(" AND ");
-const values = keywords.map((keyword) => `%${keyword}%`);
-
-const query = `
-SELECT * FROM _imgproduct
-WHERE ${conditions}
-`;
-
-const result = await pool.query(query, values);
-
-if (result.rows.length > 0) {
-return res.json(result.rows);
-}
-
-const exactMatchQuery = `
-SELECT * FROM _imgproduct
-WHERE LOWER(img) = LOWER($1)
-`;
-const exactResult = await pool.query(exactMatchQuery, [searchQuery]);
-
-res.json(exactResult.rows);
-} catch (err) {
-console.error("❌ Database query failed:", err.message);
-res.status(500).json({ error: "Database query failed" });
-}
-});
-
-
-
-// app.get("/fetchProductslist", async (req, res) => {
+// app.get("/fetchProductslist", verifyToken, async (req, res) => {
 // const searchQuery = req.query.search || "";
-// const keywords = searchQuery.toLowerCase().split(/\s+/);
+// const keywords = searchQuery.toLowerCase().split(/\s+/).filter(Boolean);
 
 // try {
+
+// if (keywords.length === 0) {
+// const allProducts = await pool.query("SELECT * FROM _imgproduct");
+// return res.json(allProducts.rows);
+// }
+
 // const conditions = keywords.map((_, index) => `LOWER(name) ILIKE $${index + 1}`).join(" AND ");
 // const values = keywords.map((keyword) => `%${keyword}%`);
 
@@ -689,8 +655,42 @@ res.status(500).json({ error: "Database query failed" });
 // console.error("❌ Database query failed:", err.message);
 // res.status(500).json({ error: "Database query failed" });
 // }
-
 // });
+
+
+
+app.get("/fetchProductslist", async (req, res) => {
+const searchQuery = req.query.search || "";
+const keywords = searchQuery.toLowerCase().split(/\s+/);
+
+try {
+const conditions = keywords.map((_, index) => `LOWER(name) ILIKE $${index + 1}`).join(" AND ");
+const values = keywords.map((keyword) => `%${keyword}%`);
+
+const query = `
+SELECT * FROM _imgproduct
+WHERE ${conditions}
+`;
+
+const result = await pool.query(query, values);
+
+if (result.rows.length > 0) {
+return res.json(result.rows);
+}
+
+const exactMatchQuery = `
+SELECT * FROM _imgproduct
+WHERE LOWER(img) = LOWER($1)
+`;
+const exactResult = await pool.query(exactMatchQuery, [searchQuery]);
+
+res.json(exactResult.rows);
+} catch (err) {
+console.error("❌ Database query failed:", err.message);
+res.status(500).json({ error: "Database query failed" });
+}
+
+});
 
 
 // app.get("/fetchProductslist", (req, res) => {
