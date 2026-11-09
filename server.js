@@ -1673,31 +1673,72 @@ res.status(500).json({ message: "Error occurred", error: err.message });
 // );
 // });
 
-app.post("/updateform", async (req, res) => {
-const { name, email, password, mobileno, id } = req.body;
+// app.post("/updateform", async (req, res) => {
+// const { name, email, password, mobileno, id } = req.body;
 
-if (!name || !email || !password || !mobileno || !id) {
-return res.status(400).json({ message: "All fields are required" });
+// if (!name || !email || !password || !mobileno || !id) {
+// return res.status(400).json({ message: "All fields are required" });
+// }
+
+// const updateQuery = `
+// UPDATE _registeration
+// SET name = $1, email = $2, password = $3, mobileno = $4
+// WHERE id = $5
+// `;
+
+// try {
+// await pool.query(updateQuery, [name, email, password, mobileno, id]);
+// console.log("Updated Successfully");
+// res.status(200).json({ message: "Updated Successfully" });
+// } catch (err) {
+// console.error("Database update error:", err.message);
+// res.status(500).json({ message: "Database update error", error: err.message });
+// }
+// });
+
+
+//
+
+app.post("/updateform", verifyToken, async (req, res) => {
+
+const userId = req.user.id; 
+const { name, email, mobileno, password } = req.body;
+
+if (!name || !email || !mobileno) {
+return res.status(400).json({ message: "Name, email, and mobile are required" });
 }
 
-const updateQuery = `
+try {
+let updateQuery;
+let queryValues;
+
+if (password && password.trim() !== "") {
+const hashedPassword = await bcrypt.hash(password, 10);
+updateQuery = `
 UPDATE _registeration
-SET name = $1, email = $2, password = $3, mobileno = $4
+SET name = $1, email = $2, mobileno = $3, password = $4
 WHERE id = $5
 `;
+queryValues = [name, email, mobileno, hashedPassword, userId];
+} else {
 
-try {
-await pool.query(updateQuery, [name, email, password, mobileno, id]);
+updateQuery = `
+UPDATE _registeration
+SET name = $1, email = $2, mobileno = $3
+WHERE id = $4
+`;
+queryValues = [name, email, mobileno, userId];
+}
+
+await pool.query(updateQuery, queryValues);
 console.log("Updated Successfully");
 res.status(200).json({ message: "Updated Successfully" });
+
 } catch (err) {
 console.error("Database update error:", err.message);
 res.status(500).json({ message: "Database update error", error: err.message });
 }
 });
-
-
-//
 
 
 app.listen(PORT, () => {
