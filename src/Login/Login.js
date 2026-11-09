@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import Navbar from "../headers_footer/navbar";
 import Header from "../headers_footer/header";
@@ -6,7 +6,6 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./Login.css";
 
 const Login = () => {
-
 const [formdata, setformdata] = useState({
 email: "",
 password: "",
@@ -14,6 +13,13 @@ password: "",
 
 const [showPassword, setShowPassword] = useState(false); 
 const naviGate = useNavigate();
+
+useEffect(() => {
+const token = localStorage.getItem("token");
+if (token) {
+naviGate("/Profile");
+}
+}, [naviGate]);
 
 const inputgetHanlder = (e) => {
 setformdata({ ...formdata, [e.target.name]: e.target.value });
@@ -41,9 +47,6 @@ return;
 if (!formdata.password.trim()) {
 alert("Please enter your password.");
 return;
-} else if (formdata.password.length < 6) {
-alert("Password must be at least 6 characters long.");
-return;
 }
 
 try {
@@ -64,7 +67,7 @@ return;
 
 localStorage.setItem("token", data.token);
 
-naviGate("/collections");
+naviGate("/Profile"); 
 
 } catch (error) {
 console.log("Error", error);
@@ -79,11 +82,9 @@ naviGate("/ForgetPass");
 return (
 <div>
 <Navbar />
-
 <form onSubmit={loginHanlder} className="logged_formFlex" id="logged_form">
 <div id="logged_Container">
 <h2>Log in</h2>
-
 <h4>Email Address</h4>
 <input
 placeholder="Email Address"
@@ -93,7 +94,6 @@ value={formdata.email}
 maxLength={50}
 required 
 />
-
 <h4>Password</h4>
 <div className="password-wrapper">
 <input
@@ -105,22 +105,16 @@ type={showPassword ? "text" : "password"}
 required
 maxLength={15} 
 />
-
-<span
-className="eye-icon"
-onClick={() => setShowPassword(!showPassword)}
->
+<span className="eye-icon" onClick={() => setShowPassword(!showPassword)}>
 {showPassword ? <FaEyeSlash /> : <FaEye />}
 </span>
 </div>
-
 <h4 id="fg_pass" onClick={clickHandler}>
 Forgot Password ?
 </h4>
 <button type="submit">Login</button>
 </div>
 </form>
-
 <Header />
 </div>
 );
