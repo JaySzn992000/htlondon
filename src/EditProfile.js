@@ -235,28 +235,45 @@ mobileno: "",
 id: "",
 });
 
-useEffect(() => {
 
+useEffect(() => {
 const token = localStorage.getItem("token");
+
 if (!token) {
 navigate("/login");
 return;
 }
 
 try {
+
 const payload = JSON.parse(atob(token.split(".")[1]));
-setFormdata({
+setFormdata((prev) => ({
+...prev,
 name: payload.name || "",
 email: payload.email || "",
-password: "",
-mobileno: payload.mobileno || "", 
 id: payload.id || "",
-});
+}));
+
+fetch("https://namasya.onrender.com/getUserDetails", {
+headers: { "Authorization": `Bearer ${token}` },
+})
+.then((res) => res.json())
+.then((userData) => {
+
+setFormdata((prev) => ({
+...prev,
+mobileno: userData.mobileno || "", 
+}));
+})
+.catch((err) => console.log("Error fetching details", err));
+
 } catch (error) {
+
 localStorage.removeItem("token");
 navigate("/login");
 }
 }, [navigate]);
+
 
 const handleInputChange = (e) => {
 const { name, value } = e.target;

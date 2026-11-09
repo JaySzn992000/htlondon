@@ -1741,6 +1741,26 @@ res.status(500).json({ message: "Database update error", error: err.message });
 });
 
 
+app.get("/getUserDetails", verifyToken, async (req, res) => {
+try {
+const result = await pool.query(
+"SELECT name, email, mobileno, id FROM _registeration WHERE id = $1",
+[req.user.id] 
+);
+
+if (result.rows.length === 0) {
+return res.status(404).json({ message: "User not found" });
+}
+
+res.status(200).json(result.rows[0]);
+
+} catch (err) {
+console.error("Fetch user error:", err.message);
+res.status(500).json({ message: "Server error" });
+}
+});
+
+
 app.listen(PORT, () => {
 console.log(`Server is running PORT on ${PORT}`);
 });
