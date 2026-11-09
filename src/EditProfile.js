@@ -350,7 +350,7 @@ maxLength={50}
 </div>
 
 <div className="password-container">
-<h4 className="EditFontSize">NEW PASSWORD (Leave blank to keep old)</h4>
+<h4 className="EditFontSize">NEW PASSWORD</h4>
 <div className="password-input-wrapper">
 <input
 type={showPassword ? "text" : "password"}
