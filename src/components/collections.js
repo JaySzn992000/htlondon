@@ -486,7 +486,7 @@
 // export default connect(null, { addToCart })(Collections);
 
 import { useEffect, useState, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import Navbar from "../headers_footer/navbar";
 import FAqQuestions from "./FAqQuestions";
 import Filters from "./Filters";
@@ -495,17 +495,13 @@ import { addToCart } from "../action/action";
 import axios from "axios";
 import "./ProductListmodule.css";
 import Header from "../headers_footer/header";
-import { useSearchFilter } from "../utils/useSearchFilter";
-
-
 
 const Collections = ({ addToCart }) => {
-const navigate = useNavigate(); 
+const navigate = useNavigate();
+const location = useLocation();
 
 const [allProducts, setAllProducts] = useState([]);
 const [filteredProducts, setFilteredProducts] = useState([]);
-
-const searchedProducts = useSearchFilter(filteredProducts);
 
 const [wishlistCount, setWishlistCount] = useState(0);
 const [wishlistStatus, setWishlistStatus] = useState({});
@@ -519,6 +515,29 @@ const [visibleCount, setVisibleCount] = useState(10);
 const PRODUCTS_PER_LOAD = 10;
 
 const quickViewTimeoutRef = useRef(null);
+
+const searchQuery =
+new URLSearchParams(location.search).get("search") || "";
+
+const normalize = (s = "") =>
+String(s).toLowerCase().replace(/[-_]/g, " ").replace(/\s+/g, " ").trim();
+
+const toToken = (w) =>
+w.endsWith("s") && w.length > 3 ? w.slice(0, -1) : w;
+
+const matchesSearch = (text = "", q = "") => {
+if (!q.trim()) return true;
+const a = normalize(text).split(" ").map(toToken);
+const b = normalize(q).split(" ").map(toToken);
+return b.every((w) => a.some((p) => p.includes(w) || w.includes(p)));
+};
+
+const searchedProducts = searchQuery.trim()
+? filteredProducts.filter((p) => {
+const text = `${p.name || ""} ${p.img || ""}`;
+return matchesSearch(text, searchQuery);
+})
+: filteredProducts;
 
 useEffect(() => {
 const syncWishlistStatus = () => {
@@ -564,7 +583,7 @@ console.error(err);
 setIsLoading(false);
 
 if (err.response && err.response.status === 401) {
-localStorage.removeItem("token"); 
+localStorage.removeItem("token");
 navigate("/login");
 }
 });
@@ -635,11 +654,8 @@ const handleLoadMore = () => {
 setVisibleCount((prev) => prev + PRODUCTS_PER_LOAD);
 };
 
-// const visibleProducts = filteredProducts.slice(0, visibleCount);
-// const hasMore = visibleCount < filteredProducts.length;
-
-const visibleProducts = searchedProducts.slice(0, visibleCount);  
-const hasMore = visibleCount < searchedProducts.length;           
+const visibleProducts = searchedProducts.slice(0, visibleCount);
+const hasMore = visibleCount < searchedProducts.length;
 
 const slugify = (text) => {
 return text
@@ -687,9 +703,7 @@ const SkeletonCard = () => (
 </div>
 );
 
-
 return (
-
 <div className="collections-premium">
 <Navbar wishlistCount={wishlistCount} cartCount={cartCount} />
 
@@ -730,7 +744,7 @@ className={`category-pill ${i === 0 ? "active" : ""}`}
 
 <div className="results-bar">
 <span className="results-count">
-{searchedProducts.length} Products 
+{searchedProducts.length} Products
 </span>
 </div>
 
@@ -867,21 +881,21 @@ Load More Products
 <i className="fa fa-chevron-down"></i>
 </button>
 <p className="load-more-info">
-Showing {visibleProducts.length} of {searchedProducts.length} {" "}
+Showing {visibleProducts.length} of {searchedProducts.length}{" "}
 products
 </p>
 </div>
 )}
 
-{!hasMore && searchedProducts.length > 0 && ( 
+{!hasMore && searchedProducts.length > 0 && (
 <div className="load-more-container">
 <p className="load-more-end">
-✦ You've seen all {searchedProducts.length} Products ✦
+✦ You've seen all {searchedProducts.length} products ✦
 </p>
 </div>
 )}
 
-{searchedProducts.length === 0 && ( 
+{searchedProducts.length === 0 && (
 <div className="load-more-container">
 <p className="load-more-end">No products found</p>
 </div>
