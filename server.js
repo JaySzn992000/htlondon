@@ -715,38 +715,42 @@ res.status(500).json({ error: "Database query failed" });
 // });
 
 
-
 app.get("/fetchProductslist", async (req, res) => {
-const searchQuery = req.query.search || "";
-const keywords = searchQuery.toLowerCase().split(/\s+/);
+const searchQuery = (req.query.search || "").trim();
 
 try {
-const conditions = keywords.map((_, index) => `LOWER(name) ILIKE $${index + 1}`).join(" AND ");
-const values = keywords.map((keyword) => `%${keyword}%`);
 
-const query = `
-SELECT * FROM _imgproduct
-WHERE ${conditions}
-`;
-
-const result = await pool.query(query, values);
-
-if (result.rows.length > 0) {
+if (!searchQuery) {
+const result = await pool.query("SELECT * FROM _imgproduct");
 return res.json(result.rows);
 }
 
-const exactMatchQuery = `
-SELECT * FROM _imgproduct
-WHERE LOWER(img) = LOWER($1)
-`;
-const exactResult = await pool.query(exactMatchQuery, [searchQuery]);
+const normalized = searchQuery.toLowerCase().replace(/[-_]/g, " ");
 
-res.json(exactResult.rows);
+const keywords = normalized.split(/\s+/).filter(Boolean);
+
+const conditions = keywords.map((_, i) => 
+`(LOWER(name) LIKE $${i + 1} OR LOWER(img) LIKE $${i + 1})`
+).join(" AND ");
+
+const values = keywords.map((kw) => `%${kw}%`);
+
+const query = `SELECT * FROM _imgproduct WHERE ${conditions}`;
+const result = await pool.query(query, values);
+
+if (result.rows.length === 0) {
+const categoryMatch = await pool.query(
+`SELECT * FROM _imgproduct WHERE LOWER(img) LIKE $1`,
+[`%${normalized}%`]
+);
+return res.json(categoryMatch.rows);
+}
+
+res.json(result.rows);
 } catch (err) {
 console.error("❌ Database query failed:", err.message);
 res.status(500).json({ error: "Database query failed" });
 }
-
 });
 
 
