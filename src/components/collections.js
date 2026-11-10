@@ -485,7 +485,6 @@
 
 // export default connect(null, { addToCart })(Collections);
 
-
 import { useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../headers_footer/navbar";
@@ -496,12 +495,18 @@ import { addToCart } from "../action/action";
 import axios from "axios";
 import "./ProductListmodule.css";
 import Header from "../headers_footer/header";
+import { useSearchFilter } from "../utils/useSearchFilter";
+
+
 
 const Collections = ({ addToCart }) => {
 const navigate = useNavigate(); 
 
-const [filteredProducts, setFilteredProducts] = useState([]);
 const [allProducts, setAllProducts] = useState([]);
+const [filteredProducts, setFilteredProducts] = useState([]);
+
+const searchedProducts = useSearchFilter(filteredProducts);
+
 const [wishlistCount, setWishlistCount] = useState(0);
 const [wishlistStatus, setWishlistStatus] = useState({});
 const [cartCount, setCartCount] = useState(0);
@@ -630,8 +635,11 @@ const handleLoadMore = () => {
 setVisibleCount((prev) => prev + PRODUCTS_PER_LOAD);
 };
 
-const visibleProducts = filteredProducts.slice(0, visibleCount);
-const hasMore = visibleCount < filteredProducts.length;
+// const visibleProducts = filteredProducts.slice(0, visibleCount);
+// const hasMore = visibleCount < filteredProducts.length;
+
+const visibleProducts = searchedProducts.slice(0, visibleCount);  
+const hasMore = visibleCount < searchedProducts.length;           
 
 const slugify = (text) => {
 return text
@@ -679,7 +687,9 @@ const SkeletonCard = () => (
 </div>
 );
 
+
 return (
+
 <div className="collections-premium">
 <Navbar wishlistCount={wishlistCount} cartCount={cartCount} />
 
@@ -720,7 +730,7 @@ className={`category-pill ${i === 0 ? "active" : ""}`}
 
 <div className="results-bar">
 <span className="results-count">
-{filteredProducts.length} Products
+{searchedProducts.length} Products 
 </span>
 </div>
 
@@ -857,21 +867,21 @@ Load More Products
 <i className="fa fa-chevron-down"></i>
 </button>
 <p className="load-more-info">
-Showing {visibleProducts.length} of {filteredProducts.length}{" "}
+Showing {visibleProducts.length} of {searchedProducts.length} {" "}
 products
 </p>
 </div>
 )}
 
-{!hasMore && filteredProducts.length > 0 && (
+{!hasMore && searchedProducts.length > 0 && ( 
 <div className="load-more-container">
 <p className="load-more-end">
-✦ You've seen all {filteredProducts.length} products ✦
+✦ You've seen all {searchedProducts.length} Products ✦
 </p>
 </div>
 )}
 
-{filteredProducts.length === 0 && (
+{searchedProducts.length === 0 && ( 
 <div className="load-more-container">
 <p className="load-more-end">No products found</p>
 </div>
