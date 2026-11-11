@@ -716,6 +716,7 @@ res.status(500).json({ error: "Database query failed" });
 
 
 app.get("/fetchProductslist", async (req, res) => {
+
 const searchQuery = (req.query.search || "").trim();
 
 try {
@@ -729,9 +730,9 @@ const normalized = searchQuery.toLowerCase().replace(/[-_]/g, " ");
 
 const keywords = normalized.split(/\s+/).filter(Boolean);
 
-const conditions = keywords.map((_, i) => 
-`(LOWER(name) LIKE $${i + 1} OR LOWER(img) LIKE $${i + 1})`
-).join(" AND ");
+const conditions = keywords
+.map((_, i) => `(LOWER(name) LIKE $${i + 1} OR LOWER(img) LIKE $${i + 1})`)
+.join(" OR ");
 
 const values = keywords.map((kw) => `%${kw}%`);
 
@@ -751,6 +752,7 @@ res.json(result.rows);
 console.error("❌ Database query failed:", err.message);
 res.status(500).json({ error: "Database query failed" });
 }
+
 });
 
 

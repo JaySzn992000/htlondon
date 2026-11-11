@@ -522,14 +522,41 @@ new URLSearchParams(location.search).get("search") || "";
 const normalize = (s = "") =>
 String(s).toLowerCase().replace(/[-_]/g, " ").replace(/\s+/g, " ").trim();
 
-const toToken = (w) =>
-w.endsWith("s") && w.length > 3 ? w.slice(0, -1) : w;
+const toToken = (w) => {
+if (
+w.length > 3 &&
+w.endsWith("s") &&
+!w.endsWith("ss") &&
+!w.endsWith("us") &&
+!w.endsWith("is")
+) {
+return w.slice(0, -1);
+}
+return w;
+};
+
+const isSubsequence = (q, text) => {
+let i = 0;
+for (let j = 0; j < text.length && i < q.length; j++) {
+if (text[j] === q[i]) i++;
+}
+return i === q.length;
+};
 
 const matchesSearch = (text = "", q = "") => {
 if (!q.trim()) return true;
-const a = normalize(text).split(" ").map(toToken);
-const b = normalize(q).split(" ").map(toToken);
-return b.every((w) => a.some((p) => p.includes(w) || w.includes(p)));
+
+const a = normalize(text).split(" ").filter(Boolean).map(toToken);
+const b = normalize(q).split(" ").filter(Boolean).map(toToken);
+
+return b.every((w) =>
+a.some(
+(p) =>
+p.includes(w) ||       
+w.includes(p) ||       
+isSubsequence(w, p)    
+)
+);
 };
 
 const searchedProducts = searchQuery.trim()
@@ -566,7 +593,6 @@ if (!token) {
 navigate("/login");
 return;
 }
-
 axios
 .get("https://namasya.onrender.com/fetchProductslist", {
 headers: {
