@@ -760,6 +760,49 @@ res.status(500).json({ error: err.message });
 
 
 app.get("/fetchProductslist", async (req, res) => {
+const searchQuery = req.query.search || "";
+const keywords = searchQuery.toLowerCase().split(/\s+/);
+
+try {
+const conditions = keywords.map((_, index) => `LOWER(name) ILIKE $${index + 1}`).join(" AND ");
+const values = keywords.map((keyword) => `%${keyword}%`);
+
+const query = `
+SELECT * FROM _imgproduct
+WHERE ${conditions}
+`;
+
+const result = await pool.query(query, values);
+
+if (result.rows.length > 0) {
+return res.json(result.rows);
+}
+
+const exactMatchQuery = `
+SELECT * FROM _imgproduct
+WHERE LOWER(img) = LOWER($1)
+`;
+const exactResult = await pool.query(exactMatchQuery, [searchQuery]);
+
+res.json(exactResult.rows);
+} catch (err) {
+console.error("❌ Database query failed:", err.message);
+res.status(500).json({ error: "Database query failed" });
+}
+});
+
+app.get("/fetchProductslist", (req, res) => {
+db.query("SELECT * FROM imgproduct", (err, results) => {
+if (err) {
+console.error("Error fetching data:", err.stack);
+return res.status(500).json({ error: "Database query failed" });
+}
+res.json(results);
+});
+});
+
+
+app.get("/fetchProductslist", async (req, res) => {
 try {
 const result = await pool.query("SELECT * FROM _imgproduct");
 res.json(result.rows);
@@ -768,7 +811,6 @@ console.error("Error fetching data:", err.message);
 res.status(500).json({ error: "Database query failed" });
 }
 });
-
 
 
 // app.get("/fetchProductDetails", (req, res) => {
