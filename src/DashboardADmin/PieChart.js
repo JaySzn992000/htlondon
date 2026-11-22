@@ -2,89 +2,109 @@ import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
 const PieChart = () => {
-
 const [series, setSeries] = useState([]);
 const [labels, setLabels] = useState([]);
 const [loading, setLoading] = useState(true);
 
 useEffect(() => {
 const fetchData = async () => {
-
 try {
-const response = await fetch("https://namasya.onrender.com/fetchCutomerOrder");
+const response = await fetch(
+"https://namasya.onrender.com/fetchCutomerOrder"
+);
+
+if (!response.ok) {
+throw new Error(`API Error: ${response.status}`);
+}
+
 const data = await response.json();
 
-if (!data.products || !Array.isArray(data.products)) {
+if (!Array.isArray(data.products)) {
 throw new Error("Invalid data format");
 }
 
 const monthlyEarnings = {};
-data.products.forEach(item => {
+
+data.products.forEach((item) => {
 const dateObj = new Date(item.date);
-const month = dateObj.toLocaleString('default', { month: 'short', year: 'numeric' });
-monthlyEarnings[month] = (monthlyEarnings[month] || 0) + (item.amount || 0);
+const amount = Number(item.amount) || 0;
+
+if (isNaN(dateObj.getTime()) || amount <= 0) return;
+
+const monthKey = `${dateObj.getFullYear()}-${String(
+dateObj.getMonth() + 1
+).padStart(2, "0")}`;
+
+const monthLabel = dateObj.toLocaleString("en-IN", {
+month: "short",
+year: "numeric",
 });
 
-const sortedMonths = Object.keys(monthlyEarnings).sort((a, b) => {
-return new Date(a) - new Date(b);
+if (!monthlyEarnings[monthKey]) {
+monthlyEarnings[monthKey] = {
+label: monthLabel,
+amount: 0,
+};
+}
+
+monthlyEarnings[monthKey].amount += amount;
 });
 
-const calculatedSeries = sortedMonths.map(month => monthlyEarnings[month]);
-const calculatedLabels = sortedMonths.map(month => {
-const earnings = monthlyEarnings[month];
-return `${month} (₹${earnings.toLocaleString()})`;
-});
+const sortedMonths = Object.keys(monthlyEarnings).sort();
 
-setSeries(calculatedSeries);
-setLabels(sortedMonths); 
-setLoading(false);
+setSeries(
+sortedMonths.map((month) => monthlyEarnings[month].amount)
+);
+
+setLabels(
+sortedMonths.map((month) => monthlyEarnings[month].label)
+);
 } catch (error) {
-console.error("Error fetching data:", error);
+console.error("Error fetching chart data:", error);
+} finally {
 setLoading(false);
 }
 };
 
 fetchData();
-
-}, [] );
-
+}, []);
 
 const options = {
-
 chart: {
-type: 'pie',
+type: "pie",
 },
 labels: labels,
 tooltip: {
 y: {
-formatter: function (value) {
-const num = parseFloat(value);
-return `₹ ${Number.isInteger(num)
-? num.toLocaleString(undefined, { maximumFractionDigits: 0 })
-: num.toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
-}
-}
+formatter: (value) =>
+`₹ ${value.toLocaleString("en-IN", {
+maximumFractionDigits: 2,
+})}`,
+},
 },
 legend: {
-position: 'right',
-formatter: function (seriesName, opts) {
-const val = parseFloat(opts.w.globals.series[opts.seriesIndex]);
-return `${seriesName}: ₹ ${Number.isInteger(val)
-? val.toLocaleString(undefined, { maximumFractionDigits: 0 })
-: val.toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
-}
+position: "right",
+formatter: (seriesName, opts) => {
+const value = opts.w.globals.series[opts.seriesIndex];
+
+return `${seriesName}: ₹ ${value.toLocaleString("en-IN", {
+maximumFractionDigits: 2,
+})}`;
 },
-responsive: [{
+},
+responsive: [
+{
 breakpoint: 480,
 options: {
 chart: {
-width: 300
+width: 300,
 },
 legend: {
-position: 'bottom'
-}
-}
-}]
+position: "bottom",
+},
+},
+},
+],
 };
 
 if (loading) {
@@ -96,25 +116,20 @@ return <div>No data available for the chart.</div>;
 }
 
 return (
-
 <div className="PieChart-container">
-
-<h3 className="ChartsTg" >Monthly Earnings by PieChart</h3>
+<h3 className="ChartsTg">Monthly Earnings by PieChart</h3>
 <label>Sales/Revenue</label>
 
-<ReactApexChart 
+<ReactApexChart
 options={options}
 series={series}
 type="pie"
-className='PieChart'
-id='PieChrt'
+className="PieChart"
+id="PieChrt"
 height={320}
 />
-
 </div>
-
 );
-
 };
 
 export default PieChart;
