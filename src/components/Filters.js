@@ -38,8 +38,7 @@ const [filters_div, setfilters_div] = useState(false);
 const navigate = useNavigate();
 const location = useLocation();
 
-// URL = single source of truth for selected categories
-const query = new URLSearchParams(location.search).get("search");
+const query = new URLSearchParams(location.search).get("category");
 
 const selectedNames = useMemo(() => {
 if (!query) return [];
@@ -85,21 +84,30 @@ updateParent();
 }, [updateParent]);
 
 const handlePriceChange = () => setIsPriceChanged(true);
-
 const handleCategoryClick = (categoryName) => {
-if (categoryName === "All") {
-navigate({ search: "" });
-return;
+const params = new URLSearchParams(location.search);
+
+const currentNames = (params.get("category") || "")
+.split(",")
+.map((n) => n.trim())
+.filter(Boolean);
+
+const newNames =
+categoryName === "All"
+? []
+: currentNames.includes(categoryName)
+? currentNames.filter((n) => n !== categoryName)
+: [...currentNames, categoryName];
+
+if (newNames.length) {
+params.set("category", newNames.join(","));
+} else {
+params.delete("category");
 }
 
-const newNames = selectedNames.includes(categoryName)
-? selectedNames.filter((n) => n !== categoryName)
-: [...selectedNames, categoryName];
-
 navigate({
-search: newNames.length
-? `?search=${encodeURIComponent(newNames.join(","))}`
-: "",
+pathname: location.pathname,
+search: params.toString() ? `?${params.toString()}` : "",
 });
 };
 
@@ -118,10 +126,18 @@ const clearAllFilters = () => {
 setMinPrice(0);
 setMaxPrice(10000);
 setIsPriceChanged(false);
-navigate({ search: "" });
+
+const params = new URLSearchParams(location.search);
+params.delete("category");
+
+navigate({
+pathname: location.pathname,
+search: params.toString() ? `?${params.toString()}` : "",
+});
 };
 
 return (
+
 <div>
 <div className="content_sticky">
 <div id="div_filter">
