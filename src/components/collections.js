@@ -561,29 +561,14 @@ productWord.startsWith(word)
 );
 };
 
-const isSubsequence = (q, text) => {
-let i = 0;
-for (let j = 0; j < text.length && i < q.length; j++) {
-if (text[j] === q[i]) i++;
-}
-return i === q.length;
-};
+// const isSubsequence = (q, text) => {
+// let i = 0;
+// for (let j = 0; j < text.length && i < q.length; j++) {
+// if (text[j] === q[i]) i++;
+// }
+// return i === q.length;
+// };
 
-const matchesSearch = (text = "", q = "") => {
-if (!q.trim()) return true;
-
-const a = normalize(text).split(" ").filter(Boolean).map(toToken);
-const b = normalize(q).split(" ").filter(Boolean).map(toToken);
-
-return b.every((w) =>
-a.some(
-(p) =>
-p.includes(w) ||       
-w.includes(p) ||       
-isSubsequence(w, p)    
-)
-);
-};
 
 const searchedProducts = searchQuery.trim()
 ? filteredProducts.filter((p) => {
