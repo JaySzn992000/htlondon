@@ -520,7 +520,13 @@ const searchQuery =
 new URLSearchParams(location.search).get("search") || "";
 
 const normalize = (s = "") =>
-String(s).toLowerCase().replace(/[-_]/g, " ").replace(/\s+/g, " ").trim();
+String(s)
+.toLowerCase()
+.replace(/t[\s-]?shirts?/g, "t shirt")
+.replace(/[-_]/g, " ")
+.replace(/[^a-z0-9\s]/g, " ")
+.replace(/\s+/g, " ")
+.trim();
 
 const toToken = (w) => {
 if (
@@ -533,6 +539,26 @@ w.endsWith("s") &&
 return w.slice(0, -1);
 }
 return w;
+};
+
+const matchesSearch = (text = "", q = "") => {
+if (!q.trim()) return true;
+
+const productWords = normalize(text)
+.split(" ")
+.filter(Boolean)
+.map(toToken);
+
+const queryWords = normalize(q)
+.split(" ")
+.filter(Boolean)
+.map(toToken);
+
+return queryWords.every((word) =>
+productWords.some((productWord) =>
+productWord.startsWith(word)
+)
+);
 };
 
 const isSubsequence = (q, text) => {
@@ -730,6 +756,7 @@ const SkeletonCard = () => (
 );
 
 return (
+
 <div className="collections-premium">
 <Navbar wishlistCount={wishlistCount} cartCount={cartCount} />
 
@@ -1016,6 +1043,7 @@ View Full Details →
 <FAqQuestions />
 <Header />
 </div>
+
 );
 };
 
